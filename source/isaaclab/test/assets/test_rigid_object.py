@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2025, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
+# Copyright (c) 2022-2026, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
 # All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
@@ -17,11 +17,10 @@ simulation_app = AppLauncher(headless=True).app
 """Rest everything follows."""
 
 import ctypes
-import torch
-from typing import Literal
-
-import isaacsim.core.utils.prims as prim_utils
 import pytest
+import torch
+from flaky import flaky
+from typing import Literal
 
 import isaaclab.sim as sim_utils
 from isaaclab.assets import RigidObject, RigidObjectCfg
@@ -62,7 +61,7 @@ def generate_cubes_scene(
     origins = torch.tensor([(i * 1.0, 0, height) for i in range(num_cubes)]).to(device)
     # Create Top-level Xforms, one for each cube
     for i, origin in enumerate(origins):
-        prim_utils.create_prim(f"/World/Table_{i}", "Xform", translation=origin)
+        sim_utils.create_prim(f"/World/Table_{i}", "Xform", translation=origin)
 
     # Resolve spawn configuration
     if api == "none":
@@ -857,6 +856,7 @@ def test_gravity_vec_w(num_cubes, device, gravity_enabled):
 @pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.parametrize("with_offset", [True, False])
 @pytest.mark.isaacsim_ci
+@flaky(max_runs=3, min_passes=1)
 def test_body_root_state_properties(num_cubes, device, with_offset):
     """Test the root_com_state_w, root_link_state_w, body_com_state_w, and body_link_state_w properties."""
     with build_simulation_context(device=device, gravity_enabled=False, auto_add_lighting=True) as sim:

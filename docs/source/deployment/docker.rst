@@ -76,6 +76,7 @@ Running the Container
 The script ``container.py`` parallels basic ``docker compose`` commands. Each can accept an `image extension argument <#isaac-lab-image-extensions>`_,
 or else they will default to the ``base`` image extension. These commands are:
 
+* **build**: This builds the image for the given profile. It does not bring up the container.
 * **start**: This builds the image and brings up the container in detached mode (i.e. in the background).
 * **enter**: This begins a new bash process in an existing Isaac Lab container, and which can be exited
   without bringing down the container.
@@ -307,7 +308,7 @@ To pull the minimal Isaac Lab container, run:
 
 .. code:: bash
 
-  docker pull nvcr.io/nvidia/isaac-lab:2.2.0
+  docker pull nvcr.io/nvidia/isaac-lab:2.3.0
 
 To run the Isaac Lab container with an interactive bash session, run:
 
@@ -323,7 +324,7 @@ To run the Isaac Lab container with an interactive bash session, run:
      -v ~/docker/isaac-sim/logs:/root/.nvidia-omniverse/logs:rw \
      -v ~/docker/isaac-sim/data:/root/.local/share/ov/data:rw \
      -v ~/docker/isaac-sim/documents:/root/Documents:rw \
-     nvcr.io/nvidia/isaac-lab:2.2.0
+     nvcr.io/nvidia/isaac-lab:2.3.0
 
 To enable rendering through X11 forwarding, run:
 
@@ -342,7 +343,7 @@ To enable rendering through X11 forwarding, run:
      -v ~/docker/isaac-sim/logs:/root/.nvidia-omniverse/logs:rw \
      -v ~/docker/isaac-sim/data:/root/.local/share/ov/data:rw \
      -v ~/docker/isaac-sim/documents:/root/Documents:rw \
-     nvcr.io/nvidia/isaac-lab:2.2.0
+     nvcr.io/nvidia/isaac-lab:2.3.0
 
 To run an example within the container, run:
 

@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2025, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
+# Copyright (c) 2022-2026, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
 # All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
@@ -17,21 +17,13 @@ simulation_app = AppLauncher(headless=True, enable_cameras=True).app
 
 import copy
 import numpy as np
+import pytest
 import random
 import torch
 
-import isaacsim.core.utils.prims as prim_utils
-import isaacsim.core.utils.stage as stage_utils
 import omni.replicator.core as rep
-import pytest
 from isaacsim.core.prims import SingleGeometryPrim, SingleRigidPrim
 from pxr import Gf, UsdGeom
-
-# from Isaac Sim 4.2 onwards, pxr.Semantics is deprecated
-try:
-    import Semantics
-except ModuleNotFoundError:
-    from pxr import Semantics
 
 import isaaclab.sim as sim_utils
 from isaaclab.sensors.camera import Camera, CameraCfg, TiledCamera, TiledCameraCfg
@@ -40,7 +32,7 @@ from isaaclab.utils.timer import Timer
 
 
 @pytest.fixture(scope="function")
-def setup_camera() -> tuple[sim_utils.SimulationContext, TiledCameraCfg, float]:
+def setup_camera(device) -> tuple[sim_utils.SimulationContext, TiledCameraCfg, float]:
     """Fixture to set up and tear down the camera simulation environment."""
     camera_cfg = TiledCameraCfg(
         height=128,
@@ -54,16 +46,16 @@ def setup_camera() -> tuple[sim_utils.SimulationContext, TiledCameraCfg, float]:
         ),
     )
     # Create a new stage
-    stage_utils.create_new_stage()
+    sim_utils.create_new_stage()
     # Simulation time-step
     dt = 0.01
     # Load kit helper
-    sim_cfg = sim_utils.SimulationCfg(dt=dt)
+    sim_cfg = sim_utils.SimulationCfg(dt=dt, device=device)
     sim: sim_utils.SimulationContext = sim_utils.SimulationContext(sim_cfg)
     # populate scene
     _populate_scene()
     # load stage
-    stage_utils.update_stage()
+    sim_utils.update_stage()
     yield sim, camera_cfg, dt
     # Teardown
     rep.vp_manager.destroy_hydra_textures("Replicator")
@@ -72,8 +64,9 @@ def setup_camera() -> tuple[sim_utils.SimulationContext, TiledCameraCfg, float]:
     sim.clear_instance()
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_single_camera_init(setup_camera):
+def test_single_camera_init(setup_camera, device):
     """Test single camera initialization."""
     sim, camera_cfg, dt = setup_camera
     # Create camera
@@ -119,8 +112,9 @@ def test_single_camera_init(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_depth_clipping_max(setup_camera):
+def test_depth_clipping_max(setup_camera, device):
     """Test depth max clipping."""
     sim, _, dt = setup_camera
     # get camera cfgs
@@ -158,8 +152,9 @@ def test_depth_clipping_max(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_depth_clipping_none(setup_camera):
+def test_depth_clipping_none(setup_camera, device):
     """Test depth none clipping."""
     sim, _, dt = setup_camera
     # get camera cfgs
@@ -201,8 +196,9 @@ def test_depth_clipping_none(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_depth_clipping_zero(setup_camera):
+def test_depth_clipping_zero(setup_camera, device):
     """Test depth zero clipping."""
     sim, _, dt = setup_camera
     # get camera cfgs
@@ -240,14 +236,15 @@ def test_depth_clipping_zero(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_multi_camera_init(setup_camera):
+def test_multi_camera_init(setup_camera, device):
     """Test multi-camera initialization."""
     sim, camera_cfg, dt = setup_camera
 
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -296,13 +293,14 @@ def test_multi_camera_init(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_rgb_only_camera(setup_camera):
+def test_rgb_only_camera(setup_camera, device):
     """Test initialization with only RGB data type."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -349,8 +347,9 @@ def test_rgb_only_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_data_types(setup_camera):
+def test_data_types(setup_camera, device):
     """Test different data types for camera initialization."""
     sim, camera_cfg, dt = setup_camera
     # Create camera
@@ -396,13 +395,14 @@ def test_data_types(setup_camera):
     del camera_both
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_depth_only_camera(setup_camera):
+def test_depth_only_camera(setup_camera, device):
     """Test initialization with only depth."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -449,13 +449,14 @@ def test_depth_only_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_rgba_only_camera(setup_camera):
+def test_rgba_only_camera(setup_camera, device):
     """Test initialization with only RGBA."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -502,13 +503,14 @@ def test_rgba_only_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_distance_to_camera_only_camera(setup_camera):
+def test_distance_to_camera_only_camera(setup_camera, device):
     """Test initialization with only distance_to_camera."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -555,13 +557,14 @@ def test_distance_to_camera_only_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_distance_to_image_plane_only_camera(setup_camera):
+def test_distance_to_image_plane_only_camera(setup_camera, device):
     """Test initialization with only distance_to_image_plane."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -608,13 +611,14 @@ def test_distance_to_image_plane_only_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_normals_only_camera(setup_camera):
+def test_normals_only_camera(setup_camera, device):
     """Test initialization with only normals."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -657,17 +661,21 @@ def test_normals_only_camera(setup_camera):
             assert im_data.shape == (num_cameras, camera_cfg.height, camera_cfg.width, 3)
             for i in range(4):
                 assert im_data[i].mean() > 0.0
+            # check normal norm is approximately 1
+            norms = torch.norm(im_data, dim=-1)
+            assert torch.allclose(norms, torch.ones_like(norms), atol=1e-9)
     assert camera.data.output["normals"].dtype == torch.float
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_motion_vectors_only_camera(setup_camera):
+def test_motion_vectors_only_camera(setup_camera, device):
     """Test initialization with only motion_vectors."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -714,13 +722,14 @@ def test_motion_vectors_only_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_semantic_segmentation_colorize_only_camera(setup_camera):
+def test_semantic_segmentation_colorize_only_camera(setup_camera, device):
     """Test initialization with only semantic_segmentation."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -768,13 +777,14 @@ def test_semantic_segmentation_colorize_only_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_instance_segmentation_fast_colorize_only_camera(setup_camera):
+def test_instance_segmentation_fast_colorize_only_camera(setup_camera, device):
     """Test initialization with only instance_segmentation_fast."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -822,13 +832,14 @@ def test_instance_segmentation_fast_colorize_only_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_instance_id_segmentation_fast_colorize_only_camera(setup_camera):
+def test_instance_id_segmentation_fast_colorize_only_camera(setup_camera, device):
     """Test initialization with only instance_id_segmentation_fast."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -876,13 +887,14 @@ def test_instance_id_segmentation_fast_colorize_only_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_semantic_segmentation_non_colorize_only_camera(setup_camera):
+def test_semantic_segmentation_non_colorize_only_camera(setup_camera, device):
     """Test initialization with only semantic_segmentation."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -932,13 +944,14 @@ def test_semantic_segmentation_non_colorize_only_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_instance_segmentation_fast_non_colorize_only_camera(setup_camera):
+def test_instance_segmentation_fast_non_colorize_only_camera(setup_camera, device):
     """Test initialization with only instance_segmentation_fast."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -987,12 +1000,13 @@ def test_instance_segmentation_fast_non_colorize_only_camera(setup_camera):
     del camera
 
 
-def test_instance_id_segmentation_fast_non_colorize_only_camera(setup_camera):
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
+def test_instance_id_segmentation_fast_non_colorize_only_camera(setup_camera, device):
     """Test initialization with only instance_id_segmentation_fast."""
     sim, camera_cfg, dt = setup_camera
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -1041,8 +1055,9 @@ def test_instance_id_segmentation_fast_non_colorize_only_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_all_annotators_camera(setup_camera):
+def test_all_annotators_camera(setup_camera, device):
     """Test initialization with all supported annotators."""
     sim, camera_cfg, dt = setup_camera
     all_annotator_types = [
@@ -1060,7 +1075,7 @@ def test_all_annotators_camera(setup_camera):
 
     num_cameras = 9
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -1140,8 +1155,9 @@ def test_all_annotators_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_all_annotators_low_resolution_camera(setup_camera):
+def test_all_annotators_low_resolution_camera(setup_camera, device):
     """Test initialization with all supported annotators."""
     sim, camera_cfg, dt = setup_camera
     all_annotator_types = [
@@ -1159,7 +1175,7 @@ def test_all_annotators_low_resolution_camera(setup_camera):
 
     num_cameras = 2
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -1241,8 +1257,9 @@ def test_all_annotators_low_resolution_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_all_annotators_non_perfect_square_number_camera(setup_camera):
+def test_all_annotators_non_perfect_square_number_camera(setup_camera, device):
     """Test initialization with all supported annotators."""
     sim, camera_cfg, dt = setup_camera
     all_annotator_types = [
@@ -1260,7 +1277,7 @@ def test_all_annotators_non_perfect_square_number_camera(setup_camera):
 
     num_cameras = 11
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform")
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -1340,8 +1357,9 @@ def test_all_annotators_non_perfect_square_number_camera(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_all_annotators_instanceable(setup_camera):
+def test_all_annotators_instanceable(setup_camera, device):
     """Test initialization with all supported annotators on instanceable assets."""
     sim, camera_cfg, dt = setup_camera
     all_annotator_types = [
@@ -1359,15 +1377,15 @@ def test_all_annotators_instanceable(setup_camera):
 
     num_cameras = 10
     for i in range(num_cameras):
-        prim_utils.create_prim(f"/World/Origin_{i}", "Xform", translation=(0.0, i, 0.0))
+        sim_utils.create_prim(f"/World/Origin_{i}", "Xform", translation=(0.0, i, 0.0))
 
     # Create a stage with 10 instanceable cubes, where each camera points to one cube
-    stage = stage_utils.get_current_stage()
+    stage = sim_utils.get_current_stage()
     for i in range(10):
         # Remove objects added to stage by default
         stage.RemovePrim(f"/World/Objects/Obj_{i:02d}")
         # Add instanceable cubes
-        prim_utils.create_prim(
+        sim_utils.create_prim(
             f"/World/Cube_{i}",
             "Xform",
             usd_path=f"{ISAAC_NUCLEUS_DIR}/Props/Blocks/DexCube/dex_cube_instanceable.usd",
@@ -1376,11 +1394,7 @@ def test_all_annotators_instanceable(setup_camera):
             scale=(5.0, 5.0, 5.0),
         )
         prim = stage.GetPrimAtPath(f"/World/Cube_{i}")
-        sem = Semantics.SemanticsAPI.Apply(prim, "Semantics")
-        sem.CreateSemanticTypeAttr()
-        sem.CreateSemanticDataAttr()
-        sem.GetSemanticTypeAttr().Set("class")
-        sem.GetSemanticDataAttr().Set("cube")
+        sim_utils.add_labels(prim, labels=["cube"], instance_name="class")
 
     # Create camera
     camera_cfg = copy.deepcopy(camera_cfg)
@@ -1470,8 +1484,9 @@ def test_all_annotators_instanceable(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0"])
 @pytest.mark.isaacsim_ci
-def test_throughput(setup_camera):
+def test_throughput(setup_camera, device):
     """Test tiled camera throughput."""
     sim, camera_cfg, dt = setup_camera
     # create camera
@@ -1507,8 +1522,9 @@ def test_throughput(setup_camera):
     del camera
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_output_equal_to_usd_camera_intrinsics(setup_camera):
+def test_output_equal_to_usd_camera_intrinsics(setup_camera, device):
     """
     Test that the output of the ray caster camera and the usd camera are the same when both are
     initialized with the same intrinsic matrix.
@@ -1599,8 +1615,9 @@ def test_output_equal_to_usd_camera_intrinsics(setup_camera):
     del camera_usd
 
 
+@pytest.mark.parametrize("device", ["cuda:0", "cpu"])
 @pytest.mark.isaacsim_ci
-def test_sensor_print(setup_camera):
+def test_sensor_print(setup_camera, device):
     """Test sensor print is working correctly."""
     sim, camera_cfg, _ = setup_camera
     # Create sensor
@@ -1611,8 +1628,9 @@ def test_sensor_print(setup_camera):
     print(sensor)
 
 
+@pytest.mark.parametrize("device", ["cuda:0"])
 @pytest.mark.isaacsim_ci
-def test_frame_offset_small_resolution(setup_camera):
+def test_frame_offset_small_resolution(setup_camera, device):
     """Test frame offset issue with small resolution camera."""
     sim, camera_cfg, dt = setup_camera
     # Create sensor
@@ -1624,7 +1642,7 @@ def test_frame_offset_small_resolution(setup_camera):
     # play sim
     sim.reset()
     # simulate some steps first to make sure objects are settled
-    stage = stage_utils.get_current_stage()
+    stage = sim_utils.get_current_stage()
     for i in range(10):
         prim = stage.GetPrimAtPath(f"/World/Objects/Obj_{i:02d}")
         UsdGeom.Gprim(prim).GetOrderedXformOps()[2].Set(Gf.Vec3d(1.0, 1.0, 1.0))
@@ -1654,8 +1672,9 @@ def test_frame_offset_small_resolution(setup_camera):
     assert torch.abs(image_after - image_before).mean() > 0.1  # images of same color should be below 0.01
 
 
+@pytest.mark.parametrize("device", ["cuda:0"])
 @pytest.mark.isaacsim_ci
-def test_frame_offset_large_resolution(setup_camera):
+def test_frame_offset_large_resolution(setup_camera, device):
     """Test frame offset issue with large resolution camera."""
     sim, camera_cfg, dt = setup_camera
     # Create sensor
@@ -1665,7 +1684,7 @@ def test_frame_offset_large_resolution(setup_camera):
     tiled_camera = TiledCamera(camera_cfg)
 
     # modify scene to be less stochastic
-    stage = stage_utils.get_current_stage()
+    stage = sim_utils.get_current_stage()
     for i in range(10):
         prim = stage.GetPrimAtPath(f"/World/Objects/Obj_{i:02d}")
         color = Gf.Vec3f(1, 1, 1)
@@ -1725,7 +1744,7 @@ def _populate_scene():
         position *= np.asarray([1.5, 1.5, 0.5])
         # create prim
         prim_type = random.choice(["Cube", "Sphere", "Cylinder"])
-        prim = prim_utils.create_prim(
+        prim = sim_utils.create_prim(
             f"/World/Objects/Obj_{i:02d}",
             prim_type,
             translation=position,

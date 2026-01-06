@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2025, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
+# Copyright (c) 2022-2026, The Isaac Lab Project Developers (https://github.com/isaac-sim/IsaacLab/blob/main/CONTRIBUTORS.md).
 # All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
@@ -12,12 +12,11 @@ simulation_app = AppLauncher(headless=True).app
 """Rest everything follows from here."""
 
 import os
+import pytest
 import shutil
 import tempfile
 import torch
 import uuid
-
-import pytest
 
 from isaaclab.utils.datasets import EpisodeData, HDF5DatasetFileHandler
 
@@ -82,6 +81,7 @@ def test_write_and_load_episode(temp_dir, device):
     test_episode = create_test_episode(device)
 
     # write the episode to the dataset
+    test_episode.pre_export()
     dataset_file_handler.write_episode(test_episode)
     dataset_file_handler.flush()
 
