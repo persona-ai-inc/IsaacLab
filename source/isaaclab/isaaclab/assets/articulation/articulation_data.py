@@ -494,9 +494,7 @@ class ArticulationData:
             vel = self.root_com_vel_w.clone()
             # adjust linear velocity to link from center of mass
             vel[:, :3] += torch.linalg.cross(
-                vel[:, 3:],
-                math_utils.quat_apply(self.root_link_quat_w, -self.body_com_pos_b[:, 0]),
-                dim=-1,
+                vel[:, 3:], math_utils.quat_apply(self.root_link_quat_w, -self.body_com_pos_b[:, 0]), dim=-1
             )
             # set the buffer data and timestamp
             self._root_link_vel_w.data = vel
@@ -514,10 +512,7 @@ class ArticulationData:
         if self._root_com_pose_w.timestamp < self._sim_timestamp:
             # apply local transform to center of mass frame
             pos, quat = math_utils.combine_frame_transforms(
-                self.root_link_pos_w,
-                self.root_link_quat_w,
-                self.body_com_pos_b[:, 0],
-                self.body_com_quat_b[:, 0],
+                self.root_link_pos_w, self.root_link_quat_w, self.body_com_pos_b[:, 0], self.body_com_quat_b[:, 0]
             )
             # set the buffer data and timestamp
             self._root_com_pose_w.data = torch.cat((pos, quat), dim=-1)
@@ -615,9 +610,7 @@ class ArticulationData:
             velocities = self.body_com_vel_w.clone()
             # adjust linear velocity to link from center of mass
             velocities[..., :3] += torch.linalg.cross(
-                velocities[..., 3:],
-                math_utils.quat_apply(self.body_link_quat_w, -self.body_com_pos_b),
-                dim=-1,
+                velocities[..., 3:], math_utils.quat_apply(self.body_link_quat_w, -self.body_com_pos_b), dim=-1
             )
             # set the buffer data and timestamp
             self._body_link_vel_w.data = velocities
@@ -636,10 +629,7 @@ class ArticulationData:
         if self._body_com_pose_w.timestamp < self._sim_timestamp:
             # apply local transform to center of mass frame
             pos, quat = math_utils.combine_frame_transforms(
-                self.body_link_pos_w,
-                self.body_link_quat_w,
-                self.body_com_pos_b,
-                self.body_com_quat_b,
+                self.body_link_pos_w, self.body_link_quat_w, self.body_com_pos_b, self.body_com_quat_b
             )
             # set the buffer data and timestamp
             self._body_com_pose_w.data = torch.cat((pos, quat), dim=-1)

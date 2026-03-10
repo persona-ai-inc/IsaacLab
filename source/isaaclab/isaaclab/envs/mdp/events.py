@@ -146,9 +146,7 @@ def randomize_rigid_body_scale(
                 op_order_spec = prim_spec.GetAttributeAtPath(prim_path + ".xformOpOrder")
                 if op_order_spec is None:
                     op_order_spec = Sdf.AttributeSpec(
-                        prim_spec,
-                        UsdGeom.Tokens.xformOpOrder,
-                        Sdf.ValueTypeNames.TokenArray,
+                        prim_spec, UsdGeom.Tokens.xformOpOrder, Sdf.ValueTypeNames.TokenArray
                     )
                 op_order_spec.default = Vt.TokenArray(["xformOp:translate", "xformOp:orient", "xformOp:scale"])
 
@@ -373,12 +371,7 @@ class randomize_rigid_body_mass(ManagerTermBase):
         # note: we modify the masses in-place for all environments
         #   however, the setter takes care that only the masses of the specified environments are modified
         masses = _randomize_prop_by_op(
-            masses,
-            mass_distribution_params,
-            env_ids,
-            body_ids,
-            operation=operation,
-            distribution=distribution,
+            masses, mass_distribution_params, env_ids, body_ids, operation=operation, distribution=distribution
         )
         masses = torch.clamp(masses, min=min_mass)  # ensure masses are positive
 
@@ -587,15 +580,10 @@ class randomize_actuator_gains(ManagerTermBase):
         if cfg.params["operation"] == "scale":
             if "stiffness_distribution_params" in cfg.params:
                 _validate_scale_range(
-                    cfg.params["stiffness_distribution_params"],
-                    "stiffness_distribution_params",
-                    allow_zero=False,
+                    cfg.params["stiffness_distribution_params"], "stiffness_distribution_params", allow_zero=False
                 )
             if "damping_distribution_params" in cfg.params:
-                _validate_scale_range(
-                    cfg.params["damping_distribution_params"],
-                    "damping_distribution_params",
-                )
+                _validate_scale_range(cfg.params["damping_distribution_params"], "damping_distribution_params")
         elif cfg.params["operation"] not in ("abs", "add"):
             raise ValueError(
                 "Randomization term 'randomize_actuator_gains' does not support operation:"
@@ -618,12 +606,7 @@ class randomize_actuator_gains(ManagerTermBase):
 
         def randomize(data: torch.Tensor, params: tuple[float, float]) -> torch.Tensor:
             return _randomize_prop_by_op(
-                data,
-                params,
-                dim_0_ids=None,
-                dim_1_ids=actuator_indices,
-                operation=operation,
-                distribution=distribution,
+                data, params, dim_0_ids=None, dim_1_ids=actuator_indices, operation=operation, distribution=distribution
             )
 
         # Loop through actuators and randomize gains
@@ -824,9 +807,7 @@ class randomize_joint_parameters(ManagerTermBase):
                 distribution=distribution,
             )
             self.asset.write_joint_armature_to_sim(
-                armature[env_ids_for_slice, joint_ids],
-                joint_ids=joint_ids,
-                env_ids=env_ids,
+                armature[env_ids_for_slice, joint_ids], joint_ids=joint_ids, env_ids=env_ids
             )
 
         # joint position limits
@@ -903,19 +884,13 @@ class randomize_fixed_tendon_parameters(ManagerTermBase):
         if cfg.params["operation"] == "scale":
             if "stiffness_distribution_params" in cfg.params:
                 _validate_scale_range(
-                    cfg.params["stiffness_distribution_params"],
-                    "stiffness_distribution_params",
-                    allow_zero=False,
+                    cfg.params["stiffness_distribution_params"], "stiffness_distribution_params", allow_zero=False
                 )
             if "damping_distribution_params" in cfg.params:
-                _validate_scale_range(
-                    cfg.params["damping_distribution_params"],
-                    "damping_distribution_params",
-                )
+                _validate_scale_range(cfg.params["damping_distribution_params"], "damping_distribution_params")
             if "limit_stiffness_distribution_params" in cfg.params:
                 _validate_scale_range(
-                    cfg.params["limit_stiffness_distribution_params"],
-                    "limit_stiffness_distribution_params",
+                    cfg.params["limit_stiffness_distribution_params"], "limit_stiffness_distribution_params"
                 )
         elif cfg.params["operation"] not in ("abs", "add"):
             raise ValueError(
@@ -946,11 +921,7 @@ class randomize_fixed_tendon_parameters(ManagerTermBase):
         if self.asset_cfg.fixed_tendon_ids == slice(None):
             tendon_ids = slice(None)  # for optimization purposes
         else:
-            tendon_ids = torch.tensor(
-                self.asset_cfg.fixed_tendon_ids,
-                dtype=torch.int,
-                device=self.asset.device,
-            )
+            tendon_ids = torch.tensor(self.asset_cfg.fixed_tendon_ids, dtype=torch.int, device=self.asset.device)
 
         # sample tendon properties from the given ranges and set into the physics simulation
         # stiffness
@@ -1560,10 +1531,7 @@ class randomize_visual_texture_material(ManagerTermBase):
 
             # TODO: Should we specify the value when creating the material?
             self.material_prims = rep.functional.create_batch.material(
-                mdl="OmniPBR.mdl",
-                bind_prims=prims_group,
-                count=num_prims,
-                project_uvw=True,
+                mdl="OmniPBR.mdl", bind_prims=prims_group, count=num_prims, project_uvw=True
             )
 
     def __call__(
@@ -1710,10 +1678,7 @@ class randomize_visual_color(ManagerTermBase):
 
             # TODO: Should we specify the value when creating the material?
             self.material_prims = rep.functional.create_batch.material(
-                mdl="OmniPBR.mdl",
-                bind_prims=prims_group,
-                count=num_prims,
-                project_uvw=True,
+                mdl="OmniPBR.mdl", bind_prims=prims_group, count=num_prims, project_uvw=True
             )
 
     def __call__(
