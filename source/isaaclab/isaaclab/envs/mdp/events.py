@@ -320,9 +320,7 @@ class randomize_rigid_body_mass(ManagerTermBase):
         if cfg.params["operation"] == "scale":
             if "mass_distribution_params" in cfg.params:
                 _validate_scale_range(
-                    cfg.params["mass_distribution_params"],
-                    "mass_distribution_params",
-                    allow_zero=False,
+                    cfg.params["mass_distribution_params"], "mass_distribution_params", allow_zero=False
                 )
         elif cfg.params["operation"] not in ("abs", "add"):
             raise ValueError(
@@ -692,15 +690,9 @@ class randomize_joint_parameters(ManagerTermBase):
         # check for valid operation
         if cfg.params["operation"] == "scale":
             if "friction_distribution_params" in cfg.params:
-                _validate_scale_range(
-                    cfg.params["friction_distribution_params"],
-                    "friction_distribution_params",
-                )
+                _validate_scale_range(cfg.params["friction_distribution_params"], "friction_distribution_params")
             if "armature_distribution_params" in cfg.params:
-                _validate_scale_range(
-                    cfg.params["armature_distribution_params"],
-                    "armature_distribution_params",
-                )
+                _validate_scale_range(cfg.params["armature_distribution_params"], "armature_distribution_params")
         elif cfg.params["operation"] not in ("abs", "add"):
             raise ValueError(
                 "Randomization term 'randomize_fixed_tendon_parameters' does not support operation:"
@@ -843,10 +835,7 @@ class randomize_joint_parameters(ManagerTermBase):
                 )
             # set the position limits into the physics simulation
             self.asset.write_joint_position_limit_to_sim(
-                joint_pos_limits,
-                joint_ids=joint_ids,
-                env_ids=env_ids,
-                warn_limit_violation=False,
+                joint_pos_limits, joint_ids=joint_ids, env_ids=env_ids, warn_limit_violation=False
             )
 
 
