@@ -4,10 +4,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import logging
-import torch
 import weakref
 
 import omni.physics.tensors.impl.api as physx
+import torch
 from isaacsim.core.simulation_manager import SimulationManager
 
 import isaaclab.utils.math as math_utils
@@ -56,12 +56,16 @@ class ArticulationData:
         self._physics_sim_view = SimulationManager.get_physics_sim_view()
         gravity = self._physics_sim_view.get_gravity()
         # Convert to direction vector
-        gravity_dir = torch.tensor((gravity[0], gravity[1], gravity[2]), device=self.device)
+        gravity_dir = torch.tensor(
+            (gravity[0], gravity[1], gravity[2]), device=self.device
+        )
         gravity_dir = math_utils.normalize(gravity_dir.unsqueeze(0)).squeeze(0)
 
         # Initialize constants
         self.GRAVITY_VEC_W = gravity_dir.repeat(self._root_physx_view.count, 1)
-        self.FORWARD_VEC_B = torch.tensor((1.0, 0.0, 0.0), device=self.device).repeat(self._root_physx_view.count, 1)
+        self.FORWARD_VEC_B = torch.tensor((1.0, 0.0, 0.0), device=self.device).repeat(
+            self._root_physx_view.count, 1
+        )
 
         # Initialize history for finite differencing
         self._previous_joint_vel = self._root_physx_view.get_dof_velocities().clone()
@@ -92,6 +96,12 @@ class ArticulationData:
         self._joint_vel = TimestampedBuffer()
         self._joint_acc = TimestampedBuffer()
         self._body_incoming_joint_wrench_b = TimestampedBuffer()
+        # -- other quantities which are not always calculated but are useful to cache
+        self._body_masses = TimestampedBuffer()
+        self._total_mass = TimestampedBuffer()
+        self._center_of_mass_w = TimestampedBuffer()
+        self._center_of_mass_vel_w = TimestampedBuffer()
+        self._linear_momentum_w = TimestampedBuffer()
 
     def update(self, dt: float):
         # update the simulation timestamp
@@ -488,7 +498,11 @@ class ArticulationData:
             vel = self.root_com_vel_w.clone()
             # adjust linear velocity to link from center of mass
             vel[:, :3] += torch.linalg.cross(
-                vel[:, 3:], math_utils.quat_apply(self.root_link_quat_w, -self.body_com_pos_b[:, 0]), dim=-1
+                vel[:, 3:],
+                math_utils.quat_apply(
+                    self.root_link_quat_w, -self.body_com_pos_b[:, 0]
+                ),
+                dim=-1,
             )
             # set the buffer data and timestamp
             self._root_link_vel_w.data = vel
@@ -506,7 +520,10 @@ class ArticulationData:
         if self._root_com_pose_w.timestamp < self._sim_timestamp:
             # apply local transform to center of mass frame
             pos, quat = math_utils.combine_frame_transforms(
-                self.root_link_pos_w, self.root_link_quat_w, self.body_com_pos_b[:, 0], self.body_com_quat_b[:, 0]
+                self.root_link_pos_w,
+                self.root_link_quat_w,
+                self.body_com_pos_b[:, 0],
+                self.body_com_quat_b[:, 0],
             )
             # set the buffer data and timestamp
             self._root_com_pose_w.data = torch.cat((pos, quat), dim=-1)
@@ -535,7 +552,9 @@ class ArticulationData:
         the linear and angular velocities are of the articulation root's center of mass frame.
         """
         if self._root_state_w.timestamp < self._sim_timestamp:
-            self._root_state_w.data = torch.cat((self.root_link_pose_w, self.root_com_vel_w), dim=-1)
+            self._root_state_w.data = torch.cat(
+                (self.root_link_pose_w, self.root_com_vel_w), dim=-1
+            )
             self._root_state_w.timestamp = self._sim_timestamp
 
         return self._root_state_w.data
@@ -548,7 +567,9 @@ class ArticulationData:
         world.
         """
         if self._root_link_state_w.timestamp < self._sim_timestamp:
-            self._root_link_state_w.data = torch.cat((self.root_link_pose_w, self.root_link_vel_w), dim=-1)
+            self._root_link_state_w.data = torch.cat(
+                (self.root_link_pose_w, self.root_link_vel_w), dim=-1
+            )
             self._root_link_state_w.timestamp = self._sim_timestamp
 
         return self._root_link_state_w.data
@@ -562,7 +583,9 @@ class ArticulationData:
         orientation of the principle inertia.
         """
         if self._root_com_state_w.timestamp < self._sim_timestamp:
-            self._root_com_state_w.data = torch.cat((self.root_com_pose_w, self.root_com_vel_w), dim=-1)
+            self._root_com_state_w.data = torch.cat(
+                (self.root_com_pose_w, self.root_com_vel_w), dim=-1
+            )
             self._root_com_state_w.timestamp = self._sim_timestamp
 
         return self._root_com_state_w.data
@@ -604,7 +627,9 @@ class ArticulationData:
             velocities = self.body_com_vel_w.clone()
             # adjust linear velocity to link from center of mass
             velocities[..., :3] += torch.linalg.cross(
-                velocities[..., 3:], math_utils.quat_apply(self.body_link_quat_w, -self.body_com_pos_b), dim=-1
+                velocities[..., 3:],
+                math_utils.quat_apply(self.body_link_quat_w, -self.body_com_pos_b),
+                dim=-1,
             )
             # set the buffer data and timestamp
             self._body_link_vel_w.data = velocities
@@ -623,7 +648,10 @@ class ArticulationData:
         if self._body_com_pose_w.timestamp < self._sim_timestamp:
             # apply local transform to center of mass frame
             pos, quat = math_utils.combine_frame_transforms(
-                self.body_link_pos_w, self.body_link_quat_w, self.body_com_pos_b, self.body_com_quat_b
+                self.body_link_pos_w,
+                self.body_link_quat_w,
+                self.body_com_pos_b,
+                self.body_com_quat_b,
             )
             # set the buffer data and timestamp
             self._body_com_pose_w.data = torch.cat((pos, quat), dim=-1)
@@ -654,7 +682,9 @@ class ArticulationData:
         velocities are of the articulation links's center of mass frame.
         """
         if self._body_state_w.timestamp < self._sim_timestamp:
-            self._body_state_w.data = torch.cat((self.body_link_pose_w, self.body_com_vel_w), dim=-1)
+            self._body_state_w.data = torch.cat(
+                (self.body_link_pose_w, self.body_com_vel_w), dim=-1
+            )
             self._body_state_w.timestamp = self._sim_timestamp
 
         return self._body_state_w.data
@@ -667,7 +697,9 @@ class ArticulationData:
         The position, quaternion, and linear/angular velocity are of the body's link frame relative to the world.
         """
         if self._body_link_state_w.timestamp < self._sim_timestamp:
-            self._body_link_state_w.data = torch.cat((self.body_link_pose_w, self.body_link_vel_w), dim=-1)
+            self._body_link_state_w.data = torch.cat(
+                (self.body_link_pose_w, self.body_link_vel_w), dim=-1
+            )
             self._body_link_state_w.timestamp = self._sim_timestamp
 
         return self._body_link_state_w.data
@@ -682,7 +714,9 @@ class ArticulationData:
         principle inertia.
         """
         if self._body_com_state_w.timestamp < self._sim_timestamp:
-            self._body_com_state_w.data = torch.cat((self.body_com_pose_w, self.body_com_vel_w), dim=-1)
+            self._body_com_state_w.data = torch.cat(
+                (self.body_com_pose_w, self.body_com_vel_w), dim=-1
+            )
             self._body_com_state_w.timestamp = self._sim_timestamp
 
         return self._body_com_state_w.data
@@ -731,7 +765,9 @@ class ArticulationData:
         """
 
         if self._body_incoming_joint_wrench_b.timestamp < self._sim_timestamp:
-            self._body_incoming_joint_wrench_b.data = self._root_physx_view.get_link_incoming_joint_force()
+            self._body_incoming_joint_wrench_b.data = (
+                self._root_physx_view.get_link_incoming_joint_force()
+            )
             self._body_incoming_joint_wrench_b.time_stamp = self._sim_timestamp
         return self._body_incoming_joint_wrench_b.data
 
@@ -763,7 +799,9 @@ class ArticulationData:
         if self._joint_acc.timestamp < self._sim_timestamp:
             # note: we use finite differencing to compute acceleration
             time_elapsed = self._sim_timestamp - self._joint_acc.timestamp
-            self._joint_acc.data = (self.joint_vel - self._previous_joint_vel) / time_elapsed
+            self._joint_acc.data = (
+                self.joint_vel - self._previous_joint_vel
+            ) / time_elapsed
             self._joint_acc.timestamp = self._sim_timestamp
             # update the previous joint velocity
             self._previous_joint_vel[:] = self.joint_vel
@@ -796,7 +834,9 @@ class ArticulationData:
         This quantity is the linear velocity of the articulation root's actor frame with respect to the
         its actor frame.
         """
-        return math_utils.quat_apply_inverse(self.root_link_quat_w, self.root_link_lin_vel_w)
+        return math_utils.quat_apply_inverse(
+            self.root_link_quat_w, self.root_link_lin_vel_w
+        )
 
     @property
     def root_link_ang_vel_b(self) -> torch.Tensor:
@@ -805,7 +845,9 @@ class ArticulationData:
         This quantity is the angular velocity of the articulation root's actor frame with respect to the
         its actor frame.
         """
-        return math_utils.quat_apply_inverse(self.root_link_quat_w, self.root_link_ang_vel_w)
+        return math_utils.quat_apply_inverse(
+            self.root_link_quat_w, self.root_link_ang_vel_w
+        )
 
     @property
     def root_com_lin_vel_b(self) -> torch.Tensor:
@@ -814,7 +856,9 @@ class ArticulationData:
         This quantity is the linear velocity of the articulation root's center of mass frame with respect to the
         its actor frame.
         """
-        return math_utils.quat_apply_inverse(self.root_link_quat_w, self.root_com_lin_vel_w)
+        return math_utils.quat_apply_inverse(
+            self.root_link_quat_w, self.root_com_lin_vel_w
+        )
 
     @property
     def root_com_ang_vel_b(self) -> torch.Tensor:
@@ -823,7 +867,73 @@ class ArticulationData:
         This quantity is the angular velocity of the articulation root's center of mass frame with respect to the
         its actor frame.
         """
-        return math_utils.quat_apply_inverse(self.root_link_quat_w, self.root_com_ang_vel_w)
+        return math_utils.quat_apply_inverse(
+            self.root_link_quat_w, self.root_com_ang_vel_w
+        )
+
+    def update_body_masses(self):
+        """Update body masses from simulation.
+
+        This method should be called after any change to the articulation's body masses.
+        This method is slow and should only be called after randomizing.
+        """
+        self._body_masses.data = self._root_physx_view.get_masses().to(self.device)
+        self._body_masses.timestamp = self._sim_timestamp
+
+    @property
+    def robot_com_w(self) -> torch.Tensor:
+        """Robot center of mass position in world frame. Shape is (num_instances, 3).
+
+        This quantity is the position of the robot's center of mass frame relative to the world.
+        """
+        if self._center_of_mass_w.timestamp < self._sim_timestamp:
+            if self._body_masses.data is None:
+                self.update_body_masses()
+            # read data from simulation and set the buffer data and timestamp
+            self._center_of_mass_w.data = (
+                self._body_masses.data.unsqueeze(2).repeat(1, 1, 3)
+                * self.body_com_pose_w[:, :, 0:3]
+            ).sum(dim=1) / self._body_masses.data.sum(dim=1).unsqueeze(1).repeat(1, 3)
+            self._center_of_mass_w.timestamp = self._sim_timestamp
+
+        return self._center_of_mass_w.data
+
+    @property
+    def robot_com_vel_w(self) -> torch.Tensor:
+        """Robot center of mass velocity in world frame. Shape is (num_instances, 3).
+
+        This quantity is the velocity of the robot's center of mass frame relative to the world.
+        """
+
+        if self._center_of_mass_vel_w.timestamp < self._sim_timestamp:
+            if self._body_masses.data is None:
+                self.update_body_masses()
+            # Use the linear momemtum for com vel
+            self._center_of_mass_vel_w.data = (
+                self.robot_lin_momentum_w
+                / self._body_masses.data.sum(dim=1).unsqueeze(1).repeat(1, 3)
+            )
+            self._center_of_mass_vel_w.timestamp = self._sim_timestamp
+
+        return self._center_of_mass_vel_w.data
+
+    @property
+    def robot_lin_momentum_w(self) -> torch.Tensor:
+        """Robot linear momentum in world frame. Shape is (num_instances, 3).
+
+        This quantity is the linear momentum of the robot's center of mass frame relative to the world.
+        """
+        if self._linear_momentum_w.timestamp < self._sim_timestamp:
+            if self._body_masses.data is None:
+                self.update_body_masses()
+            # read data from simulation and set the buffer data and timestamp
+            self._linear_momentum_w.data = (
+                self._body_masses.data.unsqueeze(2).repeat(1, 1, 3)
+                * self.body_com_lin_vel_w[:, :, 0:3]
+            ).sum(dim=1)
+            self._linear_momentum_w.timestamp = self._sim_timestamp
+
+        return self._linear_momentum_w.data
 
     ##
     # Sliced properties.
