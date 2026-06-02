@@ -17,13 +17,15 @@ import os
 import random
 import tempfile
 
-import isaaclab.sim as sim_utils
 import pytest
+
+from pxr import UsdGeom, UsdPhysics
+
+import isaaclab.sim as sim_utils
 from isaaclab.sim import SimulationCfg, SimulationContext
 from isaaclab.sim.converters import MeshConverter, MeshConverterCfg
 from isaaclab.sim.schemas import MESH_APPROXIMATION_TOKENS, schemas_cfg
 from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR, retrieve_file_path
-from pxr import UsdGeom, UsdPhysics
 
 
 def random_quaternion():

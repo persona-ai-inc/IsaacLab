@@ -19,10 +19,11 @@ simulation_app = app_launcher.app
 
 import math
 
-import isaaclab.envs.mdp as mdp
-import isaaclab.sim as sim_utils
 import pytest
 import torch
+
+import isaaclab.envs.mdp as mdp
+import isaaclab.sim as sim_utils
 from isaaclab.envs import ManagerBasedEnv, ManagerBasedEnvCfg
 from isaaclab.managers import EventTermCfg as EventTerm
 from isaaclab.managers import ObservationGroupCfg as ObsGroup
@@ -30,6 +31,7 @@ from isaaclab.managers import ObservationTermCfg as ObsTerm
 from isaaclab.managers import SceneEntityCfg
 from isaaclab.utils import configclass
 from isaaclab.utils.version import get_isaac_sim_version
+
 from isaaclab_tasks.manager_based.classic.cartpole.cartpole_env_cfg import CartpoleSceneCfg
 
 

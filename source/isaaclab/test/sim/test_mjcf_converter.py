@@ -14,11 +14,13 @@ simulation_app = AppLauncher(headless=True).app
 
 import os
 
-import isaaclab.sim as sim_utils
 import pytest
+
+from isaacsim.core.utils.extensions import enable_extension, get_extension_path_from_name
+
+import isaaclab.sim as sim_utils
 from isaaclab.sim import SimulationCfg, SimulationContext
 from isaaclab.sim.converters import MjcfConverter, MjcfConverterCfg
-from isaacsim.core.utils.extensions import enable_extension, get_extension_path_from_name
 
 
 @pytest.fixture(autouse=True)

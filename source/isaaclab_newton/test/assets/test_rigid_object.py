@@ -19,11 +19,16 @@ simulation_app = AppLauncher(headless=True).app
 import sys
 from typing import Literal
 
-import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
 from flaky import flaky
+from isaaclab_newton.assets import RigidObject
+from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
+from isaaclab_newton.physics import NewtonManager as SimulationManager
+from newton.solvers import SolverNotifyFlags
+
+import isaaclab.sim as sim_utils
 from isaaclab.assets import RigidObjectCfg
 from isaaclab.sim import SimulationCfg, build_simulation_context
 from isaaclab.sim.spawners import materials
@@ -37,10 +42,6 @@ from isaaclab.utils.math import (
     quat_rotate,
     random_orientation,
 )
-from isaaclab_newton.assets import RigidObject
-from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
-from isaaclab_newton.physics import NewtonManager as SimulationManager
-from newton.solvers import SolverNotifyFlags
 
 NEWTON_SIM_CFG = SimulationCfg(
     physics=NewtonCfg(

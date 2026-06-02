@@ -31,6 +31,7 @@ import cv2
 import numpy as np
 import torch
 import warp as wp
+
 from isaaclab.app import AppLauncher
 
 # Add argparse arguments
@@ -86,10 +87,12 @@ from isaaclab.sensors import TiledCameraCfg
 from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR
 from isaaclab.utils.timer import Timer
-from isaaclab_assets.sensors import GELSIGHT_R15_CFG
+
 from isaaclab_contrib.sensors.tacsl_sensor import VisuoTactileSensorCfg
 from isaaclab_contrib.sensors.tacsl_sensor.visuotactile_render import compute_tactile_shear_image
 from isaaclab_contrib.sensors.tacsl_sensor.visuotactile_sensor_data import VisuoTactileSensorData
+
+from isaaclab_assets.sensors import GELSIGHT_R15_CFG
 
 
 @configclass

@@ -15,8 +15,9 @@ import webbrowser
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
-from isaaclab.visualizers.base_visualizer import BaseVisualizer
 from newton.viewer import ViewerViser
+
+from isaaclab.visualizers.base_visualizer import BaseVisualizer
 
 from isaaclab_visualizers.newton_adapter import apply_viewer_visible_worlds, resolve_visible_env_indices
 

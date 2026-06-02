@@ -15,8 +15,6 @@ __all__ = [
     "upright_posture_bonus",
 ]
 
-from isaaclab.envs.mdp import *
-
 from .observations import base_angle_to_target, base_heading_proj, base_up_proj, base_yaw_roll
 from .rewards import (
     joint_pos_limits_penalty_ratio,
@@ -25,3 +23,4 @@ from .rewards import (
     progress_reward,
     upright_posture_bonus,
 )
+from isaaclab.envs.mdp import *

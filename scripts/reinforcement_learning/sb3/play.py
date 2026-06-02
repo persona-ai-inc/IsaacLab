@@ -14,15 +14,18 @@ import time
 from pathlib import Path
 
 import gymnasium as gym
-import isaaclab_tasks  # noqa: F401
 import torch
-from isaaclab.envs import DirectMARLEnvCfg
-from isaaclab.utils.dict import print_dict
-from isaaclab_rl.sb3 import Sb3VecEnvWrapper, process_sb3_cfg
-from isaaclab_rl.utils.pretrained_checkpoint import get_published_pretrained_checkpoint
-from isaaclab_tasks.utils import add_launcher_args, get_checkpoint_path, launch_simulation, resolve_task_config
 from stable_baselines3 import PPO
 from stable_baselines3.common.vec_env import VecNormalize
+
+from isaaclab.envs import DirectMARLEnvCfg
+from isaaclab.utils.dict import print_dict
+
+from isaaclab_rl.sb3 import Sb3VecEnvWrapper, process_sb3_cfg
+from isaaclab_rl.utils.pretrained_checkpoint import get_published_pretrained_checkpoint
+
+import isaaclab_tasks  # noqa: F401
+from isaaclab_tasks.utils import add_launcher_args, get_checkpoint_path, launch_simulation, resolve_task_config
 
 # PLACEHOLDER: Extension template (do not remove this comment)
 with contextlib.suppress(ImportError):

@@ -6,6 +6,8 @@
 import os
 from dataclasses import MISSING
 
+from isaaclab_physx.physics import PhysxCfg
+
 from isaaclab.assets import AssetBaseCfg, RigidObjectCfg
 from isaaclab.devices.device_base import DevicesCfg
 from isaaclab.devices.keyboard import Se3KeyboardCfg
@@ -23,7 +25,6 @@ from isaaclab.sim.schemas.schemas_cfg import MassPropertiesCfg, RigidBodyPropert
 from isaaclab.sim.spawners.from_files.from_files_cfg import UsdFileCfg
 from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR, ISAACLAB_NUCLEUS_DIR
-from isaaclab_physx.physics import PhysxCfg
 
 from isaaclab_tasks.manager_based.manipulation.place import mdp as place_mdp
 from isaaclab_tasks.manager_based.manipulation.stack import mdp

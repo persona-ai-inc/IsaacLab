@@ -9,11 +9,13 @@ from __future__ import annotations
 
 import logging
 
-import isaaclab.sim as sim_utils
 import warp as wp
+
+from pxr import Gf, Usd, UsdGeom
+
+import isaaclab.sim as sim_utils
 from isaaclab.physics import PhysicsEvent
 from isaaclab.sim.views.base_frame_view import BaseFrameView
-from pxr import Gf, Usd, UsdGeom
 
 from isaaclab_newton.physics.newton_manager import NewtonManager
 

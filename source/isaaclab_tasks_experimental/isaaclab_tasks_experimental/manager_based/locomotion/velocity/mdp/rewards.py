@@ -15,6 +15,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import warp as wp
+
 from isaaclab.managers import SceneEntityCfg
 from isaaclab.sensors import ContactSensor
 

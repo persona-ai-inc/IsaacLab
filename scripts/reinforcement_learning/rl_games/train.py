@@ -17,16 +17,19 @@ from datetime import datetime
 from distutils.util import strtobool
 
 import gymnasium as gym
-import isaaclab_tasks  # noqa: F401
+from rl_games.common import env_configurations, vecenv
+from rl_games.common.algo_observer import IsaacAlgoObserver
+from rl_games.torch_runner import Runner
+
 from isaaclab.envs import DirectMARLEnvCfg, ManagerBasedRLEnvCfg
 from isaaclab.utils.assets import retrieve_file_path
 from isaaclab.utils.dict import print_dict
 from isaaclab.utils.io import dump_yaml
+
 from isaaclab_rl.rl_games import MultiObserver, PbtAlgoObserver, RlGamesGpuEnv, RlGamesVecEnvWrapper
+
+import isaaclab_tasks  # noqa: F401
 from isaaclab_tasks.utils import add_launcher_args, launch_simulation, resolve_task_config
-from rl_games.common import env_configurations, vecenv
-from rl_games.common.algo_observer import IsaacAlgoObserver
-from rl_games.torch_runner import Runner
 
 logger = logging.getLogger(__name__)
 

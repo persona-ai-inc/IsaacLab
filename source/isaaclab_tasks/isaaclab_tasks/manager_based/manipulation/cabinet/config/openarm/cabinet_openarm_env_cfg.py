@@ -10,6 +10,8 @@ as well as certain object properties, to better suit the smaller robot.
 
 from dataclasses import MISSING
 
+from isaaclab_physx.physics import PhysxCfg
+
 import isaaclab.sim as sim_utils
 from isaaclab.actuators import ImplicitActuatorCfg
 from isaaclab.assets import ArticulationCfg, AssetBaseCfg
@@ -25,7 +27,6 @@ from isaaclab.sensors import FrameTransformerCfg
 from isaaclab.sensors.frame_transformer import OffsetCfg
 from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
-from isaaclab_physx.physics import PhysxCfg
 
 ##
 # Pre-defined configs

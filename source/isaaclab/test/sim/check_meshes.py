@@ -37,10 +37,11 @@ simulation_app = app_launcher.app
 
 import random
 
-import isaaclab.sim as sim_utils
 import numpy as np
 import torch
 import tqdm
+
+import isaaclab.sim as sim_utils
 
 
 def define_origins(num_origins: int, spacing: float) -> list[list[float]]:

@@ -12,9 +12,11 @@ simulation_app = AppLauncher(headless=True).app
 
 """Rest everything follows."""
 
-import isaaclab.sim as sim_utils
-import omni.kit.app
 import pytest
+
+import omni.kit.app
+
+import isaaclab.sim as sim_utils
 from isaaclab.sim import SimulationCfg, SimulationContext
 from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR
 

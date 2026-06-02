@@ -6,9 +6,8 @@
 """Package containing the core framework."""
 
 import os
-from enum import IntEnum
-
 import toml
+from enum import IntEnum
 
 # Conveniences to other module directories via relative paths
 ISAACLAB_EXPERIMENTAL_EXT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))

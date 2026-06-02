@@ -3,8 +3,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-import isaaclab.utils.math as math_utils
 import torch
+
+import isaaclab.utils.math as math_utils
 
 
 def transform_mul(transform_a: torch.Tensor, transform_b: torch.Tensor) -> torch.Tensor:

@@ -12,6 +12,7 @@ with the stable manager stack (which type-checks against the stable SceneEntityC
 from __future__ import annotations
 
 import warp as wp
+
 from isaaclab.assets.articulation.base_articulation import BaseArticulation
 from isaaclab.managers.scene_entity_cfg import SceneEntityCfg as _SceneEntityCfg
 from isaaclab.scene import InteractiveScene

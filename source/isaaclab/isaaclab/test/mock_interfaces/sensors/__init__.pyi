@@ -19,6 +19,10 @@ __all__ = [
     "create_mock_pva",
 ]
 
+from .mock_contact_sensor import MockContactSensor, MockContactSensorData
+from .mock_frame_transformer import MockFrameTransformer, MockFrameTransformerData
+from .mock_imu import MockImu, MockImuData
+from .mock_pva import MockPva, MockPvaData
 from .factories import (
     create_mock_contact_sensor,
     create_mock_foot_contact_sensor,
@@ -26,7 +30,3 @@ from .factories import (
     create_mock_imu,
     create_mock_pva,
 )
-from .mock_contact_sensor import MockContactSensor, MockContactSensorData
-from .mock_frame_transformer import MockFrameTransformer, MockFrameTransformerData
-from .mock_imu import MockImu, MockImuData
-from .mock_pva import MockPva, MockPvaData

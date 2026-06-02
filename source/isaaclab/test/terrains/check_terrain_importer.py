@@ -62,14 +62,16 @@ simulation_app = app_launcher.app
 """Rest everything follows."""
 
 
+import torch
+
+from isaacsim.core.cloner import GridCloner
+
 import isaaclab.sim as sim_utils
 import isaaclab.terrains as terrain_gen
-import torch
 from isaaclab.sim import SimulationCfg, SimulationContext
 from isaaclab.terrains.config.rough import ROUGH_TERRAINS_CFG
 from isaaclab.terrains.terrain_importer import TerrainImporter
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
-from isaacsim.core.cloner import GridCloner
 
 
 def main():

@@ -12,9 +12,10 @@ from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.sensors import TiledCameraCfg
 from isaaclab.sim import SimulationCfg
 from isaaclab.utils import configclass
-from isaaclab_assets.robots.cartpole import CARTPOLE_CFG
 
 from isaaclab_tasks.utils.presets import MultiBackendRendererCfg
+
+from isaaclab_assets.robots.cartpole import CARTPOLE_CFG
 
 
 @configclass

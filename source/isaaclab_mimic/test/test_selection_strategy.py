@@ -8,10 +8,12 @@ from isaaclab.app import AppLauncher
 # launch omniverse app
 simulation_app = AppLauncher(headless=True).app
 
-import isaaclab.utils.math as PoseUtils
 import numpy as np
 import pytest
 import torch
+
+import isaaclab.utils.math as PoseUtils
+
 from isaaclab_mimic.datagen.datagen_info import DatagenInfo
 
 # Importing the necessary classes for the testing

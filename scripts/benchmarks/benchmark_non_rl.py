@@ -78,11 +78,13 @@ import os
 from datetime import datetime
 
 import gymnasium as gym
-import isaaclab_tasks  # noqa: F401
 import numpy as np
 import torch
+
 from isaaclab.envs import DirectMARLEnvCfg, DirectRLEnvCfg, ManagerBasedRLEnvCfg
 from isaaclab.utils.dict import print_dict
+
+import isaaclab_tasks  # noqa: F401
 from isaaclab_tasks.utils import launch_simulation, resolve_task_config
 
 imports_time_end = time.perf_counter_ns()

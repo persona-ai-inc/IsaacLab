@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 from gymnasium import spaces
+
 from isaaclab.utils import configclass
 
 from isaaclab_tasks.direct.cartpole.cartpole_env_cfg import CartpoleEnvCfg

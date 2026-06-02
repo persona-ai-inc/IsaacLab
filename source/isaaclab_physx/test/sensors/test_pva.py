@@ -15,11 +15,13 @@ simulation_app = app_launcher.app
 
 import pathlib
 
-import isaaclab.sim as sim_utils
-import isaaclab.utils.math as math_utils
 import pytest
 import torch
 import warp as wp
+from isaaclab_physx.physics import PhysxCfg
+
+import isaaclab.sim as sim_utils
+import isaaclab.utils.math as math_utils
 from isaaclab.actuators import ImplicitActuatorCfg
 from isaaclab.assets import ArticulationCfg, RigidObjectCfg
 from isaaclab.markers.config import GREEN_ARROW_X_MARKER_CFG, RED_ARROW_X_MARKER_CFG
@@ -27,7 +29,6 @@ from isaaclab.scene import InteractiveScene, InteractiveSceneCfg
 from isaaclab.sensors.pva import Pva, PvaCfg
 from isaaclab.terrains import TerrainImporterCfg
 from isaaclab.utils import configclass
-from isaaclab_physx.physics import PhysxCfg
 
 ##
 # Pre-defined configs

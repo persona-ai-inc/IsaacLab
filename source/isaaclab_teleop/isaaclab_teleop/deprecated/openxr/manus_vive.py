@@ -17,12 +17,14 @@ import contextlib
 from collections.abc import Callable
 from dataclasses import dataclass
 
-import carb
 import numpy as np
+from packaging import version
+
+import carb
+
 from isaaclab.devices.device_base import DeviceBase, DeviceCfg
 from isaaclab.devices.retargeter_base import RetargeterBase
 from isaaclab.utils.version import get_isaac_sim_version
-from packaging import version
 
 from .common import HAND_JOINT_NAMES
 from .xr_cfg import XrCfg

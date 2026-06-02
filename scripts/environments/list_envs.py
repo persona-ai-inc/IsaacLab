@@ -33,8 +33,9 @@ simulation_app = app_launcher.app
 """Rest everything follows."""
 
 import gymnasium as gym
-import isaaclab_tasks  # noqa: F401
 from prettytable import PrettyTable
+
+import isaaclab_tasks  # noqa: F401
 
 
 def main():

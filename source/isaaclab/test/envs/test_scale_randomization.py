@@ -20,11 +20,14 @@ simulation_app = app_launcher.app
 
 """Rest everything follows."""
 
-import isaaclab.envs.mdp as mdp
-import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
+
+from pxr import Sdf
+
+import isaaclab.envs.mdp as mdp
+import isaaclab.sim as sim_utils
 from isaaclab.assets import AssetBaseCfg, RigidObject, RigidObjectCfg
 from isaaclab.envs import ManagerBasedEnv, ManagerBasedEnvCfg
 from isaaclab.managers import ActionTerm, ActionTermCfg, SceneEntityCfg
@@ -34,7 +37,6 @@ from isaaclab.managers import ObservationTermCfg as ObsTerm
 from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.terrains import TerrainImporterCfg
 from isaaclab.utils import configclass
-from pxr import Sdf
 
 ##
 # Custom action term

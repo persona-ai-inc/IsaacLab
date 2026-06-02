@@ -15,6 +15,7 @@ from typing import TYPE_CHECKING, Any
 import numpy as np
 import torch
 import warp as wp
+
 from isaaclab.assets.articulation.base_articulation import BaseArticulation
 from isaaclab.physics import PhysicsManager
 from isaaclab.utils.string import resolve_matching_names
@@ -1670,8 +1671,9 @@ class Articulation(BaseArticulation):
         # articulation root.  Mirror the PhysX backend's discovery logic: find the first
         # matching prim in the USD stage, walk its subtree for the articulation root, and
         # append the relative suffix to the glob pattern.
-        from isaaclab.sim.utils.queries import find_first_matching_prim, get_all_matching_child_prims
         from pxr import UsdPhysics
+
+        from isaaclab.sim.utils.queries import find_first_matching_prim, get_all_matching_child_prims
 
         stage = PhysicsManager._sim.stage
         first_prim = find_first_matching_prim(prim_path, stage=stage)
@@ -1907,8 +1909,9 @@ class Articulation(BaseArticulation):
             stage_path = OvPhysxManager._stage_path
             if stage_path is not None:
                 try:
-                    from isaaclab.sim.utils.queries import get_all_matching_child_prims
                     from pxr import Usd, UsdPhysics
+
+                    from isaaclab.sim.utils.queries import get_all_matching_child_prims
 
                     stage = Usd.Stage.Open(stage_path)
                     articulation_root_path = getattr(self, "_articulation_root_path", None)

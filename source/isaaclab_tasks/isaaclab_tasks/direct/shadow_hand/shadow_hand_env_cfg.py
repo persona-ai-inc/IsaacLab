@@ -3,6 +3,9 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
+from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
+from isaaclab_physx.physics import PhysxCfg
+
 import isaaclab.envs.mdp as mdp
 import isaaclab.sim as sim_utils
 from isaaclab.actuators import ImplicitActuatorCfg
@@ -17,11 +20,10 @@ from isaaclab.sim.spawners.materials.physics_materials_cfg import RigidBodyMater
 from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 from isaaclab.utils.noise import GaussianNoiseCfg, NoiseModelWithAdditiveBiasCfg
-from isaaclab_assets.robots.shadow_hand import SHADOW_HAND_CFG
-from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
-from isaaclab_physx.physics import PhysxCfg
 
 from isaaclab_tasks.utils import PresetCfg
+
+from isaaclab_assets.robots.shadow_hand import SHADOW_HAND_CFG
 
 
 @configclass

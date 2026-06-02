@@ -3,10 +3,11 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
+from isaaclab_physx.physics import PhysxCfg
+
 from isaaclab.controllers.operational_space_cfg import OperationalSpaceControllerCfg
 from isaaclab.envs.mdp.actions.actions_cfg import OperationalSpaceControllerActionCfg
 from isaaclab.utils import configclass
-from isaaclab_physx.physics import PhysxCfg
 
 from . import joint_pos_env_cfg
 

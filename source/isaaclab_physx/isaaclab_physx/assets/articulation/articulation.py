@@ -16,6 +16,10 @@ from typing import TYPE_CHECKING
 import numpy as np
 import torch
 import warp as wp
+from prettytable import PrettyTable
+
+from pxr import UsdPhysics
+
 from isaaclab.actuators import ActuatorBase, ActuatorBaseCfg, ImplicitActuator
 from isaaclab.assets.articulation.base_articulation import BaseArticulation
 from isaaclab.sim.utils.queries import find_first_matching_prim, get_all_matching_child_prims
@@ -23,8 +27,6 @@ from isaaclab.utils.string import resolve_matching_names, resolve_matching_names
 from isaaclab.utils.types import ArticulationActions
 from isaaclab.utils.version import get_isaac_sim_version, has_kit
 from isaaclab.utils.wrench_composer import WrenchComposer
-from prettytable import PrettyTable
-from pxr import UsdPhysics
 
 from isaaclab_physx.assets import kernels as shared_kernels
 from isaaclab_physx.assets.articulation import kernels as articulation_kernels
@@ -34,6 +36,7 @@ from .articulation_data import ArticulationData
 
 if TYPE_CHECKING:
     import omni.physics.tensors.api as physx
+
     from isaaclab.assets.articulation.articulation_cfg import ArticulationCfg
 
 # import logger

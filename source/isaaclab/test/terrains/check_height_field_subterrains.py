@@ -23,8 +23,9 @@ simulation_app = AppLauncher(headless=True).app
 
 import os
 
-import isaaclab.terrains.height_field as hf_gen
 import trimesh
+
+import isaaclab.terrains.height_field as hf_gen
 from isaaclab.terrains.utils import color_meshes_by_height
 
 

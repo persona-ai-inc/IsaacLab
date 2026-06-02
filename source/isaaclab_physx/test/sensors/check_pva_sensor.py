@@ -38,9 +38,13 @@ simulation_app = SimulationApp(config)
 import logging
 import traceback
 
+import torch
+
+from isaacsim.core.cloner import GridCloner
+from isaacsim.core.utils.viewports import set_camera_view
+
 import isaaclab.sim as sim_utils
 import isaaclab.terrains as terrain_gen
-import torch
 from isaaclab.assets import RigidObject, RigidObjectCfg
 from isaaclab.sensors.pva import Pva, PvaCfg
 from isaaclab.sim import SimulationCfg, SimulationContext
@@ -48,8 +52,6 @@ from isaaclab.terrains.config.rough import ROUGH_TERRAINS_CFG
 from isaaclab.terrains.terrain_importer import TerrainImporter
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 from isaaclab.utils.timer import Timer
-from isaacsim.core.cloner import GridCloner
-from isaacsim.core.utils.viewports import set_camera_view
 
 # import logger
 logger = logging.getLogger(__name__)

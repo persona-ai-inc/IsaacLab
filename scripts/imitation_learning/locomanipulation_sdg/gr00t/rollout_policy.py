@@ -37,10 +37,13 @@ app_launcher = AppLauncher(args_cli)
 simulation_app = app_launcher.app
 
 import gymnasium as gym
-import isaaclab_mimic.locomanipulation_sdg.envs  # noqa: F401
 import torch
+from policy import Policy
+
 from isaaclab.utils.datasets import EpisodeData, HDF5DatasetFileHandler
 from isaaclab.utils.math import convert_quat
+
+import isaaclab_mimic.locomanipulation_sdg.envs  # noqa: F401
 from isaaclab_mimic.locomanipulation_sdg.envs.locomanipulation_sdg_env import LocomanipulationSDGEnv
 from isaaclab_mimic.locomanipulation_sdg.occupancy_map_utils import (
     OccupancyMap,
@@ -51,8 +54,8 @@ from isaaclab_mimic.locomanipulation_sdg.transform_utils import (
     transform_inv,
     transform_mul,
 )
+
 from isaaclab_tasks.utils import parse_env_cfg
-from policy import Policy
 
 
 def _clone_state(state: dict) -> dict:

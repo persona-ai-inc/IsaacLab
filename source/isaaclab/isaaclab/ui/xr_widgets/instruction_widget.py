@@ -10,10 +10,11 @@ import functools
 import textwrap
 from typing import TYPE_CHECKING, Any
 
-import isaaclab.sim as sim_utils
 import omni.kit.commands
 import omni.ui as ui
 import omni.usd
+
+import isaaclab.sim as sim_utils
 
 if TYPE_CHECKING:
     from typing import TypeAlias

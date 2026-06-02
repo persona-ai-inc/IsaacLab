@@ -18,9 +18,11 @@ import tempfile
 import warnings
 import xml.etree.ElementTree as ET
 
-import isaaclab.sim as sim_utils
-import omni.kit.app
 import pytest
+
+import omni.kit.app
+
+import isaaclab.sim as sim_utils
 from isaaclab.sim import SimulationCfg, SimulationContext
 from isaaclab.sim.converters import UrdfConverter, UrdfConverterCfg
 from isaaclab.sim.converters.urdf_utils import merge_fixed_joints

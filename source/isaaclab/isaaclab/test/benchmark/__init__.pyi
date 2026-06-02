@@ -26,6 +26,11 @@ __all__ = [
 
 from .benchmark_core import BaseIsaacLabBenchmark, get_default_output_filename
 from .benchmark_monitor import BenchmarkMonitor
+from .method_benchmark import (
+    MethodBenchmarkDefinition,
+    MethodBenchmarkRunner,
+    MethodBenchmarkRunnerConfig,
+)
 from .measurements import (
     BooleanMeasurement,
     DictMeasurement,
@@ -39,9 +44,4 @@ from .measurements import (
     StatisticalMeasurement,
     StringMetadata,
     TestPhase,
-)
-from .method_benchmark import (
-    MethodBenchmarkDefinition,
-    MethodBenchmarkRunner,
-    MethodBenchmarkRunnerConfig,
 )

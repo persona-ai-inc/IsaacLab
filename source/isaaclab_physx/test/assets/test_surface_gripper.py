@@ -16,10 +16,12 @@ simulation_app = AppLauncher(headless=True).app
 
 """Rest everything follows."""
 
-import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
+from isaaclab_physx.assets import SurfaceGripper, SurfaceGripperCfg
+
+import isaaclab.sim as sim_utils
 from isaaclab.actuators import ImplicitActuatorCfg
 from isaaclab.assets import (
     Articulation,
@@ -30,7 +32,6 @@ from isaaclab.assets import (
 from isaaclab.sim import build_simulation_context
 from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR
 from isaaclab.utils.version import get_isaac_sim_version, has_kit
-from isaaclab_physx.assets import SurfaceGripper, SurfaceGripperCfg
 
 # from isaacsim.robot.surface_gripper import GripperView
 

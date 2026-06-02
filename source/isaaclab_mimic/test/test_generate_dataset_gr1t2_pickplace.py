@@ -15,8 +15,9 @@ import sys
 import tempfile
 
 import pytest
-from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR, retrieve_file_path
 from mimic_test_utils import run_script
+
+from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR, retrieve_file_path
 
 _TASK_NAME = "Isaac-PickPlace-GR1T2-Abs-Mimic-v0"
 DATASETS_DOWNLOAD_DIR = tempfile.mkdtemp(suffix=f"_{_TASK_NAME}")

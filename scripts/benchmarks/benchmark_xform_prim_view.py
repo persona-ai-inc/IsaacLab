@@ -41,18 +41,20 @@ import cProfile
 import time
 from typing import Literal
 
-import isaaclab.sim as sim_utils
 import torch
 import warp as wp
+from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
+from isaaclab_newton.sim.views import NewtonSiteFrameView
+from isaaclab_physx.sim.views import FabricFrameView
+
+from pxr import Gf
+
+import isaaclab.sim as sim_utils
 from isaaclab.assets import RigidObjectCfg
 from isaaclab.scene import InteractiveScene, InteractiveSceneCfg
 from isaaclab.sim import SimulationCfg, build_simulation_context
 from isaaclab.sim.views import UsdFrameView
 from isaaclab.utils import configclass
-from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
-from isaaclab_newton.sim.views import NewtonSiteFrameView
-from isaaclab_physx.sim.views import FabricFrameView
-from pxr import Gf
 
 
 @configclass

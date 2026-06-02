@@ -3,6 +3,8 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
+from isaaclab_physx.assets import DeformableObjectCfg
+
 from isaaclab.controllers.differential_ik_cfg import DifferentialIKControllerCfg
 from isaaclab.envs.mdp.actions.actions_cfg import DifferentialInverseKinematicsActionCfg
 from isaaclab.managers import EventTermCfg as EventTerm
@@ -10,7 +12,6 @@ from isaaclab.managers import SceneEntityCfg
 from isaaclab.sim.spawners import UsdFileCfg
 from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR
-from isaaclab_physx.assets import DeformableObjectCfg
 
 import isaaclab_tasks.manager_based.manipulation.lift.mdp as mdp
 

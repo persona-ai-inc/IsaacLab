@@ -32,11 +32,13 @@ simulation_app = AppLauncher(headless=True, enable_cameras=True).app
 import sys
 
 import gymnasium as gym
-import isaaclab.sim as sim_utils
-import isaaclab_tasks  # noqa: F401
 import pytest
+
+import isaaclab.sim as sim_utils
 from isaaclab.envs import DirectRLEnv, DirectRLEnvCfg, ManagerBasedRLEnv, ManagerBasedRLEnvCfg
 from isaaclab.sensors import save_images_to_file
+
+import isaaclab_tasks  # noqa: F401
 from isaaclab_tasks.utils.parse_cfg import parse_env_cfg
 
 

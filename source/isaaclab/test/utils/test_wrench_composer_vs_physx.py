@@ -22,10 +22,11 @@ simulation_app = AppLauncher(headless=True).app
 
 import math
 
-import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
+
+import isaaclab.sim as sim_utils
 from isaaclab.assets import RigidObject, RigidObjectCfg
 from isaaclab.sim import build_simulation_context
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR

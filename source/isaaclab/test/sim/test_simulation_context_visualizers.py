@@ -12,9 +12,10 @@ from typing import Any, cast
 import isaaclab_visualizers.rerun.rerun_visualizer as rerun_visualizer
 import isaaclab_visualizers.viser.viser_visualizer as viser_visualizer
 import pytest
-from isaaclab.sim.simulation_context import SimulationContext
 from isaaclab_visualizers.rerun.rerun_visualizer_cfg import RerunVisualizerCfg
 from isaaclab_visualizers.viser.viser_visualizer_cfg import ViserVisualizerCfg
+
+from isaaclab.sim.simulation_context import SimulationContext
 
 
 class _FakePhysicsManager:

@@ -36,6 +36,12 @@ __all__ = [
     "MeshStarTerrainCfg",
 ]
 
+from .sub_terrain_cfg import FlatPatchSamplingCfg, SubTerrainBaseCfg
+from .terrain_generator import TerrainGenerator
+from .terrain_generator_cfg import TerrainGeneratorCfg
+from .terrain_importer import TerrainImporter
+from .terrain_importer_cfg import TerrainImporterCfg
+from .utils import color_meshes_by_height, create_prim_from_mesh
 from .height_field import (
     HfDiscreteObstaclesTerrainCfg,
     HfInvertedPyramidSlopedTerrainCfg,
@@ -47,11 +53,6 @@ from .height_field import (
     HfTerrainBaseCfg,
     HfWaveTerrainCfg,
 )
-from .sub_terrain_cfg import FlatPatchSamplingCfg, SubTerrainBaseCfg
-from .terrain_generator import TerrainGenerator
-from .terrain_generator_cfg import TerrainGeneratorCfg
-from .terrain_importer import TerrainImporter
-from .terrain_importer_cfg import TerrainImporterCfg
 from .trimesh import (
     MeshBoxTerrainCfg,
     MeshFloatingRingTerrainCfg,
@@ -67,4 +68,3 @@ from .trimesh import (
     MeshRepeatedPyramidsTerrainCfg,
     MeshStarTerrainCfg,
 )
-from .utils import color_meshes_by_height, create_prim_from_mesh

@@ -53,8 +53,9 @@ import trimesh
 
 # from urdfpy import URDF
 import warp as wp
-from isaaclab.utils.assets import retrieve_file_path
 from trimesh.exchange.load import load
+
+from isaaclab.utils.assets import retrieve_file_path
 
 """
 Simulation-Aware Policy Update (SAPU)

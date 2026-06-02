@@ -24,8 +24,9 @@ simulation_app = AppLauncher(headless=True).app
 import argparse
 import os
 
-import isaaclab.terrains.trimesh as mesh_gen
 import trimesh
+
+import isaaclab.terrains.trimesh as mesh_gen
 from isaaclab.terrains.utils import color_meshes_by_height
 
 

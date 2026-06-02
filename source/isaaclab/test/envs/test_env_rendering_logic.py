@@ -13,9 +13,12 @@ simulation_app = AppLauncher(headless=True, enable_cameras=True).app
 
 """Rest everything follows."""
 
-import isaaclab.sim as sim_utils
 import pytest
 import torch
+from isaaclab_physx.physics import IsaacEvents
+from isaaclab_visualizers.kit import KitVisualizer, KitVisualizerCfg
+
+import isaaclab.sim as sim_utils
 from isaaclab.envs import (
     DirectRLEnv,
     DirectRLEnvCfg,
@@ -27,8 +30,6 @@ from isaaclab.envs import (
 from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.sim import SimulationCfg, SimulationContext
 from isaaclab.utils import configclass
-from isaaclab_physx.physics import IsaacEvents
-from isaaclab_visualizers.kit import KitVisualizer, KitVisualizerCfg
 
 
 @configclass

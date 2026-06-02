@@ -16,9 +16,10 @@ from typing import TYPE_CHECKING, Any
 
 import torch
 import warp as wp
+from prettytable import PrettyTable
+
 from isaaclab.assets import AssetBase
 from isaaclab.envs.utils.io_descriptors import GenericActionIODescriptor
-from prettytable import PrettyTable
 
 from .manager_base import ManagerBase, ManagerTermBase
 from .manager_term_cfg import ActionTermCfg

@@ -11,13 +11,15 @@ import os
 import sys
 
 import gymnasium as gym
-import isaaclab.sim as sim_utils
 import pytest
 import torch
+
+import isaaclab.sim as sim_utils
 from isaaclab.app.settings_manager import get_settings_manager
 from isaaclab.envs.utils.spaces import sample_space
 from isaaclab.sim import SimulationContext
 from isaaclab.utils.version import get_isaac_sim_version
+
 from isaaclab_tasks.utils.hydra import apply_overrides, collect_presets
 from isaaclab_tasks.utils.parse_cfg import load_cfg_from_registry, parse_env_cfg
 

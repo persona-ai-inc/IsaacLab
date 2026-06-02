@@ -14,12 +14,14 @@ simulation_app = AppLauncher(headless=True).app
 
 import math
 
-import isaaclab.sim as sim_utils
-import isaaclab.utils.math as math_utils
 import numpy as np
 import pytest
 import torch
+
 from pxr import Gf, Sdf, Usd, UsdGeom
+
+import isaaclab.sim as sim_utils
+import isaaclab.utils.math as math_utils
 
 
 @pytest.fixture(autouse=True)

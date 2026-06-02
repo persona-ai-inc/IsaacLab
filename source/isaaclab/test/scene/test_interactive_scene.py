@@ -14,10 +14,11 @@ simulation_app = AppLauncher(headless=True).app
 
 from types import SimpleNamespace
 
-import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
+
+import isaaclab.sim as sim_utils
 from isaaclab.actuators import ImplicitActuatorCfg
 from isaaclab.assets import ArticulationCfg, RigidObjectCfg
 from isaaclab.scene import InteractiveScene, InteractiveSceneCfg

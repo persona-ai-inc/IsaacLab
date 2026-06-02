@@ -6,9 +6,7 @@
 """Package providing IsaacTeleop-based teleoperation for Isaac Lab."""
 
 import os
-
 import toml
-
 ISAACLAB_TELEOP_EXT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
 """Path to the extension source directory."""
 ISAACLAB_TELEOP_METADATA = toml.load(os.path.join(ISAACLAB_TELEOP_EXT_DIR, "config", "extension.toml"))

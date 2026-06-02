@@ -15,8 +15,9 @@ from pathlib import Path
 import numpy as np
 import pinocchio as pin
 import pytest
-from isaaclab.controllers.pink_ik.pink_kinematics_configuration import PinkKinematicsConfiguration
 from pink.exceptions import FrameNotFound
+
+from isaaclab.controllers.pink_ik.pink_kinematics_configuration import PinkKinematicsConfiguration
 
 
 class TestPinkKinematicsConfiguration:

@@ -19,8 +19,9 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any
 
-import carb
 import numpy as np
+
+import carb
 
 # import logger
 logger = logging.getLogger(__name__)

@@ -10,14 +10,16 @@ import traceback
 from typing import Any
 
 import torch
+
 from isaaclab.envs import ManagerBasedRLMimicEnv
 from isaaclab.envs.mdp.recorders.recorders_cfg import ActionStateRecorderManagerCfg
 from isaaclab.managers import DatasetExportMode, TerminationTermCfg
 from isaaclab.managers.recorder_manager import RecorderManagerBaseCfg
-from isaaclab_tasks.utils.parse_cfg import parse_env_cfg
 
 from isaaclab_mimic.datagen.data_generator import DataGenerator
 from isaaclab_mimic.datagen.datagen_info_pool import DataGenInfoPool
+
+from isaaclab_tasks.utils.parse_cfg import parse_env_cfg
 
 # global variable to keep track of the data generation statistics
 num_success = 0

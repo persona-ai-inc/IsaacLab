@@ -13,11 +13,13 @@ simulation_app = AppLauncher(headless=True).app
 """Rest everything follows."""
 
 
-import isaaclab.sim as sim_utils
 import pytest
+
+from pxr import UsdPhysics, UsdShade
+
+import isaaclab.sim as sim_utils
 from isaaclab.sim import SimulationCfg, SimulationContext
 from isaaclab.utils.assets import NVIDIA_NUCLEUS_DIR
-from pxr import UsdPhysics, UsdShade
 
 
 @pytest.fixture

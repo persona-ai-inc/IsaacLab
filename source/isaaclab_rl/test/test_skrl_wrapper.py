@@ -15,13 +15,16 @@ simulation_app = app_launcher.app
 """Rest everything follows."""
 
 import gymnasium as gym
-import isaaclab.sim as sim_utils
-import isaaclab_tasks  # noqa: F401
 import pytest
 import torch
+
+import isaaclab.sim as sim_utils
 from isaaclab.app.settings_manager import get_settings_manager
 from isaaclab.envs import DirectMARLEnv, multi_agent_to_single_agent
+
 from isaaclab_rl.skrl import SkrlVecEnvWrapper
+
+import isaaclab_tasks  # noqa: F401
 from isaaclab_tasks.utils.parse_cfg import parse_env_cfg
 
 

@@ -3,9 +3,10 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-from isaaclab.utils import configclass
 from isaaclab_experimental.managers import RewardTermCfg as RewTerm
 from isaaclab_experimental.managers import SceneEntityCfg
+
+from isaaclab.utils import configclass
 
 import isaaclab_tasks_experimental.manager_based.locomotion.velocity.mdp as mdp
 from isaaclab_tasks_experimental.manager_based.locomotion.velocity.velocity_env_cfg import (

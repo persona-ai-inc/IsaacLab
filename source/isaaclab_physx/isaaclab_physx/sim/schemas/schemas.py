@@ -8,6 +8,9 @@ from __future__ import annotations
 
 import logging
 
+from omni.physx.scripts import deformableUtils
+from pxr import Usd
+
 from isaaclab.sim.utils import (
     apply_nested,
     get_all_matching_child_prims,
@@ -15,8 +18,6 @@ from isaaclab.sim.utils import (
 )
 from isaaclab.sim.utils.stage import get_current_stage
 from isaaclab.utils.string import to_camel_case
-from omni.physx.scripts import deformableUtils
-from pxr import Usd
 
 from isaaclab_physx.sim.schemas.schemas_cfg import DeformableBodyPropertiesCfg
 

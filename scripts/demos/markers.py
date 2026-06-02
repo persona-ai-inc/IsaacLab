@@ -33,8 +33,9 @@ simulation_app = app_launcher.app
 
 """Rest everything follows."""
 
-import isaaclab.sim as sim_utils
 import torch
+
+import isaaclab.sim as sim_utils
 from isaaclab.markers import VisualizationMarkers, VisualizationMarkersCfg
 from isaaclab.sim import SimulationContext
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR, ISAACLAB_NUCLEUS_DIR

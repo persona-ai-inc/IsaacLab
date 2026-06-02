@@ -19,13 +19,15 @@ from isaaclab.app import AppLauncher
 
 simulation_app = AppLauncher(headless=True).app
 
-import isaaclab.sim as sim_utils  # noqa: E402
 import pytest  # noqa: E402
 import torch  # noqa: E402
 from frame_view_contract_utils import *  # noqa: F401, F403, E402
 from frame_view_contract_utils import CHILD_OFFSET, ViewBundle  # noqa: E402
 from isaaclab_physx.sim.views import FabricFrameView as FrameView  # noqa: E402
+
 from pxr import Gf, UsdGeom  # noqa: E402
+
+import isaaclab.sim as sim_utils  # noqa: E402
 
 PARENT_POS = (0.0, 0.0, 1.0)
 

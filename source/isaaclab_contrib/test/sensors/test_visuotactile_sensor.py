@@ -17,16 +17,19 @@ simulation_app = AppLauncher(headless=True, enable_cameras=True).app
 
 import math
 
-import isaaclab.sim as sim_utils
-import omni.replicator.core as rep
 import pytest
 import torch
 import warp as wp
+
+import omni.replicator.core as rep
+
+import isaaclab.sim as sim_utils
 from isaaclab.assets import Articulation, ArticulationCfg, RigidObject, RigidObjectCfg
 from isaaclab.sensors.camera import TiledCameraCfg
 from isaaclab.terrains.trimesh.utils import make_plane
 from isaaclab.terrains.utils import create_prim_from_mesh
 from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR
+
 from isaaclab_contrib.sensors.tacsl_sensor import VisuoTactileSensor, VisuoTactileSensorCfg
 from isaaclab_contrib.sensors.tacsl_sensor.visuotactile_sensor_cfg import GelSightRenderCfg
 

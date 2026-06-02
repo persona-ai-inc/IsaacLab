@@ -10,9 +10,10 @@ from __future__ import annotations
 import contextlib
 import logging
 
-import carb
 import numpy as np
 from scipy.spatial.transform import Rotation
+
+import carb
 
 from .xr_anchor_utils import XrAnchorSynchronizer
 from .xr_cfg import XrCfg

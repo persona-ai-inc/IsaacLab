@@ -63,10 +63,12 @@ simulation_app = app_launcher.app
 import os
 import random
 
-import isaaclab.sim as sim_utils
 import numpy as np
-import omni.replicator.core as rep
 import torch
+
+import omni.replicator.core as rep
+
+import isaaclab.sim as sim_utils
 from isaaclab.assets import RigidObject, RigidObjectCfg
 from isaaclab.markers import VisualizationMarkers
 from isaaclab.markers.config import RAY_CASTER_MARKER_CFG

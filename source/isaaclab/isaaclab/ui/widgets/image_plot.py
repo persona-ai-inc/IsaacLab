@@ -10,8 +10,9 @@ from contextlib import suppress
 from typing import TYPE_CHECKING
 
 import numpy as np
-import omni
 from matplotlib import cm
+
+import omni
 
 with suppress(ImportError):
     # isaacsim.gui is not available when running in headless mode.

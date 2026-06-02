@@ -6,7 +6,6 @@
 """Package containing the Newton simulation interfaces for IsaacLab core package."""
 
 import os
-
 import toml
 
 # Conveniences to other module directories via relative paths

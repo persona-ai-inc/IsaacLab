@@ -10,6 +10,7 @@ from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
 import warp as wp
+
 from isaaclab.sensors.imu import BaseImu
 
 from isaaclab_newton.physics import NewtonManager
@@ -18,8 +19,9 @@ from .imu_data import ImuData
 from .kernels import imu_copy_kernel, imu_reset_kernel
 
 if TYPE_CHECKING:
-    from isaaclab.sensors.imu import ImuCfg
     from newton.sensors import SensorIMU as NewtonSensorIMU
+
+    from isaaclab.sensors.imu import ImuCfg
 
 logger = logging.getLogger(__name__)
 

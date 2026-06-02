@@ -39,9 +39,10 @@ simulation_app = app_launcher.app
 
 """Rest everything follows."""
 
+import torch
+
 import isaaclab.envs.mdp as mdp
 import isaaclab.sim as sim_utils
-import torch
 from isaaclab.assets import ArticulationCfg, AssetBaseCfg
 from isaaclab.envs import ManagerBasedEnv, ManagerBasedEnvCfg
 from isaaclab.managers import EventTermCfg as EventTerm

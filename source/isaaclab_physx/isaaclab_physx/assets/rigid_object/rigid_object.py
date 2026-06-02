@@ -9,14 +9,16 @@ import warnings
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
-import isaaclab.sim as sim_utils
-import isaaclab.utils.string as string_utils
 import numpy as np
 import torch
 import warp as wp
+
+from pxr import UsdPhysics
+
+import isaaclab.sim as sim_utils
+import isaaclab.utils.string as string_utils
 from isaaclab.assets.rigid_object.base_rigid_object import BaseRigidObject
 from isaaclab.utils.wrench_composer import WrenchComposer
-from pxr import UsdPhysics
 
 from isaaclab_physx.assets import kernels as shared_kernels
 from isaaclab_physx.physics import PhysxManager as SimulationManager
@@ -25,6 +27,7 @@ from .rigid_object_data import RigidObjectData
 
 if TYPE_CHECKING:
     import omni.physics.tensors.api as physx
+
     from isaaclab.assets.rigid_object.rigid_object_cfg import RigidObjectCfg
 
 

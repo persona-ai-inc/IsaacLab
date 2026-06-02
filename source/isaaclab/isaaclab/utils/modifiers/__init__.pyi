@@ -15,6 +15,6 @@ __all__ = [
     "scale",
 ]
 
-from .modifier import DigitalFilter, Integrator, bias, clip, scale
+from .modifier_cfg import ModifierCfg, DigitalFilterCfg, IntegratorCfg
 from .modifier_base import ModifierBase
-from .modifier_cfg import DigitalFilterCfg, IntegratorCfg, ModifierCfg
+from .modifier import DigitalFilter, Integrator, bias, clip, scale

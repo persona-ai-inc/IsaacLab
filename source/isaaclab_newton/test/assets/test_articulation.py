@@ -19,12 +19,17 @@ simulation_app = AppLauncher(headless=True).app
 
 import sys
 
-import isaaclab.sim as sim_utils
-import isaaclab.utils.math as math_utils
-import isaaclab.utils.string as string_utils
 import pytest
 import torch
 import warp as wp
+from isaaclab_newton.assets import Articulation
+from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
+from isaaclab_newton.physics import NewtonManager as SimulationManager
+from newton.solvers import SolverNotifyFlags
+
+import isaaclab.sim as sim_utils
+import isaaclab.utils.math as math_utils
+import isaaclab.utils.string as string_utils
 from isaaclab.actuators import ActuatorBase, IdealPDActuatorCfg, ImplicitActuatorCfg
 from isaaclab.assets import ArticulationCfg
 from isaaclab.envs.mdp.terminations import joint_effort_out_of_limit
@@ -32,10 +37,6 @@ from isaaclab.managers import SceneEntityCfg
 from isaaclab.sim import SimulationCfg, build_simulation_context
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 from isaaclab.utils.version import get_isaac_sim_version, has_kit
-from isaaclab_newton.assets import Articulation
-from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
-from isaaclab_newton.physics import NewtonManager as SimulationManager
-from newton.solvers import SolverNotifyFlags
 
 ##
 # Pre-defined configs

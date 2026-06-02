@@ -12,6 +12,7 @@ from pathlib import Path
 from unittest import mock
 
 import pytest
+
 from isaaclab.cli.utils import (
     determine_python_version,
     extract_isaacsim_path,

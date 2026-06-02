@@ -21,6 +21,7 @@ mass matricescomputed by PhysX.
 import argparse
 
 import warp as wp
+
 from isaaclab.app import AppLauncher
 
 # add argparse arguments
@@ -37,8 +38,9 @@ simulation_app = app_launcher.app
 
 """Rest everything follows."""
 
-import isaaclab.sim as sim_utils
 import torch
+
+import isaaclab.sim as sim_utils
 from isaaclab.assets import Articulation, AssetBaseCfg
 from isaaclab.controllers import OperationalSpaceController, OperationalSpaceControllerCfg
 from isaaclab.markers import VisualizationMarkers

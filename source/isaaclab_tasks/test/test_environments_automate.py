@@ -22,8 +22,9 @@ simulation_app = app_launcher.app
 
 """Rest everything follows."""
 
-import isaaclab_tasks  # noqa: F401
 import pytest
+
+import isaaclab_tasks  # noqa: F401
 
 # Local imports should be imported last
 # Note: _check_random_actions is used directly here (instead of _run_environments) so that the

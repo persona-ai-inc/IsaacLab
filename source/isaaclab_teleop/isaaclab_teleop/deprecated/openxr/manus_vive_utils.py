@@ -8,6 +8,7 @@ import logging
 from time import time
 
 import numpy as np
+
 from isaacsim.core.utils.extensions import enable_extension
 
 # For testing purposes, we need to mock the XRCore

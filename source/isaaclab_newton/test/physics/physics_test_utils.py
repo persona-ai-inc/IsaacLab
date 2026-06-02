@@ -15,11 +15,12 @@ import time
 from contextlib import contextmanager
 from enum import Enum, auto
 
-import isaaclab.sim as sim_utils
 import pytest
+from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
+
+import isaaclab.sim as sim_utils
 from isaaclab.assets import RigidObjectCfg
 from isaaclab.sim import SimulationCfg
-from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
 
 ##
 # Newton Configuration

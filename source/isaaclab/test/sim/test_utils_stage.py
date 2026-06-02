@@ -17,9 +17,11 @@ simulation_app = AppLauncher(headless=True).app
 import tempfile
 from pathlib import Path
 
-import isaaclab.sim as sim_utils
 import pytest
+
 from pxr import Usd
+
+import isaaclab.sim as sim_utils
 
 
 def test_create_new_stage():

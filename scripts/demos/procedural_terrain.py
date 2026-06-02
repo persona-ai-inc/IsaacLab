@@ -69,8 +69,9 @@ simulation_app = app_launcher.app
 
 import random
 
-import isaaclab.sim as sim_utils
 import torch
+
+import isaaclab.sim as sim_utils
 from isaaclab.assets import AssetBase
 from isaaclab.markers import VisualizationMarkers, VisualizationMarkersCfg
 from isaaclab.terrains import FlatPatchSamplingCfg, TerrainImporter, TerrainImporterCfg

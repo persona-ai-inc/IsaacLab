@@ -5,6 +5,9 @@
 
 from dataclasses import MISSING
 
+from isaaclab_physx.assets import DeformableObjectCfg
+from isaaclab_physx.physics import PhysxCfg
+
 import isaaclab.sim as sim_utils
 from isaaclab.assets import ArticulationCfg, AssetBaseCfg, RigidObjectCfg
 from isaaclab.envs import ManagerBasedRLEnvCfg
@@ -20,8 +23,6 @@ from isaaclab.sensors.frame_transformer.frame_transformer_cfg import FrameTransf
 from isaaclab.sim.spawners.from_files.from_files_cfg import GroundPlaneCfg, UsdFileCfg
 from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
-from isaaclab_physx.assets import DeformableObjectCfg
-from isaaclab_physx.physics import PhysxCfg
 
 from . import mdp
 

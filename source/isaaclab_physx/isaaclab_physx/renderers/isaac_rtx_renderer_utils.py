@@ -11,8 +11,9 @@ import logging
 import time
 from typing import Any
 
-import isaaclab.sim as sim_utils
 import omni.usd
+
+import isaaclab.sim as sim_utils
 
 logger = logging.getLogger(__name__)
 

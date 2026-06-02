@@ -11,6 +11,7 @@ from types import SimpleNamespace
 
 import pytest
 import warp as wp
+
 from pxr import Sdf, Usd, UsdPhysics
 
 # The CI isaaclab_ov* pattern unintentionally collects isaaclab_ovphysx tests,

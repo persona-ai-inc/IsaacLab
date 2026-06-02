@@ -12,8 +12,7 @@ __all__ = [
 ]
 
 from .base_frame_view import BaseFrameView
-from .frame_view import FrameView
 from .usd_frame_view import UsdFrameView
-
+from .frame_view import FrameView
 # Deprecated alias
 from .xform_prim_view import XformPrimView

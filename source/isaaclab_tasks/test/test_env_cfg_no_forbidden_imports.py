@@ -43,8 +43,9 @@ import sys
 import textwrap
 
 import gymnasium
-import isaaclab_tasks  # noqa: F401 -- triggers task registration
 import pytest
+
+import isaaclab_tasks  # noqa: F401 -- triggers task registration
 
 # Forbidden module prefixes -- these must NOT appear in sys.modules after
 # config loading because they require SimulationApp / a specific physics

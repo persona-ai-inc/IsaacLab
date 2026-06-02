@@ -10,6 +10,7 @@ import os
 import tempfile
 
 import pytest
+
 from isaaclab.test.benchmark import backends
 from isaaclab.test.benchmark.benchmark_core import BaseIsaacLabBenchmark
 from isaaclab.test.benchmark.measurements import SingleMeasurement, StringMetadata

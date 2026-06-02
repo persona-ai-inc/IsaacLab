@@ -5,9 +5,10 @@
 
 import math
 
+from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
+
 from isaaclab.sim import SimulationCfg
 from isaaclab.utils import configclass
-from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
 
 import isaaclab_tasks_experimental.manager_based.manipulation.reach.mdp as mdp
 from isaaclab_tasks_experimental.manager_based.manipulation.reach.reach_env_cfg import ReachEnvCfg

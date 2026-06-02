@@ -6,6 +6,7 @@
 
 from isaaclab.envs.mimic_env_cfg import MimicEnvCfg, SubTaskConfig
 from isaaclab.utils import configclass
+
 from isaaclab_tasks.manager_based.manipulation.place.config.agibot.place_toy2box_rmp_rel_env_cfg import (
     RmpFlowAgibotPlaceToy2BoxEnvCfg,
 )

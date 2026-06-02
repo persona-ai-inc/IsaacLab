@@ -14,10 +14,12 @@ from collections import deque
 from typing import Any
 
 import warp as wp
+
+from pxr import UsdGeom, UsdPhysics
+
 from isaaclab.physics.base_scene_data_provider import BaseSceneDataProvider
 from isaaclab.physics.scene_data_requirements import VisualizerPrebuiltArtifacts
 from isaaclab.sim.utils.newton_model_utils import replace_newton_shape_colors
-from pxr import UsdGeom, UsdPhysics
 
 logger = logging.getLogger(__name__)
 
@@ -467,6 +469,7 @@ class PhysxSceneDataProvider(BaseSceneDataProvider):
     def _apply_xform_poses(self, positions: Any, orientations: Any, covered: Any, xform_mask: Any) -> int:
         """Fill remaining body poses using ``XformPrimView`` for prims not covered by the rigid-body view."""
         import torch
+
         from isaaclab.sim.views import FrameView
 
         uncovered = torch.where(~covered)[0].cpu().tolist()

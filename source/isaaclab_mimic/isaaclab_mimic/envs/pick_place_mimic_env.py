@@ -5,8 +5,9 @@
 
 from collections.abc import Sequence
 
-import isaaclab.utils.math as PoseUtils
 import torch
+
+import isaaclab.utils.math as PoseUtils
 
 from .franka_stack_ik_abs_mimic_env import FrankaCubeStackIKAbsMimicEnv
 from .franka_stack_ik_rel_mimic_env import FrankaCubeStackIKRelMimicEnv

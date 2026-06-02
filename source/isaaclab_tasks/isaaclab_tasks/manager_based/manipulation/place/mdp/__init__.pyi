@@ -10,7 +10,6 @@ __all__ = [
     "object_placed_upright",
 ]
 
-from isaaclab.envs.mdp import *
-
 from .observations import object_grasped, object_poses_in_base_frame
 from .terminations import object_a_is_into_b, object_placed_upright
+from isaaclab.envs.mdp import *

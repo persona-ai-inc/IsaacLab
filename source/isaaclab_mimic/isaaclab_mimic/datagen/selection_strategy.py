@@ -10,8 +10,9 @@ source human demonstrations.
 
 import abc  # for abstract base class definitions
 
-import isaaclab.utils.math as PoseUtils
 import torch
+
+import isaaclab.utils.math as PoseUtils
 
 # Global dictionary for remembering name to class mappings.
 REGISTERED_SELECTION_STRATEGIES = {}

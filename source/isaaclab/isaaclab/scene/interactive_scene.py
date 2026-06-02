@@ -15,9 +15,6 @@ if TYPE_CHECKING:
 import torch
 import warp as wp
 
-# Note: This is a temporary import for the VisuoTactileSensorCfg class.
-# It will be removed once the VisuoTactileSensor class is added to the core Isaac Lab framework.
-from isaaclab_contrib.sensors.tacsl_sensor import VisuoTactileSensorCfg
 from pxr import Sdf
 
 import isaaclab.sim as sim_utils
@@ -37,6 +34,10 @@ from isaaclab.sim import SimulationContext
 from isaaclab.sim.utils.stage import get_current_stage, get_current_stage_id
 from isaaclab.sim.views import FrameView
 from isaaclab.terrains import TerrainImporter, TerrainImporterCfg
+
+# Note: This is a temporary import for the VisuoTactileSensorCfg class.
+# It will be removed once the VisuoTactileSensor class is added to the core Isaac Lab framework.
+from isaaclab_contrib.sensors.tacsl_sensor import VisuoTactileSensorCfg
 
 from .interactive_scene_cfg import InteractiveSceneCfg
 

@@ -21,7 +21,6 @@ __all__ = [
 from .null_space_posture_task import NullSpacePostureTask
 from .pink_ik import PinkIKController
 from .pink_ik_cfg import PinkIKControllerCfg
-from .pink_kinematics_configuration import PinkKinematicsConfiguration
 from .pink_task_cfg import (
     DampingTaskCfg,
     FrameTaskCfg,
@@ -30,3 +29,4 @@ from .pink_task_cfg import (
     PinkIKTaskCfg,
 )
 from .pink_tasks import DampingTask, FrameTask, LocalFrameTask
+from .pink_kinematics_configuration import PinkKinematicsConfiguration

@@ -63,11 +63,13 @@ simulation_app = app_launcher.app
 import cProfile
 import time
 
-import isaaclab.sim as sim_utils
 import torch
 import warp as wp
-from isaaclab.sim.views import FrameView
+
 from pxr import Gf
+
+import isaaclab.sim as sim_utils
+from isaaclab.sim.views import FrameView
 
 try:
     from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg

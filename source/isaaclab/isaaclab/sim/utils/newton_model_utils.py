@@ -19,6 +19,7 @@ from typing import Any
 
 import numpy as np
 import warp as wp
+
 from pxr import Usd, UsdGeom, UsdShade
 
 __all__ = ["replace_newton_shape_colors"]

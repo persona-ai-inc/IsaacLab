@@ -11,10 +11,12 @@ from __future__ import annotations
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
-import isaaclab.sim as sim_utils
-import omni.physics.tensors.api as physx
 import torch
 import warp as wp
+
+import omni.physics.tensors.api as physx
+
+import isaaclab.sim as sim_utils
 from isaaclab.app.settings_manager import get_settings_manager
 from isaaclab.markers import VisualizationMarkers
 from isaaclab.sensors.contact_sensor import BaseContactSensor

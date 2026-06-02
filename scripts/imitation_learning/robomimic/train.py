@@ -65,9 +65,6 @@ from collections import OrderedDict
 
 import gymnasium as gym
 import h5py
-import isaaclab_tasks  # noqa: F401
-import isaaclab_tasks.manager_based.locomanipulation.pick_place  # noqa: F401
-import isaaclab_tasks.manager_based.manipulation.pick_place  # noqa: F401
 import numpy as np
 import psutil
 import robomimic.utils.env_utils as EnvUtils
@@ -80,6 +77,10 @@ from robomimic.algo import algo_factory
 from robomimic.config import Config, config_factory
 from robomimic.utils.log_utils import DataLogger, PrintLogger
 from torch.utils.data import DataLoader
+
+import isaaclab_tasks  # noqa: F401
+import isaaclab_tasks.manager_based.locomanipulation.pick_place  # noqa: F401
+import isaaclab_tasks.manager_based.manipulation.pick_place  # noqa: F401
 
 
 def normalize_hdf5_actions(config: Config, log_dir: str) -> str:

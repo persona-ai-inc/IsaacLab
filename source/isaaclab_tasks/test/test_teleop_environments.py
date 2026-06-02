@@ -22,8 +22,9 @@ simulation_app = app_launcher.app
 
 """Rest everything follows."""
 
-import isaaclab_tasks  # noqa: F401
 import pytest
+
+import isaaclab_tasks  # noqa: F401
 
 # Local imports should be imported last
 from env_test_utils import _run_environments, setup_environment  # isort: skip

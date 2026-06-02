@@ -6,6 +6,7 @@
 """Unit tests for benchmark recorder classes."""
 
 import pytest
+
 from isaaclab.test.benchmark.interfaces import MeasurementData
 from isaaclab.test.benchmark.recorders.record_cpu_info import CPUInfoRecorder
 from isaaclab.test.benchmark.recorders.record_gpu_info import GPUInfoRecorder

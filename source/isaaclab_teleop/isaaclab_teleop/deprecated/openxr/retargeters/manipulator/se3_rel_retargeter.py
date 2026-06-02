@@ -8,11 +8,12 @@ from dataclasses import dataclass
 
 import numpy as np
 import torch
+from scipy.spatial.transform import Rotation
+
 from isaaclab.devices.device_base import DeviceBase
 from isaaclab.devices.retargeter_base import RetargeterBase, RetargeterCfg
 from isaaclab.markers import VisualizationMarkers
 from isaaclab.markers.config import FRAME_MARKER_CFG
-from scipy.spatial.transform import Rotation
 
 
 class Se3RelRetargeter(RetargeterBase):

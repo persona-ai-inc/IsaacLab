@@ -14,11 +14,12 @@ simulation_app = AppLauncher(headless=True).app
 import numpy as np
 import pinocchio as pin
 import pytest
-from isaaclab.controllers.pink_ik.null_space_posture_task import NullSpacePostureTask
-from isaaclab.controllers.pink_ik.pink_task_cfg import NullSpacePostureTaskCfg
 from pink.configuration import Configuration
 from pink.tasks import FrameTask
 from pinocchio.robot_wrapper import RobotWrapper
+
+from isaaclab.controllers.pink_ik.null_space_posture_task import NullSpacePostureTask
+from isaaclab.controllers.pink_ik.pink_task_cfg import NullSpacePostureTaskCfg
 
 
 class TestNullSpacePostureTaskSimplifiedRobot:

@@ -35,6 +35,7 @@ import torch  # noqa: E402
 from isaaclab_newton.renderers import NewtonWarpRendererCfg  # noqa: E402
 from isaaclab_ov.renderers import OVRTXRendererCfg  # noqa: E402
 from isaaclab_physx.renderers import IsaacRtxRendererCfg  # noqa: E402
+
 from isaaclab_tasks.direct.shadow_hand.shadow_hand_vision_env import ShadowHandVisionEnv  # noqa: E402
 from isaaclab_tasks.direct.shadow_hand.shadow_hand_vision_env_cfg import (  # noqa: E402
     ShadowHandVisionBenchmarkEnvCfg,

@@ -5,8 +5,9 @@
 
 import argparse
 
-import isaaclab.app.app_launcher as app_launcher_module
 import pytest
+
+import isaaclab.app.app_launcher as app_launcher_module
 from isaaclab.app import AppLauncher
 
 

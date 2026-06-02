@@ -26,14 +26,16 @@ import gymnasium as gym  # noqa: E402
 import numpy as np  # noqa: E402
 import pytest  # noqa: E402
 import torch  # noqa: E402
+from PIL import Image, ImageChops  # noqa: E402
+
 from isaaclab.sim import SimulationContext  # noqa: E402
+
 from isaaclab_tasks.utils.hydra import (  # noqa: E402
     apply_overrides,
     collect_presets,
     parse_overrides,
 )
 from isaaclab_tasks.utils.parse_cfg import parse_env_cfg  # noqa: E402
-from PIL import Image, ImageChops  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -811,6 +813,7 @@ def test_cartpole(cartpole_env):
 def dexsuite_kuka_allegro_lift_env(request):
     """Build Dexsuite Kuka-Allegro Lift (single camera) for backend/renderer/data_type; reset, yield, close."""
     from isaaclab.envs import ManagerBasedRLEnv
+
     from isaaclab_tasks.manager_based.manipulation.dexsuite.config.kuka_allegro.dexsuite_kuka_allegro_env_cfg import (
         DexsuiteKukaAllegroLiftEnvCfg,
     )

@@ -16,8 +16,9 @@ from urllib.parse import quote
 
 import rerun as rr
 import rerun.blueprint as rrb
-from isaaclab.visualizers.base_visualizer import BaseVisualizer
 from newton.viewer import ViewerRerun
+
+from isaaclab.visualizers.base_visualizer import BaseVisualizer
 
 from isaaclab_visualizers.newton_adapter import apply_viewer_visible_worlds, resolve_visible_env_indices
 

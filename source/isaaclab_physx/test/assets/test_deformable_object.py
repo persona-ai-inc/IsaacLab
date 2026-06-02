@@ -18,16 +18,18 @@ simulation_app = AppLauncher(headless=True).app
 
 import sys
 
-import carb
-import isaaclab.sim as sim_utils
-import isaaclab.utils.math as math_utils
 import pytest
 import torch
 import warp as wp
 from flaky import flaky
-from isaaclab.sim import build_simulation_context
 from isaaclab_physx.assets import DeformableObject, DeformableObjectCfg
 from isaaclab_physx.sim import DeformableBodyMaterialCfg, DeformableBodyPropertiesCfg, SurfaceDeformableBodyMaterialCfg
+
+import carb
+
+import isaaclab.sim as sim_utils
+import isaaclab.utils.math as math_utils
+from isaaclab.sim import build_simulation_context
 
 # Temporarily disabled: this suite intermittently aborts with SIGABRT on CI.
 # Re-enable once the underlying crash is fixed.

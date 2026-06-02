@@ -14,14 +14,16 @@ simulation_app = AppLauncher(headless=True).app
 
 """Rest everything follows."""
 
-import isaaclab.sim as sim_utils
 import pytest
 import torch
+
+from pxr import UsdGeom
+
+import isaaclab.sim as sim_utils
 from isaaclab.cloner import usd_replicate
 from isaaclab.cloner.cloner_utils import resolve_visualizer_clone_fn
 from isaaclab.physics.scene_data_requirements import SceneDataRequirement, VisualizerPrebuiltArtifacts
 from isaaclab.sim import build_simulation_context
-from pxr import UsdGeom
 
 
 @pytest.fixture(params=["cpu", "cuda"])

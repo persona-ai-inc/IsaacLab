@@ -16,6 +16,13 @@ from typing import TYPE_CHECKING
 import numpy as np
 import torch
 import warp as wp
+from newton import JointType
+from newton.selection import ArticulationView
+from newton.solvers import SolverNotifyFlags
+from prettytable import PrettyTable
+
+from pxr import UsdPhysics
+
 from isaaclab.actuators import ActuatorBase, ActuatorBaseCfg, ImplicitActuator
 from isaaclab.assets.articulation.base_articulation import BaseArticulation
 from isaaclab.physics import PhysicsEvent
@@ -24,11 +31,6 @@ from isaaclab.utils.string import resolve_matching_names, resolve_matching_names
 from isaaclab.utils.types import ArticulationActions
 from isaaclab.utils.version import get_isaac_sim_version, has_kit
 from isaaclab.utils.wrench_composer import WrenchComposer
-from newton import JointType
-from newton.selection import ArticulationView
-from newton.solvers import SolverNotifyFlags
-from prettytable import PrettyTable
-from pxr import UsdPhysics
 
 from isaaclab_newton.assets import kernels as shared_kernels
 from isaaclab_newton.assets.articulation import kernels as articulation_kernels

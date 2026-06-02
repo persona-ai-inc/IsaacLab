@@ -11,6 +11,7 @@ This script checks if the app can be launched with non-headless app and start th
 
 
 import pytest
+
 from isaaclab.app import AppLauncher
 
 # launch omniverse app

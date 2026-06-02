@@ -13,8 +13,9 @@ simulation_app = AppLauncher(headless=True, enable_cameras=True).app
 
 """Rest everything follows."""
 
-import isaaclab.sim as sim_utils
 import pytest
+
+import isaaclab.sim as sim_utils
 
 
 @pytest.fixture(autouse=True)

@@ -12,8 +12,9 @@
 
 from typing import Any
 
-from isaaclab.envs.mimic_env_cfg import MimicEnvCfg
 from pxr import Gf
+
+from isaaclab.envs.mimic_env_cfg import MimicEnvCfg
 
 
 class InstructionDisplay:

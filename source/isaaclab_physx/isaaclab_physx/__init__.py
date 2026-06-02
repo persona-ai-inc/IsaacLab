@@ -7,7 +7,6 @@
 
 import os
 import sys
-
 import toml
 
 # Conveniences to other module directories via relative paths
