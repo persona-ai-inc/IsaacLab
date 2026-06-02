@@ -12,10 +12,9 @@ simulation_app = AppLauncher(headless=True).app
 
 """Rest everything follows."""
 
+import isaaclab.utils.noise as noise
 import pytest
 import torch
-
-import isaaclab.utils.noise as noise
 
 
 @pytest.mark.parametrize("device", ["cpu", "cuda:0"])

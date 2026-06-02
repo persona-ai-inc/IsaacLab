@@ -9,7 +9,6 @@ from typing import TYPE_CHECKING
 
 import torch
 import warp as wp
-
 from isaaclab.assets.articulation import Articulation
 from isaaclab.managers.action_manager import ActionTerm
 from isaaclab.utils.assets import retrieve_file_path

@@ -12,9 +12,8 @@ simulation_app = AppLauncher(headless=True).app
 
 """Rest everything follows."""
 
-import pytest
-
 import isaaclab.sim as sim_utils
+import pytest
 from isaaclab.sim import SimulationCfg, SimulationContext
 
 

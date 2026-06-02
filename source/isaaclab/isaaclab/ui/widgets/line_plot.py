@@ -10,9 +10,7 @@ from contextlib import suppress
 from typing import TYPE_CHECKING
 
 import numpy as np
-
 import omni
-
 from isaaclab.sim import SimulationContext
 
 with suppress(ImportError):

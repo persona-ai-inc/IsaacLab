@@ -9,5 +9,5 @@ __all__ = [
     "VELODYNE_VLP_16_RAYCASTER_CFG",
 ]
 
-from .gelsight import GELSIGHT_R15_CFG, GELSIGHT_MINI_CFG
+from .gelsight import GELSIGHT_MINI_CFG, GELSIGHT_R15_CFG
 from .velodyne import VELODYNE_VLP_16_RAYCASTER_CFG

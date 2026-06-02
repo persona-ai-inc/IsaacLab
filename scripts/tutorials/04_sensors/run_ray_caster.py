@@ -31,10 +31,9 @@ simulation_app = app_launcher.app
 
 """Rest everything follows."""
 
+import isaaclab.sim as sim_utils
 import torch
 import warp as wp
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import RigidObject, RigidObjectCfg
 from isaaclab.sensors.ray_caster import RayCaster, RayCasterCfg, patterns
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR

@@ -10,7 +10,6 @@ from unittest.mock import MagicMock, patch
 
 import numpy as np
 import pytest
-
 from isaaclab.envs.utils import video_recorder as _video_recorder_module
 from isaaclab.envs.utils.video_recorder import VideoRecorder
 

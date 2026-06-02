@@ -30,10 +30,9 @@ from collections.abc import Callable, Mapping
 
 import hydra
 from hydra.core.config_store import ConfigStore
-from omegaconf import OmegaConf
-
 from isaaclab.envs.utils.spaces import replace_env_cfg_spaces_with_strings, replace_strings_with_env_cfg_spaces
 from isaaclab.utils import configclass, replace_slices_with_strings, replace_strings_with_slices
+from omegaconf import OmegaConf
 
 _LITERAL_MAP = {"true": True, "false": False, "none": None, "null": None}
 

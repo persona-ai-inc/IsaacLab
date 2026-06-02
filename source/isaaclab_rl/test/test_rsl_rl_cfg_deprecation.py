@@ -17,7 +17,6 @@ simulation_app = app_launcher.app
 from dataclasses import MISSING
 
 import pytest
-
 from isaaclab_rl.rsl_rl import (
     RslRlDistillationAlgorithmCfg,
     RslRlDistillationRunnerCfg,

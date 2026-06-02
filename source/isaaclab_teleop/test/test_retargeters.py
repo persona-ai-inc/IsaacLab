@@ -36,6 +36,7 @@ sys.modules["isaaclab.sim"].SimulationContext.instance.return_value = mock_sim_c
 
 
 # Import after mocking
+from isaaclab.devices.device_base import DeviceBase
 from isaaclab_teleop.deprecated.openxr.retargeters.humanoid.unitree.g1_lower_body_standing import (
     G1LowerBodyStandingRetargeter,
     G1LowerBodyStandingRetargeterCfg,
@@ -56,8 +57,6 @@ from isaaclab_teleop.deprecated.openxr.retargeters.manipulator.se3_rel_retargete
     Se3RelRetargeter,
     Se3RelRetargeterCfg,
 )
-
-from isaaclab.devices.device_base import DeviceBase
 
 # Mock dex retargeting utils
 with patch.dict(

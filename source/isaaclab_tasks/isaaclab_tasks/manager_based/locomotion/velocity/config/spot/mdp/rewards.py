@@ -15,7 +15,6 @@ from typing import TYPE_CHECKING
 
 import torch
 import warp as wp
-
 from isaaclab.managers import ManagerTermBase, SceneEntityCfg
 
 if TYPE_CHECKING:

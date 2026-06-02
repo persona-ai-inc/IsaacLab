@@ -24,9 +24,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import math
 
+import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
+from isaaclab.assets import Articulation, RigidObject, RigidObjectCfg
+from isaaclab.scene import InteractiveScene, InteractiveSceneCfg
+from isaaclab.sensors import ContactSensor, ContactSensorCfg
+from isaaclab.sim import build_simulation_context
+from isaaclab.terrains import TerrainImporterCfg
+from isaaclab.utils import configclass
+from isaaclab_assets.robots.allegro import ALLEGRO_HAND_CFG
 from physics.physics_test_utils import (
     COLLISION_PIPELINES,
     STABLE_SHAPES,
@@ -38,16 +46,6 @@ from physics.physics_test_utils import (
     perform_sim_step,
     shape_type_to_str,
 )
-
-import isaaclab.sim as sim_utils
-from isaaclab.assets import Articulation, RigidObject, RigidObjectCfg
-from isaaclab.scene import InteractiveScene, InteractiveSceneCfg
-from isaaclab.sensors import ContactSensor, ContactSensorCfg
-from isaaclab.sim import build_simulation_context
-from isaaclab.terrains import TerrainImporterCfg
-from isaaclab.utils import configclass
-
-from isaaclab_assets.robots.allegro import ALLEGRO_HAND_CFG
 
 ##
 # Scene Configuration

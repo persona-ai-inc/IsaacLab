@@ -16,22 +16,20 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "isaaclab" / "test" / "sim"))
 
+import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
 from frame_view_contract_utils import *  # noqa: F401, F403 — import all contract tests
 from frame_view_contract_utils import CHILD_OFFSET, ViewBundle, _wp_vec3f, _wp_vec4f
-from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
-from isaaclab_newton.physics.newton_manager import NewtonManager
-from isaaclab_newton.sim.views import NewtonSiteFrameView as FrameView
-
-from pxr import Gf
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import RigidObjectCfg
 from isaaclab.scene import InteractiveScene, InteractiveSceneCfg
 from isaaclab.sim import SimulationCfg, build_simulation_context
 from isaaclab.utils import configclass
+from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
+from isaaclab_newton.physics.newton_manager import NewtonManager
+from isaaclab_newton.sim.views import NewtonSiteFrameView as FrameView
+from pxr import Gf
 
 NEWTON_SIM_CFG = SimulationCfg(physics=NewtonCfg(solver_cfg=MJWarpSolverCfg()))
 WORLD_MARKER_POS = (5.0, 3.0, 1.0)

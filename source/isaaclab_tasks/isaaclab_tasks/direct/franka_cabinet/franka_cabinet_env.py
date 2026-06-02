@@ -5,16 +5,14 @@
 
 from __future__ import annotations
 
+import isaaclab.sim as sim_utils
 import torch
 import warp as wp
-
-from pxr import UsdGeom
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import Articulation
 from isaaclab.envs import DirectRLEnv
 from isaaclab.sim.utils.stage import get_current_stage
 from isaaclab.utils.math import combine_frame_transforms, quat_apply, quat_conjugate, sample_uniform
+from pxr import UsdGeom
 
 from .franka_cabinet_env_cfg import FrankaCabinetEnvCfg  # noqa: F401
 

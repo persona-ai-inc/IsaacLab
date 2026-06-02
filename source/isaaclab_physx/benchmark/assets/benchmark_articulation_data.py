@@ -65,10 +65,9 @@ from isaacsim.core.simulation_manager import SimulationManager
 SimulationManager.get_physics_sim_view = MagicMock(return_value=_mock_physics_sim_view)
 
 import warp as wp
+from isaaclab.test.benchmark import MethodBenchmarkRunner, MethodBenchmarkRunnerConfig
 from isaaclab_physx.assets.articulation.articulation_data import ArticulationData
 from isaaclab_physx.test.mock_interfaces.views import MockArticulationViewWarp
-
-from isaaclab.test.benchmark import MethodBenchmarkRunner, MethodBenchmarkRunnerConfig
 
 # Suppress deprecation warnings during benchmarking
 warnings.filterwarnings("ignore", category=DeprecationWarning)

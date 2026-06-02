@@ -5,9 +5,8 @@
 
 from __future__ import annotations
 
-from gymnasium import spaces
-
 import isaaclab.sim as sim_utils
+from gymnasium import spaces
 from isaaclab.sensors import TiledCameraCfg
 from isaaclab.utils import configclass
 

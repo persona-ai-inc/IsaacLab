@@ -8,11 +8,9 @@ from __future__ import annotations
 import os
 from typing import TYPE_CHECKING
 
-import torch
-from torchvision.utils import save_image
-
 import isaaclab.sim as sim_utils
 import isaaclab.utils.math as math_utils
+import torch
 from isaaclab.controllers.differential_ik_cfg import DifferentialIKControllerCfg
 from isaaclab.envs.mdp.actions.actions_cfg import DifferentialInverseKinematicsActionCfg
 from isaaclab.managers import ObservationGroupCfg as ObsGroup
@@ -20,6 +18,7 @@ from isaaclab.managers import ObservationTermCfg as ObsTerm
 from isaaclab.managers import SceneEntityCfg
 from isaaclab.sensors import CameraCfg
 from isaaclab.utils import configclass
+from torchvision.utils import save_image
 
 from ... import mdp
 from . import stack_joint_pos_env_cfg

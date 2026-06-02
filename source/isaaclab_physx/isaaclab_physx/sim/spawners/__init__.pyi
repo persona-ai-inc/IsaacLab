@@ -10,9 +10,9 @@ __all__ = [
     "SurfaceDeformableBodyMaterialCfg",
 ]
 
-from .spawner_cfg import DeformableObjectSpawnerCfg
 from .materials import (
-    spawn_deformable_body_material,
     DeformableBodyMaterialCfg,
     SurfaceDeformableBodyMaterialCfg,
+    spawn_deformable_body_material,
 )
+from .spawner_cfg import DeformableObjectSpawnerCfg

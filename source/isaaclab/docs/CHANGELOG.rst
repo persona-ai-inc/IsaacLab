@@ -1,6 +1,29 @@
 Changelog
 ---------
 
+4.6.16 (2026-06-01)
+~~~~~~~~~~~~~~~~~~~
+
+Fixed
+^^^^^
+
+* Fixed floating-base URDF-converted robots spawning as fixed-base under Newton/MJWarp physics.
+  The URDF→USD pipeline unconditionally produces a ``PhysicsFixedJoint "root_joint"`` that
+  connects the non-rigid USD root Xform to the first rigid body. Newton resolves non-rigid body
+  targets as the world frame and therefore treated this joint as fixed-to-world, making the
+  articulation fixed-base even when ``fix_base=False``. Two complementary changes address this:
+
+  * :func:`~isaaclab.sim.utils.queries.find_global_fixed_joint_prim` now also detects joints
+    where one body is a non-rigid prim (effectively the world), so that
+    :func:`~isaaclab.sim.schemas.modify_articulation_root_properties` with
+    ``fix_root_link=False`` correctly disables the offending joint at spawn time.
+
+  * :class:`~isaaclab.sim.converters.UrdfConverter` now calls
+    ``_disable_root_joint_for_floating_base`` when ``fix_base=False``, writing the disabled
+    state into the cached USD so newly-generated assets are correct from the start without
+    relying on spawn-time schema fixups.
+
+
 4.6.15 (2026-04-24)
 ~~~~~~~~~~~~~~~~~~~
 

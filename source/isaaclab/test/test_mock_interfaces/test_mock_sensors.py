@@ -13,7 +13,6 @@ simulation_app = app_launcher.app
 
 import pytest
 import torch
-
 from isaaclab.test.mock_interfaces.sensors import (
     MockContactSensor,
     MockFrameTransformer,

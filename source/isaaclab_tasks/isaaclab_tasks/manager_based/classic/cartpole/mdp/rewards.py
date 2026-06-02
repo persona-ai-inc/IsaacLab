@@ -9,7 +9,6 @@ from typing import TYPE_CHECKING
 
 import torch
 import warp as wp
-
 from isaaclab.managers import SceneEntityCfg
 from isaaclab.utils.math import wrap_to_pi
 

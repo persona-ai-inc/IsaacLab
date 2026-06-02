@@ -11,15 +11,13 @@ import warnings
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
+import isaaclab.sim as sim_utils
 import torch
 import warp as wp
-
-from pxr import UsdPhysics
-
-import isaaclab.sim as sim_utils
 from isaaclab.markers import VisualizationMarkers
 from isaaclab.sensors.frame_transformer import BaseFrameTransformer
 from isaaclab.utils.math import is_identity_pose, normalize, quat_from_angle_axis
+from pxr import UsdPhysics
 
 from isaaclab_physx.physics import PhysxManager as SimulationManager
 

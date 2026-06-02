@@ -9,9 +9,8 @@ import logging
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
-import torch
-
 import isaaclab.utils.string as string_utils
+import torch
 from isaaclab.managers.action_manager import ActionTerm
 
 if TYPE_CHECKING:

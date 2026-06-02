@@ -12,15 +12,13 @@ simulation_app = AppLauncher(headless=True).app
 
 """Rest everything follows."""
 
+import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
-
-from isaacsim.core.cloner import GridCloner
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import Articulation
 from isaaclab.controllers import DifferentialIKController, DifferentialIKControllerCfg
+from isaacsim.core.cloner import GridCloner
 
 from isaaclab.utils.math import (  # isort:skip
     compute_pose_error,

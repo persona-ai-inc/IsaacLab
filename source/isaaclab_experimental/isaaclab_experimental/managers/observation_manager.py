@@ -53,9 +53,8 @@ from typing import TYPE_CHECKING, Any
 import numpy as np
 import torch
 import warp as wp
-from prettytable import PrettyTable
-
 from isaaclab.utils import class_to_dict
+from prettytable import PrettyTable
 
 from isaaclab_experimental.utils import modifiers, noise
 from isaaclab_experimental.utils.buffers import CircularBuffer

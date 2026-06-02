@@ -16,11 +16,9 @@ from typing import Any, Union
 
 import numpy as np
 import torch
-
-from pxr import Gf
-
 from isaaclab.sim import SimulationContext
 from isaaclab.ui.xr_widgets import show_instruction
+from pxr import Gf
 
 # import logger
 logger = logging.getLogger(__name__)

@@ -426,10 +426,23 @@ def find_global_fixed_joint_prim(
             if check_enabled_only and not joint_prim.GetJointEnabledAttr().Get():
                 continue
             # check body 0 and body 1 exist
-            body_0_exist = joint_prim.GetBody0Rel().GetTargets() != []
-            body_1_exist = joint_prim.GetBody1Rel().GetTargets() != []
+            body_0_targets = joint_prim.GetBody0Rel().GetTargets()
+            body_1_targets = joint_prim.GetBody1Rel().GetTargets()
+            body_0_exist = body_0_targets != []
+            body_1_exist = body_1_targets != []
             # if either body 0 or body 1 does not exist, we have a fixed joint that connects to the world
             if not (body_0_exist and body_1_exist):
+                fixed_joint_prim = joint_prim
+                break
+            # Also detect joints where one body is a non-rigid prim (treated as world by physics engines).
+            # URDF-converted USDs produce a "root_joint" (PhysicsFixedJoint) that connects the non-rigid
+            # USD root Xform to the first rigid body. Physics engines that resolve non-rigid body
+            # targets as "world" (e.g. Newton) will treat this as a fixed-to-world joint.
+            body_0_prim = stage.GetPrimAtPath(body_0_targets[0])
+            body_1_prim = stage.GetPrimAtPath(body_1_targets[0])
+            body_0_is_rigid = body_0_prim.IsValid() and body_0_prim.HasAPI(UsdPhysics.RigidBodyAPI)
+            body_1_is_rigid = body_1_prim.IsValid() and body_1_prim.HasAPI(UsdPhysics.RigidBodyAPI)
+            if body_0_is_rigid != body_1_is_rigid:
                 fixed_joint_prim = joint_prim
                 break
 

@@ -17,7 +17,6 @@ simulation_app = AppLauncher(headless=True).app
 import pytest  # noqa: E402
 import torch  # noqa: E402
 import warp as wp  # noqa: E402
-
 from pxr import Gf, UsdGeom  # noqa: E402
 
 try:
@@ -25,10 +24,9 @@ try:
 except (ModuleNotFoundError, ImportError):
     _IsaacSimXformPrimView = None
 
+import isaaclab.sim as sim_utils  # noqa: E402
 from frame_view_contract_utils import *  # noqa: F401, F403, E402
 from frame_view_contract_utils import CHILD_OFFSET, ViewBundle  # noqa: E402
-
-import isaaclab.sim as sim_utils  # noqa: E402
 from isaaclab.sim.views import UsdFrameView as FrameView  # noqa: E402
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR  # noqa: E402
 

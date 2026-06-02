@@ -41,12 +41,11 @@ simulation_app = app_launcher.app
 
 import os
 
+import isaaclab.sim as sim_utils
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import warp as wp
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import ArticulationCfg, AssetBaseCfg
 from isaaclab.scene import InteractiveScene, InteractiveSceneCfg
 from isaaclab.sensors import CameraCfg, RayCasterCameraCfg, TiledCameraCfg

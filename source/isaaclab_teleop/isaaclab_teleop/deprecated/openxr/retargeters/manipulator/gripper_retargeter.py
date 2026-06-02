@@ -9,7 +9,6 @@ from typing import Final
 
 import numpy as np
 import torch
-
 from isaaclab.devices.device_base import DeviceBase
 from isaaclab.devices.retargeter_base import RetargeterBase, RetargeterCfg
 

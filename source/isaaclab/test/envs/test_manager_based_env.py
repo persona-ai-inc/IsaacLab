@@ -17,10 +17,9 @@ simulation_app = AppLauncher(headless=True).app
 
 """Rest everything follows."""
 
+import isaaclab.sim as sim_utils
 import pytest
 import torch
-
-import isaaclab.sim as sim_utils
 from isaaclab.envs import ManagerBasedEnv, ManagerBasedEnvCfg
 from isaaclab.managers import ObservationGroupCfg as ObsGroup
 from isaaclab.managers import ObservationTermCfg as ObsTerm

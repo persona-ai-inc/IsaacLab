@@ -10,9 +10,8 @@ from __future__ import annotations
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from isaaclab_physx.scene_data_providers import PhysxSceneDataProvider
-
 from isaaclab.physics.scene_data_requirements import VisualizerPrebuiltArtifacts
+from isaaclab_physx.scene_data_providers import PhysxSceneDataProvider
 
 
 def _make_provider():

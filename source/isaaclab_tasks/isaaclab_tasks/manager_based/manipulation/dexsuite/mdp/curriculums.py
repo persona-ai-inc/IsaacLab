@@ -9,7 +9,6 @@ from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
 import torch
-
 from isaaclab.envs import mdp
 from isaaclab.managers import ManagerTermBase
 

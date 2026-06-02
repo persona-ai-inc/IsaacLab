@@ -17,11 +17,10 @@ simulation_app = app_launcher.app
 from collections.abc import Sequence
 from dataclasses import dataclass
 
+import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
-
-import isaaclab.sim as sim_utils
 from isaaclab.sensors import SensorBase, SensorBaseCfg
 from isaaclab.utils import configclass
 

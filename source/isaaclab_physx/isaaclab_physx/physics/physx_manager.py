@@ -20,19 +20,17 @@ from datetime import datetime
 from enum import Enum
 from typing import TYPE_CHECKING, Any, ClassVar
 
-import torch
-
 import carb
+import isaaclab.sim as sim_utils
 import omni.kit.app
 import omni.physics.tensors
 import omni.physx
 import omni.timeline
 import omni.usd
-from pxr import Sdf, UsdUtils
-
-import isaaclab.sim as sim_utils
+import torch
 from isaaclab.physics import CallbackHandle, PhysicsEvent, PhysicsManager
 from isaaclab.utils.string import to_camel_case
+from pxr import Sdf, UsdUtils
 
 if TYPE_CHECKING:
     from isaaclab.sim.simulation_context import SimulationContext

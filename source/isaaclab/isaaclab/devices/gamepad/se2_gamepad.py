@@ -11,12 +11,11 @@ import weakref
 from collections.abc import Callable
 from typing import TYPE_CHECKING
 
-import numpy as np
-import torch
-
 import carb
 import carb.input
+import numpy as np
 import omni
+import torch
 
 from isaaclab.app.settings_manager import get_settings_manager
 

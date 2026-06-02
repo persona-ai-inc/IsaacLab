@@ -7,8 +7,6 @@ from __future__ import annotations
 
 from dataclasses import MISSING
 
-from isaaclab_physx.physics import PhysxCfg
-
 import isaaclab.sim as sim_utils
 from isaaclab.assets import ArticulationCfg, AssetBaseCfg, RigidObjectCfg
 from isaaclab.envs import ManagerBasedRLEnvCfg
@@ -24,6 +22,7 @@ from isaaclab.sim.spawners.materials import RigidBodyMaterialCfg
 from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 from isaaclab.utils.noise import GaussianNoiseCfg as Gnoise
+from isaaclab_physx.physics import PhysxCfg
 
 import isaaclab_tasks.manager_based.manipulation.inhand.mdp as mdp
 

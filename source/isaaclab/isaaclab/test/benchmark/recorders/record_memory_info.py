@@ -7,7 +7,6 @@ import math
 import os
 
 import psutil
-
 from isaaclab.test.benchmark.interfaces import MeasurementData, MeasurementDataRecorder
 from isaaclab.test.benchmark.measurements import FloatMetadata, SingleMeasurement
 

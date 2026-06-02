@@ -9,15 +9,13 @@ import logging
 import warnings
 from typing import TYPE_CHECKING
 
+import isaaclab.sim as sim_utils
 import numpy as np
 import torch
 import warp as wp
-
-from isaacsim.core.utils.extensions import enable_extension
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import AssetBase
 from isaaclab.utils.version import get_isaac_sim_version, has_kit
+from isaacsim.core.utils.extensions import enable_extension
 
 if TYPE_CHECKING:
     from isaacsim.robot.surface_gripper import GripperView

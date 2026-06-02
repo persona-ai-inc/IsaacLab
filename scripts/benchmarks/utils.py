@@ -10,9 +10,8 @@ import os
 import statistics
 import sys
 
-from tensorboard.backend.event_processing import event_accumulator
-
 from isaaclab.test.benchmark import BaseIsaacLabBenchmark, DictMeasurement, ListMeasurement, SingleMeasurement
+from tensorboard.backend.event_processing import event_accumulator
 
 # Path to configs.yaml and the config loader.
 _BENCHMARKING_DIR = os.path.join(

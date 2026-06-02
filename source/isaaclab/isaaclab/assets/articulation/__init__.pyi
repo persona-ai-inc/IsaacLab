@@ -11,8 +11,8 @@ __all__ = [
     "ArticulationData",
 ]
 
-from .base_articulation import BaseArticulation
-from .base_articulation_data import BaseArticulationData
 from .articulation import Articulation
 from .articulation_cfg import ArticulationCfg
 from .articulation_data import ArticulationData
+from .base_articulation import BaseArticulation
+from .base_articulation_data import BaseArticulationData

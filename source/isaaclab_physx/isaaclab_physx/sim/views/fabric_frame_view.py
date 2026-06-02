@@ -9,16 +9,14 @@ from __future__ import annotations
 
 import logging
 
+import isaaclab.sim as sim_utils
 import torch
 import warp as wp
-
-from pxr import Usd
-
-import isaaclab.sim as sim_utils
 from isaaclab.app.settings_manager import SettingsManager
 from isaaclab.sim.views.base_frame_view import BaseFrameView
 from isaaclab.sim.views.usd_frame_view import UsdFrameView
 from isaaclab.utils.warp import fabric as fabric_utils
+from pxr import Usd
 
 logger = logging.getLogger(__name__)
 

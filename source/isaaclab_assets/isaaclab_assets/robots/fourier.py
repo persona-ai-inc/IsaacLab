@@ -14,9 +14,8 @@ The following configuration parameters are available:
 Reference: https://www.fftai.com/products-gr1
 """
 
-import torch
-
 import isaaclab.sim as sim_utils
+import torch
 from isaaclab.actuators import ImplicitActuatorCfg
 from isaaclab.assets import ArticulationCfg
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR

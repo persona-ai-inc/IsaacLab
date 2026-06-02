@@ -6,7 +6,6 @@
 import numpy as np
 import torch
 import warp as wp
-
 from isaaclab.utils import math as torch_utils
 
 

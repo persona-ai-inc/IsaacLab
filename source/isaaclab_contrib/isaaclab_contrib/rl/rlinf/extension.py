@@ -461,7 +461,6 @@ def _create_generic_env_wrapper(task_id: str) -> type:
 
                 sim_app = AppLauncher(headless=True, enable_cameras=True).app
                 import gymnasium as gym
-
                 from isaaclab_tasks.utils import load_cfg_from_registry
 
                 isaac_env_cfg = load_cfg_from_registry(self.isaaclab_env_id, "env_cfg_entry_point")

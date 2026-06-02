@@ -14,6 +14,8 @@ __all__ = [
     "terrain_out_of_bounds",
 ]
 
+from isaaclab.envs.mdp import *
+
 from .curriculums import terrain_levels_vel
 from .rewards import (
     feet_air_time,
@@ -24,4 +26,3 @@ from .rewards import (
     track_lin_vel_xy_yaw_frame_exp,
 )
 from .terminations import terrain_out_of_bounds
-from isaaclab.envs.mdp import *

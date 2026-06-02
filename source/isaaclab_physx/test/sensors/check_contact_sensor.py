@@ -34,15 +34,13 @@ simulation_app = app_launcher.app
 
 """Rest everything follows."""
 
-import torch
-
-from isaacsim.core.cloner import GridCloner
-
 import isaaclab.sim as sim_utils
+import torch
 from isaaclab.assets import Articulation
 from isaaclab.sensors.contact_sensor import ContactSensor, ContactSensorCfg
 from isaaclab.sim import SimulationCfg, SimulationContext
 from isaaclab.utils.timer import Timer
+from isaacsim.core.cloner import GridCloner
 
 ##
 # Pre-defined configs

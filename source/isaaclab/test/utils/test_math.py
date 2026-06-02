@@ -19,13 +19,12 @@ simulation_app = AppLauncher(headless=True).app
 import math
 from math import pi as PI
 
+import isaaclab.utils.math as math_utils
 import numpy as np
 import pytest
 import scipy.spatial.transform as scipy_tf
 import torch
 import torch.utils.benchmark as benchmark
-
-import isaaclab.utils.math as math_utils
 
 DECIMAL_PRECISION = 5
 """Precision of the test.

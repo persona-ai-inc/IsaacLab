@@ -37,7 +37,6 @@ import numpy as np
 import pytest
 import torch
 import warp as wp
-
 from isaaclab.assets.articulation.articulation_cfg import ArticulationCfg
 from isaaclab.test.mock_interfaces.utils import MockWrenchComposer
 

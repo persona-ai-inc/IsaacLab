@@ -21,7 +21,6 @@ PhysX. This helps perform parallelized computation of the inverse kinematics.
 import argparse
 
 import warp as wp
-
 from isaaclab.app import AppLauncher
 
 # add argparse arguments
@@ -39,9 +38,8 @@ simulation_app = app_launcher.app
 
 """Rest everything follows."""
 
-import torch
-
 import isaaclab.sim as sim_utils
+import torch
 from isaaclab.assets import AssetBaseCfg
 from isaaclab.controllers import DifferentialIKController, DifferentialIKControllerCfg
 from isaaclab.managers import SceneEntityCfg

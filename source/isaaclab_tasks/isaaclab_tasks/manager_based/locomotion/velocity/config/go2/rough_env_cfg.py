@@ -3,10 +3,9 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-from isaaclab_physx.physics import PhysxCfg
-
 from isaaclab.sim import SimulationCfg
 from isaaclab.utils import configclass
+from isaaclab_physx.physics import PhysxCfg
 
 from isaaclab_tasks.manager_based.locomotion.velocity.velocity_env_cfg import (
     EventsCfg,

@@ -64,12 +64,10 @@ import contextlib
 import os
 
 import gymnasium as gym
+import isaaclab_tasks  # noqa: F401
 import torch
-
 from isaaclab.devices import Se3Keyboard, Se3KeyboardCfg
 from isaaclab.utils.datasets import EpisodeData, HDF5DatasetFileHandler
-
-import isaaclab_tasks  # noqa: F401
 from isaaclab_tasks.utils.parse_cfg import parse_env_cfg
 
 is_paused = False

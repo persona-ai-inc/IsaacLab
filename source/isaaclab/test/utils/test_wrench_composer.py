@@ -12,7 +12,6 @@ import numpy as np
 import pytest
 import torch
 import warp as wp
-
 from isaaclab.test.mock_interfaces.assets import MockRigidObjectCollection
 from isaaclab.utils.wrench_composer import WrenchComposer
 

@@ -18,10 +18,9 @@ simulation_app = AppLauncher(headless=True).app
 from collections import namedtuple
 from typing import TYPE_CHECKING
 
+import isaaclab.sim as sim_utils
 import pytest
 import torch
-
-import isaaclab.sim as sim_utils
 from isaaclab.managers import (
     ManagerTermBase,
     ObservationGroupCfg,

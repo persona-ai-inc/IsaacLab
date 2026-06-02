@@ -76,18 +76,15 @@ import importlib.metadata as metadata
 from datetime import datetime
 
 import gymnasium as gym
+import isaaclab_tasks  # noqa: F401
 import numpy as np
 import torch
-from rsl_rl.runners import OnPolicyRunner
-
 from isaaclab.envs import DirectMARLEnvCfg, DirectRLEnvCfg, ManagerBasedRLEnvCfg
 from isaaclab.utils.dict import print_dict
 from isaaclab.utils.io import dump_yaml
-
 from isaaclab_rl.rsl_rl import RslRlOnPolicyRunnerCfg, RslRlVecEnvWrapper, handle_deprecated_rsl_rl_cfg
-
-import isaaclab_tasks  # noqa: F401
 from isaaclab_tasks.utils import get_checkpoint_path, launch_simulation, resolve_task_config
+from rsl_rl.runners import OnPolicyRunner
 
 imports_time_end = time.perf_counter_ns()
 

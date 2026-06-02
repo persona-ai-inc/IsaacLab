@@ -40,14 +40,11 @@ simulation_app = app_launcher.app
 import io
 import os
 
-import torch
-
 import omni
-
+import torch
 from isaaclab.envs import ManagerBasedRLEnv
 from isaaclab.terrains import TerrainImporterCfg
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
-
 from isaaclab_tasks.manager_based.locomotion.velocity.config.h1.rough_env_cfg import H1RoughEnvCfg_PLAY
 
 

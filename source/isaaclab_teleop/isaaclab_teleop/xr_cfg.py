@@ -12,7 +12,6 @@ import enum
 from collections.abc import Callable
 
 import numpy as np
-
 from isaaclab.utils import configclass
 
 

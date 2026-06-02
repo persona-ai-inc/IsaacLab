@@ -9,7 +9,6 @@ from __future__ import annotations
 import logging
 
 import warp as wp
-
 from isaaclab.sensors.contact_sensor.base_contact_sensor_data import BaseContactSensorData
 
 logger = logging.getLogger(__name__)

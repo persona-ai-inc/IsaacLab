@@ -18,19 +18,17 @@ simulation_app = AppLauncher(headless=True, enable_cameras=True).app
 import copy
 import os
 
+import isaaclab.sim as sim_utils
 import numpy as np
+import omni.replicator.core as rep
 import pytest
 import torch
-
-import omni.replicator.core as rep
-from pxr import Gf
-
-import isaaclab.sim as sim_utils
 from isaaclab.sensors.camera import Camera, CameraCfg
 from isaaclab.sensors.ray_caster import RayCasterCamera, RayCasterCameraCfg, patterns
 from isaaclab.sim import PinholeCameraCfg
 from isaaclab.terrains.trimesh.utils import make_plane
 from isaaclab.terrains.utils import create_prim_from_mesh
+from pxr import Gf
 
 # sample camera poses
 POSITION = [2.5, 2.5, 2.5]

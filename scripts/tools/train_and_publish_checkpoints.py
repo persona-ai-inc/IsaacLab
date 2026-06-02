@@ -131,10 +131,7 @@ import sys
 
 import gymnasium as gym
 import numpy as np
-
 import omni.client
-from omni.client._omniclient import CopyBehavior
-
 from isaaclab_rl.utils.pretrained_checkpoint import (
     WORKFLOW_EXPERIMENT_NAME_VARIABLE,
     WORKFLOW_PLAYER,
@@ -149,6 +146,7 @@ from isaaclab_rl.utils.pretrained_checkpoint import (
     has_pretrained_checkpoint_job_run,
     has_pretrained_checkpoints_asset_root_dir,
 )
+from omni.client._omniclient import CopyBehavior
 
 # Need somewhere to publish
 if args.publish_checkpoint and not has_pretrained_checkpoints_asset_root_dir():

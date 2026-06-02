@@ -8,14 +8,12 @@ from __future__ import annotations
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
-import torch
-import warp as wp
-
-from pxr import UsdPhysics
-
 import isaaclab.sim as sim_utils
 import isaaclab.utils.math as math_utils
+import torch
+import warp as wp
 from isaaclab.sensors.imu import BaseImu
+from pxr import UsdPhysics
 
 from isaaclab_physx.physics import PhysxManager as SimulationManager
 

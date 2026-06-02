@@ -5,13 +5,9 @@
 
 from __future__ import annotations
 
+import isaaclab.sim as sim_utils
 import torch
 import warp as wp
-from isaaclab_newton.physics import NewtonCfg
-from isaaclab_ovphysx.physics import OvPhysxCfg
-from isaaclab_physx.physics import PhysxCfg
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import Articulation
 from isaaclab.envs import DirectRLEnv, DirectRLEnvCfg
 from isaaclab.utils.math import (
@@ -23,6 +19,9 @@ from isaaclab.utils.math import (
     quat_mul,
     scale_transform,
 )
+from isaaclab_newton.physics import NewtonCfg
+from isaaclab_ovphysx.physics import OvPhysxCfg
+from isaaclab_physx.physics import PhysxCfg
 
 
 def normalize_angle(x):

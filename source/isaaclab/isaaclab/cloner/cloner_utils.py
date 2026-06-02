@@ -12,7 +12,6 @@ from collections.abc import Callable
 from typing import TYPE_CHECKING
 
 import torch
-
 from pxr import Gf, Sdf, Usd, UsdGeom, Vt
 
 import isaaclab.sim as sim_utils

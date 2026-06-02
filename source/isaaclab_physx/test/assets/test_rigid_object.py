@@ -19,13 +19,11 @@ simulation_app = AppLauncher(headless=True).app
 import sys
 from typing import Literal
 
+import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
 from flaky import flaky
-from isaaclab_physx.assets import RigidObject
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import RigidObjectCfg
 from isaaclab.sim import build_simulation_context
 from isaaclab.sim.spawners import materials
@@ -39,6 +37,7 @@ from isaaclab.utils.math import (
     quat_rotate,
     random_orientation,
 )
+from isaaclab_physx.assets import RigidObject
 
 
 def generate_cubes_scene(

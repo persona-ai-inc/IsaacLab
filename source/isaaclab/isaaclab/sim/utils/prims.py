@@ -15,7 +15,6 @@ from collections.abc import Callable, Sequence
 from typing import TYPE_CHECKING, Any
 
 import torch
-
 from pxr import Sdf, Usd, UsdGeom, UsdPhysics, UsdShade, UsdUtils
 
 from isaaclab.utils.assets import check_file_path, retrieve_file_path

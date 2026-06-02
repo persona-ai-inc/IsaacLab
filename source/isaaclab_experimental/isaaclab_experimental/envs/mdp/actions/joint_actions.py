@@ -8,10 +8,9 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
+import isaaclab.utils.string as string_utils
 import numpy as np
 import warp as wp
-
-import isaaclab.utils.string as string_utils
 from isaaclab.assets.articulation import Articulation
 
 from isaaclab_experimental.managers.action_manager import ActionTerm

@@ -23,14 +23,11 @@ simulation_app = AppLauncher(headless=True, enable_cameras=True).app
 
 import copy
 
+import isaaclab.sim as sim_utils
 import numpy as np
 import pytest
 import torch
 import warp as wp
-
-from pxr import UsdGeom, UsdPhysics
-
-import isaaclab.sim as sim_utils
 from isaaclab.sensors.ray_caster import (
     MultiMeshRayCaster,
     MultiMeshRayCasterCamera,
@@ -42,6 +39,7 @@ from isaaclab.sensors.ray_caster import (
 )
 from isaaclab.terrains.trimesh.utils import make_plane
 from isaaclab.terrains.utils import create_prim_from_mesh
+from pxr import UsdGeom, UsdPhysics
 
 _GROUND_PATH = "/World/Ground"
 _DT = 0.01

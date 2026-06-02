@@ -21,7 +21,6 @@ environments entirely inside the physics runtime without touching USD.
 from __future__ import annotations
 
 import torch
-
 from pxr import Usd
 
 

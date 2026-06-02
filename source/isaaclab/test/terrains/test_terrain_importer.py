@@ -14,21 +14,19 @@ simulation_app = AppLauncher(headless=True).app
 
 from typing import Literal
 
+import isaaclab.sim as sim_utils
+import isaaclab.terrains as terrain_gen
 import numpy as np
 import pytest
 import torch
 import trimesh
 import warp as wp
-
-from isaacsim.core.cloner import GridCloner
-from pxr import Usd, UsdGeom
-
-import isaaclab.sim as sim_utils
-import isaaclab.terrains as terrain_gen
 from isaaclab.sim import PreviewSurfaceCfg, SimulationContext, build_simulation_context, get_first_matching_child_prim
 from isaaclab.terrains import TerrainImporter, TerrainImporterCfg
 from isaaclab.terrains.config.rough import ROUGH_TERRAINS_CFG
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
+from isaacsim.core.cloner import GridCloner
+from pxr import Usd, UsdGeom
 
 
 @pytest.mark.parametrize("device", ["cuda:0", "cpu"])

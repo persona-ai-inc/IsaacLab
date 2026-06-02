@@ -23,7 +23,6 @@ import torch
 # import omni.log
 # import omni.physx
 import warp as wp
-
 from isaaclab.envs.common import VecEnvObs, VecEnvStepReturn
 from isaaclab.envs.direct_rl_env import DirectRLEnv
 from isaaclab.envs.direct_rl_env_cfg import DirectRLEnvCfg

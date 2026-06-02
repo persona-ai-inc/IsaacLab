@@ -5,7 +5,6 @@
 
 from isaaclab.envs.mimic_env_cfg import MimicEnvCfg, SubTaskConfig
 from isaaclab.utils import configclass
-
 from isaaclab_tasks.manager_based.manipulation.pick_place.exhaustpipe_gr1t2_pink_ik_env_cfg import (
     ExhaustPipeGR1T2PinkIKEnvCfg,
 )

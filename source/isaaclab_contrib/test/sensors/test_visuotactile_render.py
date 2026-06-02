@@ -19,7 +19,6 @@ import cv2
 import numpy as np
 import pytest
 import torch
-
 from isaaclab_contrib.sensors.tacsl_sensor.visuotactile_render import GelsightRender
 from isaaclab_contrib.sensors.tacsl_sensor.visuotactile_sensor_cfg import GelSightRenderCfg
 

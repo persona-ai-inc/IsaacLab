@@ -3,10 +3,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+import isaaclab.sim as sim_utils
 import numpy as np
 import torch
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import AssetBaseCfg
 from isaaclab.envs.common import ViewerCfg
 from isaaclab.managers import ObservationTermCfg as ObsTerm
@@ -17,11 +16,6 @@ from isaaclab.sim.spawners.from_files.from_files_cfg import UsdFileCfg
 from isaaclab.utils import configclass
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR, ISAACLAB_NUCLEUS_DIR, retrieve_file_path
 from isaaclab.utils.datasets import EpisodeData
-
-from isaaclab_mimic.locomanipulation_sdg.data_classes import LocomanipulationSDGInputData
-from isaaclab_mimic.locomanipulation_sdg.occupancy_map_utils import OccupancyMap
-from isaaclab_mimic.locomanipulation_sdg.scene_utils import HasPose, SceneBody, SceneFixture
-
 from isaaclab_tasks.manager_based.locomanipulation.pick_place import mdp as locomanip_mdp
 from isaaclab_tasks.manager_based.locomanipulation.pick_place.locomanipulation_g1_env_cfg import (
     LocomanipulationG1EnvCfg,
@@ -29,6 +23,10 @@ from isaaclab_tasks.manager_based.locomanipulation.pick_place.locomanipulation_g
     ObservationsCfg,
     manip_mdp,
 )
+
+from isaaclab_mimic.locomanipulation_sdg.data_classes import LocomanipulationSDGInputData
+from isaaclab_mimic.locomanipulation_sdg.occupancy_map_utils import OccupancyMap
+from isaaclab_mimic.locomanipulation_sdg.scene_utils import HasPose, SceneBody, SceneFixture
 
 from .locomanipulation_sdg_env import LocomanipulationSDGEnv
 from .locomanipulation_sdg_env_cfg import LocomanipulationSDGEnvCfg, LocomanipulationSDGRecorderManagerCfg

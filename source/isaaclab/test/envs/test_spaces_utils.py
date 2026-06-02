@@ -20,7 +20,6 @@ simulation_app = AppLauncher(headless=True).app
 import numpy as np
 import torch
 from gymnasium.spaces import Box, Dict, Discrete, MultiDiscrete, Tuple
-
 from isaaclab.envs.utils.spaces import deserialize_space, sample_space, serialize_space, spec_to_gym_space
 
 

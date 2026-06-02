@@ -12,7 +12,6 @@ from dataclasses import MISSING
 from typing import Literal
 
 import warp as wp
-
 from isaaclab.utils import configclass
 
 from . import noise_model

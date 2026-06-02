@@ -6,14 +6,12 @@
 import hashlib
 import logging
 
+import isaaclab.sim as sim_utils
 import numpy as np
 import torch
 import trimesh
-from trimesh.sample import sample_surface
-
 from pxr import UsdGeom
-
-import isaaclab.sim as sim_utils
+from trimesh.sample import sample_surface
 
 # ---- module-scope caches ----
 _PRIM_SAMPLE_CACHE: dict[tuple[str, int], np.ndarray] = {}  # (prim_hash, num_points) -> (N,3) in root frame

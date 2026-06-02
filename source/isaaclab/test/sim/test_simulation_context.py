@@ -14,14 +14,12 @@ simulation_app = AppLauncher(headless=True).app
 
 import weakref
 
-import numpy as np
-import pytest
-from isaaclab_physx.physics import IsaacEvents, PhysxCfg, PhysxManager
-
-import omni.timeline
-
 import isaaclab.sim as sim_utils
+import numpy as np
+import omni.timeline
+import pytest
 from isaaclab.sim import SimulationCfg, SimulationContext
+from isaaclab_physx.physics import IsaacEvents, PhysxCfg, PhysxManager
 
 
 @pytest.fixture(autouse=True)

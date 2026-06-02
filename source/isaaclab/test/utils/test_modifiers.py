@@ -14,10 +14,9 @@ simulation_app = AppLauncher(headless=True).app
 
 from dataclasses import MISSING
 
+import isaaclab.utils.modifiers as modifiers
 import pytest
 import torch
-
-import isaaclab.utils.modifiers as modifiers
 from isaaclab.utils import configclass
 
 

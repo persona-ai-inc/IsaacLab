@@ -5,9 +5,8 @@
 
 from collections.abc import Sequence
 
-import torch
-
 import isaaclab.utils.math as PoseUtils
+import torch
 from isaaclab.envs import ManagerBasedRLMimicEnv
 
 

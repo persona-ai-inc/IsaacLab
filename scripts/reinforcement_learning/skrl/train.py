@@ -20,18 +20,15 @@ import time
 from datetime import datetime
 
 import gymnasium as gym
+import isaaclab_tasks  # noqa: F401
 import skrl
-from packaging import version
-
 from isaaclab.envs import DirectMARLEnvCfg, ManagerBasedRLEnvCfg
 from isaaclab.utils.assets import retrieve_file_path
 from isaaclab.utils.dict import print_dict
 from isaaclab.utils.io import dump_yaml
-
 from isaaclab_rl.skrl import SkrlVecEnvWrapper
-
-import isaaclab_tasks  # noqa: F401
 from isaaclab_tasks.utils import add_launcher_args, launch_simulation, resolve_task_config
+from packaging import version
 
 logger = logging.getLogger(__name__)
 

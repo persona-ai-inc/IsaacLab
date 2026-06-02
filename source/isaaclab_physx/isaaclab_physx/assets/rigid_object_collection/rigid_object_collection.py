@@ -11,17 +11,15 @@ import warnings
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
-import numpy as np
-import torch
-import warp as wp
-
-import omni.physics.tensors.api as physx
-from pxr import UsdPhysics
-
 import isaaclab.sim as sim_utils
 import isaaclab.utils.string as string_utils
+import numpy as np
+import omni.physics.tensors.api as physx
+import torch
+import warp as wp
 from isaaclab.assets.rigid_object_collection.base_rigid_object_collection import BaseRigidObjectCollection
 from isaaclab.utils.wrench_composer import WrenchComposer
+from pxr import UsdPhysics
 
 from isaaclab_physx.assets import kernels as shared_kernels
 from isaaclab_physx.physics import PhysxManager as SimulationManager

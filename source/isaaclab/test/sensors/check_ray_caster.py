@@ -39,12 +39,9 @@ simulation_app = app_launcher.app
 
 """Rest everything follows."""
 
-import torch
-
-from isaacsim.core.cloner import GridCloner
-
 import isaaclab.sim as sim_utils
 import isaaclab.terrains as terrain_gen
+import torch
 from isaaclab.assets import RigidObject, RigidObjectCfg
 from isaaclab.sensors.ray_caster import RayCaster, RayCasterCfg, patterns
 from isaaclab.sim import SimulationCfg, SimulationContext
@@ -52,6 +49,7 @@ from isaaclab.terrains.config.rough import ROUGH_TERRAINS_CFG
 from isaaclab.terrains.terrain_importer import TerrainImporter
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 from isaaclab.utils.timer import Timer
+from isaacsim.core.cloner import GridCloner
 
 
 def design_scene(sim: SimulationContext, num_envs: int = 2048):

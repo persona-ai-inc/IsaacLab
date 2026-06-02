@@ -5,9 +5,6 @@
 
 from __future__ import annotations
 
-from isaaclab_newton.physics import NewtonCfg
-from isaaclab_physx.physics import PhysxCfg
-
 import isaaclab.sim as sim_utils
 from isaaclab.assets import ArticulationCfg
 from isaaclab.envs import DirectRLEnvCfg, ViewerCfg
@@ -15,11 +12,12 @@ from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.sensors import TiledCameraCfg
 from isaaclab.sim import SimulationCfg
 from isaaclab.utils import configclass
+from isaaclab_assets.robots.cartpole import CARTPOLE_CFG
+from isaaclab_newton.physics import NewtonCfg
+from isaaclab_physx.physics import PhysxCfg
 
 from isaaclab_tasks.utils import PresetCfg
 from isaaclab_tasks.utils.presets import MultiBackendRendererCfg
-
-from isaaclab_assets.robots.cartpole import CARTPOLE_CFG
 
 
 @configclass

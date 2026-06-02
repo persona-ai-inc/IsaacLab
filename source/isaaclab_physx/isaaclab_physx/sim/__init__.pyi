@@ -14,15 +14,11 @@ __all__ = [
     "views",
 ]
 
-from .schemas import (
-    define_deformable_body_properties,
-    modify_deformable_body_properties,
-    DeformableBodyPropertiesCfg
-)
-from .spawners import (
-    DeformableObjectSpawnerCfg,
-    spawn_deformable_body_material,
-    DeformableBodyMaterialCfg,
-    SurfaceDeformableBodyMaterialCfg,
-)
 from . import views
+from .schemas import DeformableBodyPropertiesCfg, define_deformable_body_properties, modify_deformable_body_properties
+from .spawners import (
+    DeformableBodyMaterialCfg,
+    DeformableObjectSpawnerCfg,
+    SurfaceDeformableBodyMaterialCfg,
+    spawn_deformable_body_material,
+)

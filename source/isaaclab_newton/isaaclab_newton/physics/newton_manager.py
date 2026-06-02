@@ -26,18 +26,17 @@ except OSError:
         _cudart = ctypes.CDLL("libcudart.so")
     except OSError:
         _cudart = None
+from isaaclab.physics import PhysicsEvent, PhysicsManager
+from isaaclab.sim.utils.newton_model_utils import replace_newton_shape_colors
+from isaaclab.sim.utils.stage import get_current_stage
+from isaaclab.utils.string import resolve_matching_names
+from isaaclab.utils.timer import Timer
 from newton import Axis, CollisionPipeline, Contacts, Control, Model, ModelBuilder, State, eval_fk
 from newton._src.usd.schemas import SchemaResolverNewton, SchemaResolverPhysx
 from newton.sensors import SensorContact as NewtonContactSensor
 from newton.sensors import SensorFrameTransform
 from newton.sensors import SensorIMU as NewtonSensorIMU
 from newton.solvers import SolverBase, SolverFeatherstone, SolverMuJoCo, SolverNotifyFlags, SolverXPBD
-
-from isaaclab.physics import PhysicsEvent, PhysicsManager
-from isaaclab.sim.utils.newton_model_utils import replace_newton_shape_colors
-from isaaclab.sim.utils.stage import get_current_stage
-from isaaclab.utils.string import resolve_matching_names
-from isaaclab.utils.timer import Timer
 
 if TYPE_CHECKING:
     from isaaclab.sim.simulation_context import SimulationContext

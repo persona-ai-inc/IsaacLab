@@ -27,14 +27,11 @@ simulation_app = app_launcher.app
 
 from collections.abc import Sequence
 
+import carb
+import isaaclab.sim as sim_utils
+import omni
 import torch
 import warp as wp
-from isaaclab_physx.assets import SurfaceGripper, SurfaceGripperCfg
-
-import carb
-import omni
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import (
     Articulation,
     ArticulationCfg,
@@ -48,8 +45,8 @@ from isaaclab.sim import SimulationCfg
 from isaaclab.sim.spawners.from_files import GroundPlaneCfg, spawn_ground_plane
 from isaaclab.utils import configclass
 from isaaclab.utils.math import sample_uniform
-
 from isaaclab_assets.robots.pick_and_place import PICK_AND_PLACE_CFG
+from isaaclab_physx.assets import SurfaceGripper, SurfaceGripperCfg
 
 
 @configclass

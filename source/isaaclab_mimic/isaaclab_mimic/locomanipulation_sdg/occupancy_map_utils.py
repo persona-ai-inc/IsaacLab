@@ -16,7 +16,6 @@ import PIL.Image
 import torch
 import yaml
 from PIL import ImageDraw
-
 from pxr import Kind, Sdf, Usd, UsdGeom, UsdShade
 
 

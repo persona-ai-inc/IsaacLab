@@ -34,9 +34,7 @@ simulation_app = app_launcher.app
 """Rest everything follows."""
 
 import torch
-
 from isaaclab.envs import ManagerBasedRLEnv
-
 from isaaclab_tasks.manager_based.classic.cartpole.cartpole_env_cfg import CartpoleEnvCfg
 
 

@@ -10,10 +10,9 @@ from __future__ import annotations
 import random
 from typing import TYPE_CHECKING
 
+import isaaclab.utils.math as math_utils
 import torch
 import warp as wp
-
-import isaaclab.utils.math as math_utils
 from isaaclab.managers import EventTermCfg, ManagerTermBase, SceneEntityCfg
 
 from isaaclab_tasks.direct.automate import factory_control as fc

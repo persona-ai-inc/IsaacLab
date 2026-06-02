@@ -13,12 +13,11 @@ simulation_app = AppLauncher(headless=True).app
 """Rest everything follows."""
 
 
+import isaaclab.sim as sim_utils
 import pytest
+from isaaclab.sim import SimulationCfg, SimulationContext
 from isaaclab_physx.sim.schemas.schemas_cfg import DeformableBodyPropertiesCfg
 from isaaclab_physx.sim.spawners.materials.physics_materials_cfg import DeformableBodyMaterialCfg
-
-import isaaclab.sim as sim_utils
-from isaaclab.sim import SimulationCfg, SimulationContext
 
 
 @pytest.fixture

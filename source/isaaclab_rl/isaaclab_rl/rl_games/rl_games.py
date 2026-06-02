@@ -41,10 +41,9 @@ from typing import TYPE_CHECKING
 import gym.spaces  # needed for rl-games incompatibility: https://github.com/Denys88/rl_games/issues/261
 import gymnasium
 import torch
+from isaaclab.envs import VecEnvObs
 from rl_games.common import env_configurations
 from rl_games.common.vecenv import IVecEnv
-
-from isaaclab.envs import VecEnvObs
 
 if TYPE_CHECKING:
     from isaaclab.envs import (

@@ -17,12 +17,11 @@ simulation_app = AppLauncher(headless=True).app
 from dataclasses import MISSING
 from enum import Enum
 
+import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
 from flaky import flaky
-
-import isaaclab.sim as sim_utils
 from isaaclab.app.settings_manager import get_settings_manager
 from isaaclab.assets import RigidObject, RigidObjectCfg
 from isaaclab.scene import InteractiveScene, InteractiveSceneCfg

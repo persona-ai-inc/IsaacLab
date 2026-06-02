@@ -21,6 +21,8 @@ __all__ = [
     "cubes_stacked",
 ]
 
+from isaaclab.envs.mdp import *
+
 from .observations import (
     cube_orientations_in_world_frame,
     cube_poses_in_base_frame,
@@ -38,4 +40,3 @@ from .observations import (
     object_stacked,
 )
 from .terminations import cubes_stacked
-from isaaclab.envs.mdp import *

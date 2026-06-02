@@ -4,11 +4,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 # Ant reuses humanoid's experimental MDP (mirrors stable pattern).
-from isaaclab_experimental.managers import ObservationTermCfg as ObsTerm
-from isaaclab_experimental.managers import RewardTermCfg as RewTerm
-from isaaclab_experimental.managers import TerminationTermCfg as DoneTerm
-from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
-
 import isaaclab.sim as sim_utils
 from isaaclab.assets import AssetBaseCfg
 from isaaclab.envs import ManagerBasedRLEnvCfg
@@ -18,6 +13,10 @@ from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.sim import SimulationCfg
 from isaaclab.terrains import TerrainImporterCfg
 from isaaclab.utils import configclass
+from isaaclab_experimental.managers import ObservationTermCfg as ObsTerm
+from isaaclab_experimental.managers import RewardTermCfg as RewTerm
+from isaaclab_experimental.managers import TerminationTermCfg as DoneTerm
+from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
 
 import isaaclab_tasks_experimental.manager_based.classic.humanoid.mdp as mdp
 

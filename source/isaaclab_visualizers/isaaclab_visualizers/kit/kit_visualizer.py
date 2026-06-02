@@ -11,10 +11,9 @@ import asyncio
 import logging
 from typing import TYPE_CHECKING
 
-from pxr import Usd, UsdGeom, Vt
-
 from isaaclab.app.settings_manager import get_settings_manager
 from isaaclab.visualizers.base_visualizer import BaseVisualizer
+from pxr import Usd, UsdGeom, Vt
 
 from isaaclab_visualizers.newton_adapter import resolve_visible_env_indices
 

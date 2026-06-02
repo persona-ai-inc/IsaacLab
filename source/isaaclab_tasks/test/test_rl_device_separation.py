@@ -44,12 +44,10 @@ simulation_app = app_launcher.app
 """Rest everything follows."""
 
 import gymnasium as gym
+import isaaclab.sim as sim_utils
+import isaaclab_tasks  # noqa: F401
 import pytest
 import torch
-
-import isaaclab.sim as sim_utils
-
-import isaaclab_tasks  # noqa: F401
 from isaaclab_tasks.utils.parse_cfg import parse_env_cfg
 
 # Test environment - use Cartpole as it's simple and fast
@@ -152,9 +150,8 @@ def _test_rsl_rl_device_separation(sim_device: str, rl_device: str):
         sim_device: Device for simulation (e.g., "cuda:0", "cpu")
         rl_device: Device for RL agent (e.g., "cuda:0", "cpu") - where policy generates actions
     """
-    from tensordict import TensorDict
-
     from isaaclab_rl.rsl_rl import RslRlVecEnvWrapper
+    from tensordict import TensorDict
 
     env = _create_env(sim_device)
     _verify_unwrapped_env(env, sim_device)
@@ -222,7 +219,6 @@ def _test_sb3_device_separation(sim_device: str):
         sim_device: Device for simulation (e.g., "cuda:0", "cpu")
     """
     import numpy as np
-
     from isaaclab_rl.sb3 import Sb3VecEnvWrapper
 
     env = _create_env(sim_device)

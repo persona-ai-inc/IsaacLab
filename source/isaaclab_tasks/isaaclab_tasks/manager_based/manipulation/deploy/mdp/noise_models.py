@@ -14,7 +14,6 @@ from dataclasses import MISSING
 from typing import TYPE_CHECKING
 
 import torch
-
 from isaaclab.utils import configclass
 from isaaclab.utils.noise import NoiseModel, NoiseModelCfg
 

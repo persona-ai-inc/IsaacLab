@@ -9,9 +9,8 @@ import argparse
 import sys
 
 import gymnasium as gym
-import torch
-
 import isaaclab_tasks  # noqa: F401
+import torch
 from isaaclab_tasks.utils import add_launcher_args, launch_simulation, resolve_task_config
 
 # add argparse arguments

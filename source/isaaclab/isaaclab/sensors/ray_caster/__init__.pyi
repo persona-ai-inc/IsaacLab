@@ -18,6 +18,7 @@ __all__ = [
     "patterns",
 ]
 
+from . import patterns
 from .multi_mesh_ray_caster import MultiMeshRayCaster
 from .multi_mesh_ray_caster_camera import MultiMeshRayCasterCamera
 from .multi_mesh_ray_caster_camera_cfg import MultiMeshRayCasterCameraCfg
@@ -29,4 +30,3 @@ from .ray_caster_camera import RayCasterCamera
 from .ray_caster_camera_cfg import RayCasterCameraCfg
 from .ray_caster_cfg import RayCasterCfg
 from .ray_caster_data import RayCasterData
-from . import patterns

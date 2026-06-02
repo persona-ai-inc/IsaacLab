@@ -13,7 +13,6 @@ import numpy as np
 import torch
 import warp as wp
 from packaging import version
-
 from pxr import Sdf, UsdGeom
 
 import isaaclab.utils.sensors as sensor_utils

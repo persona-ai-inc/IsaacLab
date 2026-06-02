@@ -16,10 +16,9 @@ simulation_app = AppLauncher(headless=True).app
 
 import random
 
-import pytest
-
 import isaaclab.utils.dict as dict_utils
 import isaaclab.utils.string as string_utils
+import pytest
 
 
 def _test_function(x):

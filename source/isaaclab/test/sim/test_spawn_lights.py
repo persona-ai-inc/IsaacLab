@@ -13,13 +13,11 @@ simulation_app = AppLauncher(headless=True).app
 """Rest everything follows."""
 
 
-import pytest
-
-from pxr import Usd, UsdLux
-
 import isaaclab.sim as sim_utils
+import pytest
 from isaaclab.sim import SimulationCfg, SimulationContext
 from isaaclab.utils.string import to_camel_case
+from pxr import Usd, UsdLux
 
 
 @pytest.fixture(autouse=True)

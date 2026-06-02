@@ -18,15 +18,10 @@ simulation_app = AppLauncher(headless=True).app
 
 import sys
 
+import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
-from isaaclab_newton.assets import RigidObjectCollection
-from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
-from isaaclab_newton.physics import NewtonManager as SimulationManager
-from newton.solvers import SolverNotifyFlags
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import RigidObjectCfg, RigidObjectCollectionCfg
 from isaaclab.sim import SimulationCfg, build_simulation_context
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
@@ -40,6 +35,10 @@ from isaaclab.utils.math import (
     random_orientation,
     subtract_frame_transforms,
 )
+from isaaclab_newton.assets import RigidObjectCollection
+from isaaclab_newton.physics import MJWarpSolverCfg, NewtonCfg
+from isaaclab_newton.physics import NewtonManager as SimulationManager
+from newton.solvers import SolverNotifyFlags
 
 NEWTON_SIM_CFG = SimulationCfg(
     physics=NewtonCfg(

@@ -16,12 +16,10 @@ simulation_app = app_launcher.app
 import os
 
 import gymnasium as gym
+import isaaclab.sim as sim_utils
+import isaaclab_tasks  # noqa: F401
 import pytest
 import torch
-
-import isaaclab.sim as sim_utils
-
-import isaaclab_tasks  # noqa: F401
 from isaaclab_tasks.utils import parse_env_cfg
 
 # Local imports should be imported last

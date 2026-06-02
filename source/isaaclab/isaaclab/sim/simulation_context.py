@@ -15,7 +15,6 @@ from typing import Any
 
 import toml
 import torch
-
 from pxr import Gf, Usd, UsdGeom, UsdPhysics, UsdUtils
 
 import isaaclab.sim as sim_utils

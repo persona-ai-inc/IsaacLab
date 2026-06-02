@@ -8,10 +8,9 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import warp as wp
+from isaaclab.assets import Articulation
 from isaaclab_experimental.managers import SceneEntityCfg
 from isaaclab_experimental.utils.warp.utils import wrap_to_pi
-
-from isaaclab.assets import Articulation
 
 if TYPE_CHECKING:
     from isaaclab.envs import ManagerBasedRLEnv

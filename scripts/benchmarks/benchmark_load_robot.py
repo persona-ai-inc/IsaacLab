@@ -56,10 +56,9 @@ app_start_time_end = time.perf_counter_ns()
 # Start the timer for imports
 imports_time_begin = time.perf_counter_ns()
 
+import isaaclab.sim as sim_utils
 import torch
 import warp as wp
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import ArticulationCfg, AssetBaseCfg
 from isaaclab.scene import InteractiveScene, InteractiveSceneCfg
 from isaaclab.sim import SimulationContext

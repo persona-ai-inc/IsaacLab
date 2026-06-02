@@ -9,7 +9,6 @@ import os
 import platform
 
 import psutil
-
 from isaaclab.test.benchmark.interfaces import MeasurementData, MeasurementDataRecorder
 from isaaclab.test.benchmark.measurements import IntMetadata, SingleMeasurement, StringMetadata
 

@@ -10,9 +10,8 @@ import numpy as np
 import torch
 import yaml
 from dex_retargeting.retargeting_config import RetargetingConfig
-from scipy.spatial.transform import Rotation as R
-
 from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR, retrieve_file_path
+from scipy.spatial.transform import Rotation as R
 
 # import logger
 logger = logging.getLogger(__name__)

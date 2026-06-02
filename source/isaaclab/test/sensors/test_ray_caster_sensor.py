@@ -11,12 +11,11 @@ from isaaclab.app import AppLauncher
 
 simulation_app = AppLauncher(headless=True).app
 
+import isaaclab.sim as sim_utils
 import numpy as np
 import pytest
 import torch
 import warp as wp
-
-import isaaclab.sim as sim_utils
 from isaaclab.sensors.ray_caster import RayCaster, RayCasterCfg, patterns
 from isaaclab.terrains.trimesh.utils import make_plane
 from isaaclab.terrains.utils import create_prim_from_mesh

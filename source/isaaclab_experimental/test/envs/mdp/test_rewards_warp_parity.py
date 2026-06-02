@@ -16,6 +16,7 @@ import warp as wp
 wp.init()
 pytestmark = pytest.mark.skipif(not wp.is_cuda_available(), reason="CUDA device required")
 
+import isaaclab.envs.mdp.rewards as stable_rew
 import isaaclab_experimental.envs.mdp.rewards as warp_rew
 from parity_helpers import (
     BODY_IDS,
@@ -44,8 +45,6 @@ from parity_helpers import (
     run_warp_rew,
     run_warp_rew_captured,
 )
-
-import isaaclab.envs.mdp.rewards as stable_rew
 
 # ============================================================================
 # Fixtures

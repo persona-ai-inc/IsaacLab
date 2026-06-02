@@ -8,9 +8,8 @@ from __future__ import annotations
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
-import torch
-
 import isaaclab.utils.math as math_utils
+import torch
 
 from isaaclab_contrib.utils.types import MultiRotorActions
 

@@ -16,6 +16,7 @@ import warp as wp
 wp.init()
 pytestmark = pytest.mark.skipif(not wp.is_cuda_available(), reason="CUDA device required")
 
+import isaaclab.envs.mdp.observations as stable_obs
 import isaaclab_experimental.envs.mdp.observations as warp_obs
 from parity_helpers import (
     CMD_DIM,
@@ -39,8 +40,6 @@ from parity_helpers import (
     run_warp_obs,
     run_warp_obs_captured,
 )
-
-import isaaclab.envs.mdp.observations as stable_obs
 
 # ============================================================================
 # Fixtures

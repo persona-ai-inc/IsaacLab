@@ -19,7 +19,6 @@ import os
 import flatdict
 import pytest
 import toml
-
 from isaaclab.app.settings_manager import get_settings_manager
 from isaaclab.sim.simulation_cfg import RenderCfg, SimulationCfg
 from isaaclab.sim.simulation_context import SimulationContext

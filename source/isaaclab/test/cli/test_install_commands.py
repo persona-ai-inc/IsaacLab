@@ -16,7 +16,6 @@ from pathlib import Path
 from unittest import mock
 
 import pytest
-
 from isaaclab.cli.commands.install import (
     _PREBUNDLE_REPOINT_PACKAGES,
     _ensure_cuda_torch,

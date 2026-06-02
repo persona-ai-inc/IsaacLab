@@ -13,19 +13,17 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import isaaclab.utils.string as string_utils
 import torch
 import warp as wp
+from isaaclab.assets import Articulation
 from isaaclab_experimental.managers import SceneEntityCfg
 from isaaclab_experimental.managers.manager_base import ManagerTermBase
 from isaaclab_newton.kernels.state_kernels import rotate_vec_to_body_frame
 
-import isaaclab.utils.string as string_utils
-from isaaclab.assets import Articulation
-
 if TYPE_CHECKING:
-    from isaaclab_experimental.managers.manager_term_cfg import RewardTermCfg
-
     from isaaclab.envs import ManagerBasedRLEnv
+    from isaaclab_experimental.managers.manager_term_cfg import RewardTermCfg
 
 
 # ---------------------------------------------------------------------------

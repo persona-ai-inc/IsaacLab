@@ -8,16 +8,14 @@ from __future__ import annotations
 import os
 from dataclasses import MISSING
 
-from isaaclab_physx.physics import PhysxCfg
-
 from isaaclab.actuators import ImplicitActuatorCfg
 from isaaclab.assets import ArticulationCfg
 from isaaclab.envs import DirectRLEnvCfg
 from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.sim import SimulationCfg
 from isaaclab.utils import configclass
-
 from isaaclab_assets import HUMANOID_28_CFG
+from isaaclab_physx.physics import PhysxCfg
 
 MOTIONS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "motions")
 

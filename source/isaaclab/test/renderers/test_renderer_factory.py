@@ -8,7 +8,6 @@
 from unittest.mock import Mock
 
 import pytest
-
 from isaaclab.renderers import Renderer
 from isaaclab.renderers.base_renderer import BaseRenderer
 

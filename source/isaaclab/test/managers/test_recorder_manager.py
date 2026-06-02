@@ -23,10 +23,9 @@ from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
 import h5py
+import isaaclab.sim as sim_utils
 import pytest
 import torch
-
-import isaaclab.sim as sim_utils
 from isaaclab.envs import ManagerBasedEnv, ManagerBasedEnvCfg
 from isaaclab.managers import DatasetExportMode, RecorderManager, RecorderManagerBaseCfg, RecorderTerm, RecorderTermCfg
 from isaaclab.scene import InteractiveSceneCfg

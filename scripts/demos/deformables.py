@@ -35,17 +35,16 @@ simulation_app = app_launcher.app
 
 import random
 
+import isaaclab.sim as sim_utils
 import numpy as np
 import torch
 import tqdm
 import warp as wp
+from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR
 
 # deformables supported in PhysX
 from isaaclab_physx.assets import DeformableObject, DeformableObjectCfg
 from isaaclab_physx.sim import DeformableBodyMaterialCfg, DeformableBodyPropertiesCfg, SurfaceDeformableBodyMaterialCfg
-
-import isaaclab.sim as sim_utils
-from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR
 
 
 def define_origins(num_origins: int, radius: float = 2.0, center_height: float = 3.0) -> list[list[float]]:

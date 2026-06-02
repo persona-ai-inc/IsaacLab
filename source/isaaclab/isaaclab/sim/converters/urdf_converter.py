@@ -180,9 +180,17 @@ class UrdfConverter(AssetConverterBase):
         # PhysX to treat the articulation as a floating-base + constraint (maximal coordinate
         # tree) rather than a fixed-base reduced-coordinate articulation.
         # Moving ArticulationRootAPI to the parent of the root rigid body resolves this.
+        final_usd_path = os.path.join(usd_path, robot_name, f"{robot_name}.usda")
         if cfg.fix_base:
-            final_usd_path = os.path.join(usd_path, robot_name, f"{robot_name}.usda")
             self._fix_articulation_root_for_fixed_base(final_usd_path)
+        else:
+            # step 6c: disable the root fixed joint for floating-base articulations.
+            # The URDF converter pipeline unconditionally produces a PhysicsFixedJoint "root_joint"
+            # connecting the non-rigid USD root Xform to the first rigid body. Physics engines that
+            # map non-rigid body targets to "world" (e.g. Newton) interpret this as a fixed-to-world
+            # joint, making the articulation fixed-base even when fix_base=False.
+            # Disabling this joint allows such engines to auto-create a free joint instead.
+            self._disable_root_joint_for_floating_base(final_usd_path)
 
         # step 7: clean up intermediate files
         if os.path.exists(usdex_path):
@@ -362,6 +370,62 @@ class UrdfConverter(AssetConverterBase):
 
         # Save only the root layer (sublayers produced by the asset transformer are untouched).
         stage.GetRootLayer().Save()
+
+    @staticmethod
+    def _disable_root_joint_for_floating_base(usd_path: str):
+        """Disable the root fixed joint in the USD for floating-base articulations.
+
+        The URDF→USD converter pipeline unconditionally produces a ``PhysicsFixedJoint``
+        named ``root_joint`` that connects the non-rigid USD root Xform to the first
+        rigid body.  Physics engines that map non-rigid body targets to the world frame
+        (e.g. Newton/MJWarp) interpret this joint as a fixed-to-world constraint and
+        therefore treat the articulation as fixed-base, even when ``fix_base=False``.
+
+        Disabling the joint via a local opinion in the root layer allows those engines
+        to skip it and auto-insert a free joint instead, giving the correct
+        floating-base behaviour.  Disabling it also removes the floating-base +
+        external-constraint (maximal coordinate) setup in PhysX, replacing it with the
+        preferred reduced-coordinate floating-base articulation.
+
+        Changes are authored as **local opinions in the root layer** of the stage,
+        which are stronger than the variant/payload/sublayer opinions that define the
+        joint.
+
+        Args:
+            usd_path: Absolute path to the final ``.usda`` file produced by the asset
+                transformer.
+        """
+        from pxr import Usd, UsdPhysics
+
+        stage = Usd.Stage.Open(usd_path)
+        if not stage:
+            carb.log_warn(
+                f"UrdfConverter: Cannot open final stage at '{usd_path}' for floating-base root_joint post-processing."
+            )
+            return
+
+        disabled_any = False
+        for prim in stage.Traverse():
+            joint = UsdPhysics.Joint(prim)
+            if not joint:
+                continue
+            body0_targets = joint.GetBody0Rel().GetTargets()
+            body1_targets = joint.GetBody1Rel().GetTargets()
+            if not body0_targets or not body1_targets:
+                continue
+            body0_prim = stage.GetPrimAtPath(body0_targets[0])
+            body1_prim = stage.GetPrimAtPath(body1_targets[0])
+            # A joint where one body is a non-rigid prim and the other is a rigid body
+            # connects the articulation to the "world" from Newton's perspective.
+            body0_is_rigid = body0_prim.IsValid() and body0_prim.HasAPI(UsdPhysics.RigidBodyAPI)
+            body1_is_rigid = body1_prim.IsValid() and body1_prim.HasAPI(UsdPhysics.RigidBodyAPI)
+            if body0_is_rigid != body1_is_rigid:
+                joint.CreateJointEnabledAttr(False)
+                carb.log_info(f"UrdfConverter: Disabled root joint '{prim.GetPath()}' for floating-base articulation.")
+                disabled_any = True
+
+        if disabled_any:
+            stage.GetRootLayer().Save()
 
     @staticmethod
     def _apply_link_density(stage, density: float):

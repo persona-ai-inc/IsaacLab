@@ -253,11 +253,10 @@ import random
 import time
 
 import gymnasium as gym
+import isaaclab.sim as sim_utils
 import numpy as np
 import psutil
 import torch
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import RigidObject, RigidObjectCfg
 from isaaclab.scene.interactive_scene import InteractiveScene
 from isaaclab.sensors import (
@@ -271,7 +270,6 @@ from isaaclab.sensors import (
 )
 from isaaclab.test.benchmark import BaseIsaacLabBenchmark, DictMeasurement, SingleMeasurement
 from isaaclab.utils.math import orthogonalize_perspective_depth, unproject_depth
-
 from isaaclab_tasks.utils import load_cfg_from_registry
 
 """

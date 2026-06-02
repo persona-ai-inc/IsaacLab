@@ -15,7 +15,7 @@ __all__ = [
     "PvaData",
 ]
 
-from .contact_sensor import ContactSensor, ContactSensorData, ContactSensorCfg
+from .contact_sensor import ContactSensor, ContactSensorCfg, ContactSensorData
 from .frame_transformer import FrameTransformer, FrameTransformerData
 from .imu import Imu, ImuData
 from .pva import Pva, PvaData

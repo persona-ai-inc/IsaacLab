@@ -10,9 +10,7 @@ external environment configurations.
 """
 
 import pytest
-
 from isaaclab.utils import configclass
-
 from isaaclab_tasks.utils.hydra import (
     PresetCfg,
     apply_overrides,

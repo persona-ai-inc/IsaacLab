@@ -23,7 +23,6 @@ from typing import Any
 
 import torch
 import warp as wp
-
 from isaaclab.envs.common import VecEnvObs
 from isaaclab.envs.manager_based_env_cfg import ManagerBasedEnvCfg
 from isaaclab.envs.ui import ViewportCameraController

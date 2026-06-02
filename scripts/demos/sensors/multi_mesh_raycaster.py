@@ -48,12 +48,9 @@ simulation_app = app_launcher.app
 
 import random
 
+import isaaclab.sim as sim_utils
 import torch
 import warp as wp
-
-from pxr import Gf, Sdf
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import Articulation, AssetBaseCfg, RigidObjectCfg
 from isaaclab.markers.config import VisualizationMarkersCfg
 from isaaclab.scene import InteractiveScene, InteractiveSceneCfg
@@ -66,6 +63,7 @@ from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 ##
 from isaaclab_assets.robots.allegro import ALLEGRO_HAND_CFG
 from isaaclab_assets.robots.anymal import ANYMAL_D_CFG
+from pxr import Gf, Sdf
 
 RAY_CASTER_MARKER_CFG = VisualizationMarkersCfg(
     markers={

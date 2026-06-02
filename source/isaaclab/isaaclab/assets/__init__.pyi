@@ -24,11 +24,11 @@ __all__ = [
 ]
 
 from .articulation import (
-    BaseArticulation,
-    BaseArticulationData,
     Articulation,
     ArticulationCfg,
     ArticulationData,
+    BaseArticulation,
+    BaseArticulationData,
 )
 from .asset_base import AssetBase
 from .asset_base_cfg import AssetBaseCfg

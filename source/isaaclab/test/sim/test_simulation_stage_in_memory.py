@@ -16,17 +16,15 @@ simulation_app = AppLauncher(headless=True, enable_cameras=True).app
 """Rest everything follows."""
 
 
-import pytest
-
+import isaaclab.sim as sim_utils
 import omni.physx
 import omni.usd
+import pytest
 import usdrt
-from isaacsim.core.cloner import GridCloner
-
-import isaaclab.sim as sim_utils
 from isaaclab.sim.simulation_context import SimulationCfg, SimulationContext
 from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR
 from isaaclab.utils.version import get_isaac_sim_version
+from isaacsim.core.cloner import GridCloner
 
 
 @pytest.fixture

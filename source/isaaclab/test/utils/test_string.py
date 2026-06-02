@@ -16,9 +16,8 @@ simulation_app = AppLauncher(headless=True).app
 
 import random
 
-import pytest
-
 import isaaclab.utils.string as string_utils
+import pytest
 from isaaclab.utils.string import _resolve_matching_names_impl
 
 

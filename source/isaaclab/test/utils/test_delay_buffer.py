@@ -16,7 +16,6 @@ from collections.abc import Generator
 
 import pytest
 import torch
-
 from isaaclab.utils import DelayBuffer
 
 

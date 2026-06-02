@@ -11,13 +11,11 @@ from isaaclab.app import AppLauncher
 simulation_app = AppLauncher(headless=True, enable_cameras=True).app
 
 import gymnasium as gym
+import isaaclab.sim as sim_utils
 import numpy as np
 import pytest
 import torch
-
-import isaaclab.sim as sim_utils
 from isaaclab.envs import ManagerBasedRLEnv
-
 from isaaclab_tasks.manager_based.classic.cartpole.cartpole_camera_env_cfg import (
     CartpoleDepthCameraEnvCfg,
     CartpoleRGBCameraEnvCfg,

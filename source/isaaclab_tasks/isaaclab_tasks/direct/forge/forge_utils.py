@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import torch
-
 from isaaclab.utils.math import combine_frame_transforms, quat_apply, quat_inv
 
 

@@ -5,11 +5,10 @@
 
 import random
 
+import isaaclab.utils.math as math_utils
 import numpy as np
 import torch
 import warp as wp
-
-import isaaclab.utils.math as math_utils
 from isaaclab.sim.views import FrameView
 
 from .occupancy_map_utils import OccupancyMap, intersect_occupancy_maps

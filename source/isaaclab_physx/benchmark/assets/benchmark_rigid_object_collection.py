@@ -61,13 +61,12 @@ from isaacsim.core.simulation_manager import SimulationManager
 SimulationManager.get_physics_sim_view = MagicMock(return_value=_mock_physics_sim_view)
 
 
+from isaaclab.assets.rigid_object_collection.rigid_object_collection_cfg import RigidObjectCollectionCfg
+from isaaclab.test.benchmark import MethodBenchmarkDefinition, MethodBenchmarkRunner, MethodBenchmarkRunnerConfig
 from isaaclab_physx.assets.rigid_object_collection.rigid_object_collection import RigidObjectCollection
 from isaaclab_physx.assets.rigid_object_collection.rigid_object_collection_data import RigidObjectCollectionData
 from isaaclab_physx.test.benchmark import make_tensor_body_ids, make_tensor_env_ids
 from isaaclab_physx.test.mock_interfaces.views import MockRigidBodyViewWarp
-
-from isaaclab.assets.rigid_object_collection.rigid_object_collection_cfg import RigidObjectCollectionCfg
-from isaaclab.test.benchmark import MethodBenchmarkDefinition, MethodBenchmarkRunner, MethodBenchmarkRunnerConfig
 
 # Suppress warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)

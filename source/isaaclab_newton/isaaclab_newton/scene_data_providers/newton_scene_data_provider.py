@@ -12,9 +12,8 @@ import re
 from collections import deque
 from typing import Any
 
-from pxr import UsdGeom
-
 from isaaclab.physics.base_scene_data_provider import BaseSceneDataProvider
+from pxr import UsdGeom
 
 logger = logging.getLogger(__name__)
 

@@ -16,9 +16,6 @@ import numpy as np
 import pytest
 import torch
 import warp as wp
-
-from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade
-
 from isaaclab.sim.utils.newton_model_utils import (
     _OMNIPBR_DEFAULTS,
     _UNBOUND_DEFAULT_FALLBACK_GRAY,
@@ -27,6 +24,7 @@ from isaaclab.sim.utils.newton_model_utils import (
     _scatter_shape_color_rows_kernel,
     replace_newton_shape_colors,
 )
+from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade
 
 _WARNING_MESSAGE = "Newton shape color replacement is enabled; this workaround will be deprecated in a future release."
 

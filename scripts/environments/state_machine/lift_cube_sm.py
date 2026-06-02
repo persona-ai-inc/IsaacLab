@@ -41,12 +41,10 @@ simulation_app = app_launcher.app
 from collections.abc import Sequence
 
 import gymnasium as gym
+import isaaclab_tasks  # noqa: F401
 import torch
 import warp as wp
-
 from isaaclab.assets.rigid_object.rigid_object_data import RigidObjectData
-
-import isaaclab_tasks  # noqa: F401
 from isaaclab_tasks.manager_based.manipulation.lift.lift_env_cfg import LiftEnvCfg
 from isaaclab_tasks.utils.parse_cfg import parse_env_cfg
 

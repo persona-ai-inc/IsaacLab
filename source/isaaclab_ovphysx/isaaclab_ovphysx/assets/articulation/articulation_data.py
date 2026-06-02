@@ -12,7 +12,6 @@ from typing import Any
 
 import numpy as np
 import warp as wp
-
 from isaaclab.assets.articulation.base_articulation_data import BaseArticulationData
 from isaaclab.utils.buffers import TimestampedBufferWarp as TimestampedBuffer
 

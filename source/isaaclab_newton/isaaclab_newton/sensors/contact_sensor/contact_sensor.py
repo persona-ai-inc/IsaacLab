@@ -13,13 +13,12 @@ import warnings
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
+import isaaclab.utils.string as string_utils
 import numpy as np
 import torch
 import warp as wp
-from newton.sensors import SensorContact as NewtonContactSensor
-
-import isaaclab.utils.string as string_utils
 from isaaclab.sensors.contact_sensor.base_contact_sensor import BaseContactSensor
+from newton.sensors import SensorContact as NewtonContactSensor
 
 from isaaclab_newton.physics import NewtonManager
 

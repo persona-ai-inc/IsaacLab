@@ -44,15 +44,14 @@ simulation_app = app_launcher.app
 import os
 import random
 
-import numpy as np
-from PIL import Image, ImageChops
-
 import isaacsim.core.utils.nucleus as nucleus_utils
 import isaacsim.core.utils.prims as prim_utils
+import numpy as np
 import omni.replicator.core as rep
 from isaacsim.core.api.world import World
 from isaacsim.core.prims import Articulation, RigidPrim, SingleGeometryPrim, SingleRigidPrim
 from isaacsim.core.utils.viewports import set_camera_view
+from PIL import Image, ImageChops
 from pxr import Gf, UsdGeom
 
 # check nucleus connection

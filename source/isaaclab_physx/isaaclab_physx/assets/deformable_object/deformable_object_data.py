@@ -5,10 +5,8 @@
 
 import weakref
 
-import warp as wp
-
 import omni.physics.tensors.api as physx
-
+import warp as wp
 from isaaclab.utils.buffers import TimestampedBufferWarp as TimestampedBuffer
 
 from .kernels import compute_mean_vec3f_over_vertices, compute_nodal_state_w, vec6f

@@ -14,14 +14,13 @@ simulation_app = AppLauncher(headless=True).app
 
 """Rest everything follows."""
 
+import isaaclab.sim as sim_utils
 import pytest
 import torch
 import warp as wp
-from isaaclab_physx.cloner import physx_replicate
-
-import isaaclab.sim as sim_utils
 from isaaclab.cloner import TemplateCloneCfg, clone_from_template, sequential, usd_replicate
 from isaaclab.sim import build_simulation_context
+from isaaclab_physx.cloner import physx_replicate
 
 
 @pytest.fixture(params=["cpu", "cuda"])

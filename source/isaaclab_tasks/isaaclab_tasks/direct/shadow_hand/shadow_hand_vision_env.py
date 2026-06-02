@@ -8,10 +8,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import isaaclab.sim as sim_utils
 import torch
 import warp as wp
-
-import isaaclab.sim as sim_utils
 from isaaclab.assets import Articulation, RigidObject
 from isaaclab.sensors import TiledCamera
 from isaaclab.utils.math import quat_apply

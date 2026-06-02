@@ -12,12 +12,11 @@ import logging
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
+import isaaclab.utils.string as string_utils
 import torch
 import warp as wp
 from isaaclab_physx.assets.articulation import Articulation
 from isaaclab_physx.assets.kernels import split_state_to_root_pose_and_vel
-
-import isaaclab.utils.string as string_utils
 
 from isaaclab_contrib.actuators import Thruster
 from isaaclab_contrib.utils.types import MultiRotorActions
