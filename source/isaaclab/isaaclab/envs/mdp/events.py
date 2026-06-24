@@ -395,6 +395,10 @@ class randomize_rigid_body_mass(ManagerTermBase):
                 inertias[env_ids] = self.asset.data.default_inertia[env_ids] * ratios
             # set the inertia tensors into the physics simulation
             self.asset.root_physx_view.set_inertias(inertias, env_ids)
+        
+        # Update the robot's body masses in the asset data (only available for Articulation)
+        if isinstance(self.asset, Articulation):
+            self.asset.data.update_body_masses()
 
 
 def randomize_rigid_body_com(
@@ -436,6 +440,9 @@ def randomize_rigid_body_com(
 
     # Set the new coms
     asset.root_physx_view.set_coms(coms, env_ids)
+
+    # Update the robot's body masses in the asset data
+    asset.data.update_body_masses()
 
 
 def randomize_rigid_body_collider_offsets(
