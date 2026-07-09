@@ -40,7 +40,7 @@ To begin, we first define our virtual environment.
          # activate the virtual environment
          conda activate env_isaaclab
 
-   .. tab-item:: uv
+   .. tab-item:: uv (experimental)
 
       .. tab-set::
          :sync-group: os
@@ -100,19 +100,7 @@ and now we can install the Isaac Sim packages.
 
 Finally, we can install Isaac Lab.  To start, clone the repository using the following
 
-.. tab-set::
-
-   .. tab-item:: SSH
-
-      .. code:: bash
-
-         git clone git@github.com:isaac-sim/IsaacLab.git
-
-   .. tab-item:: HTTPS
-
-      .. code:: bash
-
-         git clone https://github.com/isaac-sim/IsaacLab.git
+.. isaaclab-clone-commands::
 
 Installation is now as easy as navigating to the repo and then calling the root script with the ``--install`` flag!
 
