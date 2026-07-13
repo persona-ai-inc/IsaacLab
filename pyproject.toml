@@ -75,6 +75,7 @@ dependencies = [
     # prerelease-allowing resolvers fell through to the broken 2.0.0.dev2 build,
     # whose write_videofile drops the clip fps and crashes video recording
     "moviepy>=1.0.3,<2.0.0.dev0",
+    "decorator>=4.0.2,<5.0",
     "packaging",
     "tqdm>=4.67.1",
     "rsl-rl-lib==5.4.1",  # default RL framework
