@@ -13,7 +13,7 @@ import isaaclab.app.app_launcher as app_launcher_module
 import isaaclab.app.sim_launcher as sim_launcher
 import isaaclab.utils as utils_module
 from isaaclab.app import AppLauncher
-from isaaclab.app.sim_launcher import _ensure_livestream_kit_visualizer
+from isaaclab.app.sim_launcher import Scan, _ensure_livestream_kit_visualizer, _get_kit_runtime_sources
 
 pytestmark = pytest.mark.integration
 
@@ -44,6 +44,24 @@ def test_livestream_rejects_disabled_visualizers():
 
     with pytest.raises(ValueError, match="Livestreaming requires the Kit visualizer"):
         _ensure_livestream_kit_visualizer(args)
+
+
+def test_explicit_experience_requires_isaac_sim_runtime():
+    """An explicit Kit experience must override a kitless physics configuration."""
+    scan = Scan(
+        resolved_physics_cfg=None,
+        effective_cfg=object(),
+        visualizer_intent={"has_any_visualizers": False, "has_kit_visualizer": False},
+        has_ovrtx=False,
+        has_kit_camera=False,
+        has_kit_physics=False,
+        has_kitless_physics=True,
+        has_ovphysx_physics=False,
+        needs_kit=False,
+    )
+    args = argparse.Namespace(experience="isaaclab.python.kit", visualizer=None)
+
+    assert _get_kit_runtime_sources(scan, args)
 
 
 def test_launch_simulation_preserves_failure_exit_code(monkeypatch: pytest.MonkeyPatch):
@@ -80,6 +98,46 @@ def test_launch_simulation_preserves_failure_exit_code(monkeypatch: pytest.Monke
     assert close_args == {"exit_code": 1}
 
 
+def test_launch_simulation_auto_enables_kit_camera_without_launcher_args(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.delenv("LIVESTREAM", raising=False)
+    received_args = {}
+
+    class _FakeApp:
+        def close(self) -> None:
+            pass
+
+    class _FakeAppLauncher:
+        def __init__(self, launcher_args):
+            received_args.update(launcher_args)
+            self.app = _FakeApp()
+
+    scan = sim_launcher.Scan(
+        resolved_physics_cfg=None,
+        effective_cfg=object(),
+        visualizer_intent={"has_any_visualizers": False, "has_kit_visualizer": False},
+        has_ovrtx=False,
+        has_kit_camera=True,
+        has_kit_physics=False,
+        has_kitless_physics=False,
+        has_ovphysx_physics=False,
+        needs_kit=True,
+    )
+
+    def _scan(_cfg, launcher_args):
+        assert launcher_args == {}
+        return scan
+
+    monkeypatch.setattr(sim_launcher, "scan", _scan)
+    monkeypatch.setattr(sim_launcher, "_ensure_isaac_sim_available", lambda: None)
+    monkeypatch.setattr(app_module, "AppLauncher", _FakeAppLauncher)
+    monkeypatch.setattr(utils_module, "has_kit", lambda: False)
+
+    with sim_launcher.launch_simulation(object()):
+        pass
+
+    assert received_args["enable_cameras"] is True
+
+
 def test_deferred_cuda_device_synchronizes_torch_and_warp(monkeypatch: pytest.MonkeyPatch):
     """The post-Kit device hook must synchronize both CUDA runtimes."""
     devices = []
@@ -90,6 +148,20 @@ def test_deferred_cuda_device_synchronizes_torch_and_warp(monkeypatch: pytest.Mo
     launcher._set_deferred_cuda_device()
 
     assert devices == [2]
+
+
+def test_limit_cpu_threads_forwarded_to_simulation_app(monkeypatch: pytest.MonkeyPatch):
+    """A SimulationApp thread limit must survive AppLauncher config resolution."""
+    monkeypatch.setenv("HEADLESS", "0")
+    monkeypatch.setenv("LIVESTREAM", "0")
+    monkeypatch.setenv("XR", "0")
+
+    launcher = AppLauncher.__new__(AppLauncher)
+    monkeypatch.setattr(launcher, "_resolve_experience_file", lambda _launcher_args: None)
+
+    launcher._config_resolution({"headless": True, "device": "cpu", "limit_cpu_threads": 1})
+
+    assert launcher._sim_app_config["limit_cpu_threads"] == 1
 
 
 class _DummySettings:
@@ -278,6 +350,19 @@ def test_matrix_no_cli_with_cfg_kit_newton_non_headless(monkeypatch: pytest.Monk
     assert launcher._cli_visualizer_explicit is False
 
 
+def test_matrix_empty_dict_resolves_headless(monkeypatch: pytest.MonkeyPatch):
+    # tools that launch Kit only to reach an extension API pass no visualizer, and must stay headless
+    headless, _ = _resolve_headless_for_case(monkeypatch, {})
+    assert headless is True
+
+
+def test_matrix_viz_kit_dict_resolves_windowed(monkeypatch: pytest.MonkeyPatch):
+    # a Kit viewport only exists when the launcher is told to create it
+    headless, launcher = _resolve_headless_for_case(monkeypatch, {"visualizer": ["kit"]})
+    assert headless is False
+    assert launcher._cli_visualizer_types == ["kit"]
+
+
 @pytest.mark.parametrize("visualizer", [None, ["none"]])
 def test_matrix_viz_none_disables_all_and_headless(monkeypatch: pytest.MonkeyPatch, visualizer):
     headless, launcher = _resolve_headless_for_case(
@@ -386,3 +471,33 @@ def test_allows_isaacsim_full_streaming_experience_when_livestream_disabled(tmp_
     launcher._resolve_experience_file({"experience": str(experience)})
 
     assert launcher._sim_experience_file == str(experience)
+
+
+def test_constructor_reports_missing_isaac_sim(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setattr(app_launcher_module, "SimulationApp", None)
+
+    with pytest.raises(ImportError, match="requires the full Isaac Sim runtime"):
+        AppLauncher()
+
+
+def test_is_available_reflects_simulation_app_presence(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setattr(app_launcher_module, "SimulationApp", None)
+    assert AppLauncher.is_available() is False
+
+    monkeypatch.setattr(app_launcher_module, "SimulationApp", object())
+    assert AppLauncher.is_available() is True
+
+
+def test_has_gui_reads_published_setting():
+    from isaaclab.app.settings_manager import get_settings_manager
+
+    settings = get_settings_manager()
+    original = settings.get("/isaaclab/has_gui")
+    try:
+        settings.set_bool("/isaaclab/has_gui", True)
+        assert AppLauncher.has_gui() is True
+
+        settings.set_bool("/isaaclab/has_gui", False)
+        assert AppLauncher.has_gui() is False
+    finally:
+        settings.set_bool("/isaaclab/has_gui", bool(original))
